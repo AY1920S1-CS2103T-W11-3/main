@@ -326,11 +326,9 @@ _{More to be added}_
 1.  User requests to view his todo list
 2.  EatMe toggles to the todo mode
 3.  User requests to mark an eatery as visited in the list
-4.  EatMe prompts user to shift the eatery under the main mode (of visited places)
-5.  User approves of the shift
-6.  EatMe shifts the data over
-7.  EatMe toggles to the main mode
-8.  EatMe requests user for whatever information left that is required before saving in the main mode
+4.  EatMe shifts the data over
+5.  EatMe toggles to the main mode
+6.  EatMe requests user for whatever information left that is required before saving in the main mode
 +
 Use case ends.
 
@@ -348,17 +346,10 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-* 5a. User says no.
+* 6a. The given information is of the wrong format.
 +
 [none]
-** 5a1. EatMe deletes the eatery from todolist.
-+
-Use case ends.
-
-* 8a. The given information is of the wrong format.
-+
-[none]
-** 8a1. EatMe shows an error message.
+** 6a1. EatMe shows an error message.
 +
 Use case resumes at step 8.
 
