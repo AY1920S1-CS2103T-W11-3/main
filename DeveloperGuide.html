@@ -628,7 +628,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p>has a need to manage a significant number of contacts</p>
+<p>has a need to manage a significant number of <a href="#eatery">eateries</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>budget</p>
+</li>
+<li>
+<p><a href="#category">category</a></p>
+</li>
+<li>
+<p>location</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>prefer desktop apps over other types</p>
@@ -645,7 +658,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: manage contacts faster than a typical mouse/GUI driven app</p>
+<p><strong>Value proposition</strong>: manage eateries faster than a typical mouse/GUI driven app with statistics of key details such as budget, category and location</p>
 </div>
 </div>
 </div>
@@ -673,39 +686,39 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see usage instructions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions when I forget how to use the App</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">food blogger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep a list of outstanding cafes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">clear them in an orderly fashion.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">student</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep a list of affordable eateries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">save money</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">person with many food allergies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of dishes I have ordered before</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">avoid ordering hazardous food</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">foodie</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remember places</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">share this experience with my family and friends</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">digital nomad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tag places with free power + wifi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sit there for extended periods of time</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">working adult</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the menu beforehand</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">save time from thinking what to eat</p></td>
 </tr>
 </tbody>
 </table>
@@ -718,25 +731,31 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>EatMe</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-removing-an-eatery-from-todo" class="discrete">Use case: Removing an eatery from todo</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons</p>
+<p>User requests to view his todo list</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>EatMe toggles to the todo mode</p>
 </li>
 <li>
-<p>User requests to delete a specific person in the list</p>
+<p>User requests to mark an eatery as visited in the list</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>EatMe shifts the data over</p>
+</li>
+<li>
+<p>EatMe toggles to the main mode</p>
+</li>
+<li>
+<p>EatMe requests user for whatever information left that is required before saving in the main mode</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -755,13 +774,115 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </li>
 <li>
-<p>3a. The given index is invalid.</p>
+<p>3a. The given eatery is invalid.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>3a1. EatMe shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>6a. The given information is of the wrong format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>6a1. EatMe shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 8.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-tagging-an-eatery-in-main" class="discrete">Use case: Tagging an eatery in main</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to add a tag to an eatery</p>
+</li>
+<li>
+<p>EatMe updates the eatery accordingly</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>1b. The user gives invalid information.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. EatMe shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-viewing-a-menu-beforehand" class="discrete">Use case: Viewing a menu beforehand</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User searches for an eatery</p>
+</li>
+<li>
+<p>EatMe displays the eatery accordingly</p>
+</li>
+<li>
+<p>User reads the entry for the menu</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>1b. The user gives invalid information.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. EatMe shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
 </div>
 </li>
 </ul>
@@ -783,10 +904,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>11</code> or above installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 1000 eateries without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+</li>
+<li>
+<p>Main functionalities (CRUD) should work without WiFi.</p>
 </li>
 </ol>
 </div>
@@ -804,9 +928,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
 </dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
+<dt class="hdlist1"><a id="eatery"></a> Eatery</dt>
 <dd>
-<p>A contact detail that is not meant to be shared with others</p>
+<p>Any place that serves food open to the public (ie, restaurants, cafes, roadside, pushcart)</p>
+</dd>
+<dt class="hdlist1"><a id="category"></a> Category</dt>
+<dd>
+<p>Broadly containts cuisines (self-explanatory) and eating place (ie, a buffet, fusion)</p>
 </dd>
 </dl>
 </div>
@@ -816,10 +944,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Product Name</strong></p>
+<p><strong>Soon</strong></p>
 </div>
 <div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
+<p>Author: Beginner AB</p>
 </div>
 <div class="paragraph">
 <p>Pros:</p>
@@ -827,10 +955,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p>&#8230;&#8203;</p>
+<p>Shows trending restaurants nearby</p>
 </li>
 <li>
-<p>&#8230;&#8203;</p>
+<p>Hide option</p>
 </li>
 </ul>
 </div>
@@ -840,10 +968,10 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p>&#8230;&#8203;</p>
+<p>Unable to delete lists</p>
 </li>
 <li>
-<p>&#8230;&#8203;</p>
+<p>Unable to search</p>
 </li>
 </ul>
 </div>
@@ -958,4 +1086,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-01 12:30:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-01 17:12:32 UTC</div></div></div></body></html>
