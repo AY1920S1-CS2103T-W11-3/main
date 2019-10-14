@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.HashMap;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.HashMap;
 
 /**
  * Represents an Eatery's category in the EatMe application.
