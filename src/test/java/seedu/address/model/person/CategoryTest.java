@@ -24,7 +24,7 @@ public class CategoryTest {
         String validName = "Japanese";
         Category validCategory = new Category(validName);
         assertEquals("Japanese", validCategory.getName());
-        assertEquals(0, validCategory.getCategoryId());
+        assertEquals(0, validCategory.getId());
     }
 
     @Test
