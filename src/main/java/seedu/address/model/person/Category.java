@@ -7,7 +7,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Eatery's category in the EatMe application.
  */
 public class Category {
-    private static int CATEGORY_ID = -1;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Categories should only contain alphabets and spaces, and it should not be blank";
@@ -18,7 +17,8 @@ public class Category {
      */
     public static final String VALIDATION_REGEX = "([A-Za-z]\\w+[ A-Za-z]*)";
 
-    private int categoryId;
+    private static int categoryId = -1;
+    private int id;
     private String name;
 
     /**
@@ -29,7 +29,7 @@ public class Category {
     public Category(String name) {
         requireNonNull(name);
         checkArgument(isValidCategory(name), MESSAGE_CONSTRAINTS);
-        this.categoryId = CATEGORY_ID + 1;
+        this.id = categoryId + 1;
         this.name = name;
     }
 
