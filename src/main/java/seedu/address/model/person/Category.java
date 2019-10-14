@@ -59,8 +59,8 @@ public class Category {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
