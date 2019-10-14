@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -13,9 +12,17 @@ public class CategoryTest {
     }
 
     @Test
-    public void constructor_invalidCategory_throwsIllegalArgumentException() {
-        String invalidCategory = "";
-        assertThrows(IllegalArgumentException.class, () -> new Category(invalidCategory));
+    public void constructor_invalidCategoryName_throwsIllegalArgumentException() {
+        String invalidName= "";
+        assertThrows(IllegalArgumentException.class, () -> new Category(invalidName));
+    }
+
+    @Test
+    public void constructor_validCategory() {
+        String validName = "Japanese";
+        Category validCategory = new Category(validName);
+        assertEquals("Japanese", validCategory.getName());
+        assertEquals(0, validCategory.getCategoryId());
     }
 
     @Test
@@ -36,5 +43,31 @@ public class CategoryTest {
         assertTrue(Category.isValidCategory("chinese"));
         assertTrue(Category.isValidCategory("CHINESE"));
         assertTrue(Category.isValidCategory("Chinese Food"));
+    }
+
+    @Test
+    public void equals() {
+        Category japanese = new Category("Japanese");
+        Category korean = new Category("Korean");
+
+        assertTrue(japanese.equals(japanese));
+        assertTrue(korean.equals(korean));
+        assertTrue(japanese.equals(new Category("Japanese")));
+        assertTrue(korean.equals(new Category("Korean")));
+
+        assertFalse(japanese.equals(korean));
+        assertFalse(korean.equals(japanese));
+    }
+
+    @Test
+    public void create() {
+        // test if it returns the same object
+        Category thai = Category.create("Thai");
+        Category secondThai = Category.create("Thai");
+        assertEquals(thai, secondThai);
+
+        // test if it returns a different object
+        Category viet = Category.create("Vietnamese");
+        assertFalse(thai == viet);
     }
 }

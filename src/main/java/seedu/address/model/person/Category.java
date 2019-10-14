@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.HashMap;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -18,6 +20,8 @@ public class Category {
     public static final String VALIDATION_REGEX = "([A-Za-z]\\w+[ A-Za-z]*)";
 
     private static int categoryId = -1;
+    private static HashMap<String, Category> categories = new HashMap<String, Category>();
+
     private int id;
     private String name;
 
@@ -29,8 +33,23 @@ public class Category {
     public Category(String name) {
         requireNonNull(name);
         checkArgument(isValidCategory(name), MESSAGE_CONSTRAINTS);
-        this.id = categoryId + 1;
+        categoryId = categoryId + 1;
+        this.id = categoryId;
         this.name = name;
+    }
+
+    /**
+     * Returns a new Category object if Category with the same name doesn't exist,
+     * else it returns the existing Category object.
+     */
+    public static Category create(String name) {
+        Category cat = categories.get(name);
+
+        if (cat == null) {
+            return new Category(name);
+        } else {
+            return cat;
+        }
     }
 
     /**
@@ -58,10 +77,5 @@ public class Category {
         return other == this
                 || (other instanceof Category)
                 && name.equals(((Category) other).name);
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
     }
 }
