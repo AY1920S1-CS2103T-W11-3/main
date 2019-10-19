@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Address;
 import seedu.address.model.eatery.Name;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.eatery.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -139,6 +139,6 @@ public class ParserUtilTest {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertTrue(expectedTagSet.equals(actualTagSet));
     }
 }
