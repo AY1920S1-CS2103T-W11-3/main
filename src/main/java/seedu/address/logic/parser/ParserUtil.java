@@ -100,7 +100,7 @@ public class ParserUtil {
     public static Category parseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCat = category.trim();
-        if (!Tag.isValidTag(trimmedCat)) {
+        if (!Category.isValidCategory(trimmedCat)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         return Category.create(trimmedCat);
