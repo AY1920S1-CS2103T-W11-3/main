@@ -30,7 +30,7 @@ public class TagTest {
     }
 
     @Test
-    public void isValidCategory() {
+    public void isValidTag() {
         //null category
         assertThrows(NullPointerException.class, () -> Tag.isValidTag(null));
 

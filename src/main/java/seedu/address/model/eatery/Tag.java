@@ -71,7 +71,7 @@ public class Tag {
 
     @Override
     public String toString() {
-        return name;
+        return String.format("[%s]", name);
     }
 
     @Override
