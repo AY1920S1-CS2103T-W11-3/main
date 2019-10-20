@@ -49,7 +49,6 @@ public class Category {
             Category newCat = new Category(name);
             categories.put(newCat.getName(), newCat);
             return newCat;
-
         } else {
             return cat;
         }
