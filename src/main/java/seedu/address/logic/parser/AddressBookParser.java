@@ -78,7 +78,6 @@ public class AddressBookParser {
         case ModeCommand.COMMAND_WORD:
             return new ModeCommand();
 
-
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 

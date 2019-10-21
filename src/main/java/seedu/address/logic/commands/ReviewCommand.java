@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -13,9 +14,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
-
-
-
 
 /**
  * Adds review to an existing eatery in the address book
@@ -39,7 +37,7 @@ public class ReviewCommand extends Command {
     public static final String MESSAGE_ADD_REVIEW_SUCCESS = "Added review to eatery: %1$s";
 
     private final Index index;
-    private Review review;
+    private final Review review;
 
     /**
      * @param index of the eatery to which review is added.
@@ -54,6 +52,7 @@ public class ReviewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Eatery> lastShownList = model.getFilteredEateryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -61,12 +60,7 @@ public class ReviewCommand extends Command {
         }
 
         Eatery eateryToAddReview = lastShownList.get(index.getZeroBased());
-        Eatery editedEatery = new Eatery(eateryToAddReview.getName(), eateryToAddReview.getAddress(),
-                eateryToAddReview.getCategory(), eateryToAddReview.getTags());
-
-        editedEatery.addReview(review);
-
-        model.setEatery(eateryToAddReview, editedEatery);
+        eateryToAddReview.addReview(review);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
 
         return new CommandResult(String.format(MESSAGE_ADD_REVIEW_SUCCESS, review));

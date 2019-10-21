@@ -64,11 +64,11 @@ public class UniqueEateryListTest {
     }
 
     @Test
-    public void contains_eateryWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_eateryWithDifferentIdentityFieldsInList_returnsFalse() {
         uniqueEateryList.add(ALICE);
         Eatery editedAlice = new EateryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueEateryList.contains(editedAlice));
+        assertFalse(uniqueEateryList.contains(editedAlice));
     }
 
     @Test

@@ -69,7 +69,7 @@ public class Eatery {
     }
 
     public Set<Review> getReviews() {
-        return Collections.unmodifiableSet(reviews);
+        return reviews;
     }
 
     /**
@@ -113,7 +113,6 @@ public class Eatery {
                 && otherEatery.getIsOpen() == (getIsOpen())
                 && otherEatery.getAddress().equals(getAddress())
                 && otherEatery.getCategory().equals(getCategory())
-                && otherEatery.getReviews().equals(getReviews())
                 && otherEatery.getTags().equals(getTags());
     }
 
@@ -128,8 +127,6 @@ public class Eatery {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" isOpen: ")
-                .append(getIsOpen())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Category: ")
