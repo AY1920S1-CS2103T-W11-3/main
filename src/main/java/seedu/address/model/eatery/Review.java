@@ -1,18 +1,18 @@
 package seedu.address.model.eatery;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents an Eatery's review in the EatMe application.
  */
 public class Review {
 
-    public static final String REVIEW_CONSTRAINTS = "Review description should not be empty," +
-            " Cost cannot be negative and cannot exceed 10000 and" +
-            " Rating should be an integer between 0 and 5.";
+    public static final String REVIEW_CONSTRAINTS = "Review description should not be empty,"
+            + " Cost cannot be negative and cannot exceed 10000 and"
+            + " Rating should be an integer between 0 and 5.";
 
     /**
      * The first character of the description must not be a whitespace,
@@ -39,8 +39,8 @@ public class Review {
      * @param rating Rating out of 5 for the meal being reviewed.
      */
     public Review(String description, double cost, int rating) {
-        requireAllNonNull(description,cost,rating);
-        checkArgument(isValidReview(description,cost,rating), REVIEW_CONSTRAINTS);
+        requireAllNonNull(description, cost, rating);
+        checkArgument(isValidReview(description, cost, rating), REVIEW_CONSTRAINTS);
         this.description = description;
         this.cost = cost;
         this.rating = rating;
@@ -49,7 +49,7 @@ public class Review {
     /**
      * Returns true if the given review is a valid review.
      */
-    public static boolean isValidReview(String description, double cost, int rating){
+    public static boolean isValidReview(String description, double cost, int rating) {
         return isValidDescription(description) && isValidCost(cost)
                 && isValidRating(String.valueOf(rating));
     }
@@ -84,7 +84,7 @@ public class Review {
     }
 
     public String getDate() {
-            return this.date;
+        return this.date;
     }
 
     public String getDescription() {

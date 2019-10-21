@@ -9,7 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.eatery.*;
+import seedu.address.model.eatery.Address;
+import seedu.address.model.eatery.Category;
+import seedu.address.model.eatery.Name;
+import seedu.address.model.eatery.Review;
+import seedu.address.model.eatery.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -103,6 +108,12 @@ public class ParserUtil {
         return Category.create(trimmedCat);
     }
 
+    /**
+     *Trims leading and trailing white spaces.
+     *
+     * @param reviewDescription
+     * @throws ParseException if the given {@code reviewDescription} is invalid.
+     */
     public static String parseReviewDescription(String reviewDescription) throws ParseException {
         requireNonNull(reviewDescription);
         String trimmedDescription = reviewDescription.trim();
@@ -112,6 +123,11 @@ public class ParserUtil {
         return trimmedDescription;
     }
 
+    /**
+     * Parses {@code reviewCost} to double value.
+     *
+     * @throws ParseException if the given {@code reviewCost} is invalid.
+     */
     public static double parseReviewCost(String reviewCost) throws ParseException {
         requireNonNull(reviewCost);
         String trimmedCost = reviewCost.trim();
@@ -121,10 +137,17 @@ public class ParserUtil {
         return Double.valueOf(trimmedCost);
     }
 
-    public static int parseReviewRating(String reviewRating) {
+    /**
+     * Parses {@code reviewRating} to integer value corresponding to rating.
+     *
+     * @return
+     */
+    public static int parseReviewRating(String reviewRating) throws ParseException {
         requireNonNull(reviewRating);
         String trimmedRating = reviewRating.trim();
-        if (!Review.isValidRating(reviewRating));
+        if (!Review.isValidRating(reviewRating)) {
+            throw new ParseException(Review.REVIEW_CONSTRAINTS);
+        }
         return Integer.valueOf(trimmedRating);
     }
 }

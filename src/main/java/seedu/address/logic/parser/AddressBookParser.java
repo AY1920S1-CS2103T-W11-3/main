@@ -74,8 +74,9 @@ public class AddressBookParser {
         case ModeCommand.COMMAND_WORD:
             return new ModeCommand();
 
-            case ReviewCommand.COMMAND_WORD:
-                return new ReviewCommandParser().parse(arguments);
+
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

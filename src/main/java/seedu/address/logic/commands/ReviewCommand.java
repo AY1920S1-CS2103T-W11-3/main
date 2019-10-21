@@ -1,5 +1,12 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,17 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
 
-import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static  seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 
 /**
  * Adds review to an existing eatery in the address book
  */
-public class ReviewCommand extends Command{
+public class ReviewCommand extends Command {
 
     public static final String COMMAND_WORD = "review";
 
@@ -53,7 +56,7 @@ public class ReviewCommand extends Command{
     public CommandResult execute(Model model) throws CommandException {
         List<Eatery> lastShownList = model.getFilteredEateryList();
 
-        if(index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
         }
 
