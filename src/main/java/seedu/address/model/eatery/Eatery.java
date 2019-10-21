@@ -49,7 +49,7 @@ public class Eatery {
     }
 
     public Set<Review> getReviews() {
-        return reviews;
+        return Collections.unmodifiableSet(reviews);
     }
 
     /**
@@ -92,13 +92,14 @@ public class Eatery {
         return otherEatery.getName().equals(getName())
                 && otherEatery.getAddress().equals(getAddress())
                 && otherEatery.getCategory().equals(getCategory())
+                && otherEatery.getReviews().equals(getReviews())
                 && otherEatery.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(name, address, reviews, tags);
     }
 
     @Override
