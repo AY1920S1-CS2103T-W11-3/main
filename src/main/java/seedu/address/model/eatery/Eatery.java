@@ -18,6 +18,7 @@ public class Eatery {
     // Data fields
     private final Address address;
     private final Category category;
+    private Set<Review> reviews = new HashSet<>();
     private Set<Tag> tags = new HashSet<>();
 
     /**
@@ -43,6 +44,14 @@ public class Eatery {
         return category;
     }
 
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -61,7 +70,8 @@ public class Eatery {
         }
 
         return otherEatery != null
-                && otherEatery.getName().equals(getName());
+                && otherEatery.getName().equals(getName())
+                && otherEatery.getAddress().equals(getAddress());
     }
 
     /**
