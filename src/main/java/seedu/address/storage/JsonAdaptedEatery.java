@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.eatery.Address;
-import seedu.address.model.eatery.Category;
-import seedu.address.model.eatery.Eatery;
-import seedu.address.model.eatery.Name;
-import seedu.address.model.eatery.Tag;
+import seedu.address.model.eatery.*;
 
 /**
  * Jackson-friendly version of {@link Eatery}.
@@ -27,6 +23,7 @@ class JsonAdaptedEatery {
     private final String isOpen;
     private final String address;
     private final String category;
+    private final List<JsonAdaptedReview> reviews = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,11 +34,15 @@ class JsonAdaptedEatery {
                              @JsonProperty("isOpen") String isOpen,
                              @JsonProperty("address") String address,
                              @JsonProperty("category") String category,
+            @JsonProperty("reviews") List<JsonAdaptedReview> reviews,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.isOpen = isOpen;
         this.address = address;
         this.category = category;
+        if(reviews != null) {
+            this.reviews.addAll(reviews);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +56,9 @@ class JsonAdaptedEatery {
         isOpen = String.valueOf(source.getIsOpen());
         address = source.getAddress().value;
         category = source.getCategory().getName();
+        reviews.addAll(source.getReviews().stream()
+                .map(JsonAdaptedReview::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -66,6 +70,11 @@ class JsonAdaptedEatery {
      * @throws IllegalValueException if there were any data constraints violated in the adapted eatery.
      */
     public Eatery toModelType() throws IllegalValueException {
+        final List<Review> eateryReviews = new ArrayList<>();
+        for (JsonAdaptedReview review : reviews) {
+            eateryReviews.add(review.toModelType());
+        }
+
         final List<Tag> eateryTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             eateryTags.add(tag.toModelType());
@@ -105,6 +114,7 @@ class JsonAdaptedEatery {
         }
         final Category modelCategory = new Category(category);
 
+        final Set<Review> modelReviews = new HashSet<>(eateryReviews);
         final Set<Tag> modelTags = new HashSet<>(eateryTags);
         return new Eatery(modelName, modelIsOpen, modelAddress, modelCategory, modelTags);
     }
