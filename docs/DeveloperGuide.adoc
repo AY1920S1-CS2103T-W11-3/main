@@ -229,7 +229,9 @@ Given below is an example usage scenario and how the add eatery mechanism behave
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the default eateries.
 
 Step 2. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. The `add` command also calls `Model#addEatery(Eatery e)`.
-[NOTE] If the command is missing a `Name`, `Address`, or `Category` parameter, the execution of the add command will fail and the application will throw a `ParseException`.
+
+[NOTE] 
+If the command is missing a `Name`, `Address`, or `Category` parameter, the execution of the add command will fail and the application will throw a `ParseException`.
 
 The following sequence diagram shows how the add operation works:
 image:add-sd.PNG[]
