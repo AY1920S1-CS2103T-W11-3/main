@@ -23,7 +23,10 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final FeedList feedList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Eatery> filteredEateries;
+
+    private FilteredList<Eatery> filteredTodo;
+    private FilteredList<Eatery> filteredEateries;
+
 
     /**
      * Initializes a ModelManager with the given addressBook, feedList and userPrefs.
@@ -38,7 +41,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.feedList = new FeedList(feedList);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredEateries = new FilteredList<>(this.addressBook.getEateryList());
+        filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
     }
 
     public ModelManager() {
@@ -110,6 +115,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasExactEatery(Eatery eatery) {
+        requireNonNull(eatery);
+        return addressBook.hasExactEatery(eatery);
+    }
+
+    @Override
     public void deleteEatery(Eatery target) {
         addressBook.removeEatery(target);
     }
@@ -123,7 +134,6 @@ public class ModelManager implements Model {
     @Override
     public void setEatery(Eatery target, Eatery editedEatery) {
         requireAllNonNull(target, editedEatery);
-
         addressBook.setEatery(target, editedEatery);
     }
 
@@ -139,9 +149,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Eatery> getFilteredTodoList() {
+        return filteredTodo;
+    }
+
+    @Override
     public void updateFilteredEateryList(Predicate<Eatery> predicate) {
         requireNonNull(predicate);
-        filteredEateries.setPredicate(predicate);
+        if (addressBook.isMainMode()) {
+            filteredEateries.setPredicate(predicate);
+        } else {
+            filteredTodo.setPredicate(predicate);
+        }
+    }
+
+    //=========== General =============================================================
+
+    @Override
+    public void toggle() {
+        addressBook.toggle();
+    }
+
+    @Override
+    public boolean isMainMode() {
+        return addressBook.isMainMode();
     }
 
     //=========== FeedList ================================================================================

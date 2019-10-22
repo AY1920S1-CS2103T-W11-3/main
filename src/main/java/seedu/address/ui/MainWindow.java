@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
@@ -14,9 +12,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyFeedList;
-import seedu.address.model.feed.Feed;
-import seedu.address.model.feed.FeedPost;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,6 +28,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EateryListPanel eateryListPanel;
+    private EateryListPanel todoListPanel;
+
     private ResultDisplay resultDisplay;
     private FeedPostListPanel feedPostListPanel;
     private HelpWindow helpWindow;
@@ -76,15 +73,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
         eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
 
-        ReadOnlyFeedList feedList = logic.getFeedList();
-        ObservableList<FeedPost> feedPostList = FXCollections.observableArrayList();
-        for (Feed feed : feedList.getFeedList()) {
-            feedPostList.addAll(feed.fetchPosts());
-        }
-        feedPostListPanel = new FeedPostListPanel(feedPostList);
+        feedPostListPanel = new FeedPostListPanel(logic.getFeedList());
         feedPostListPanelPlaceholder.getChildren().add(feedPostListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -95,6 +88,20 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillDataParts() {
+        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
+        todoListPanel = new EateryListPanel(logic.getFilteredTodoList());
+
+        if (logic.isMainMode()) {
+            eateryListPanelPlaceholder.getChildren().addAll(eateryListPanel.getRoot());
+        } else {
+            eateryListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot());
+        }
     }
 
 
@@ -161,6 +168,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            fillDataParts();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

@@ -12,6 +12,7 @@ import seedu.address.model.feed.Feed;
  * The API of the Model component.
  */
 public interface Model {
+
     /**
      * {@code Predicate} that always evaluate to true
      */
@@ -63,6 +64,11 @@ public interface Model {
     boolean hasEatery(Eatery eatery);
 
     /**
+     * Returns true if a eatery with the exact same identity as {@code eatery} exists in the address book.
+     */
+    boolean hasExactEatery(Eatery eatery);
+
+    /**
      * Deletes the given eatery.
      * The eatery must exist in the address book.
      */
@@ -86,14 +92,26 @@ public interface Model {
      */
     ObservableList<Eatery> getFilteredEateryList();
 
+    /** Returns an unmodifiable view of the filtered list */
+    ObservableList<Eatery> getFilteredTodoList();
+
     /**
      * Updates the filter of the filtered eatery list to filter by the given {@code predicate}.
-     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEateryList(Predicate<Eatery> predicate);
 
     /**
+     *  Switch between main mode and to-do mode.
+     * */
+    void toggle();
+
+    /**
+     * Return status of mode, Main or To-do.
+     * */
+    boolean isMainMode();
+
+    /*
      * Returns the user prefs' feed list file path.
      */
     Path getFeedListFilePath();
