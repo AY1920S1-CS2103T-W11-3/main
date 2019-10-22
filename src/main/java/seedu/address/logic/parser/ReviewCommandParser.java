@@ -28,11 +28,7 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
 
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviewCommand.MESSAGE_USAGE), pe);
-        }
 
-        try {
             String reviewDescription = ParserUtil
                     .parseReviewDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION).get());
             double reviewCost = ParserUtil.parseReviewCost(argumentMultimap.getValue(PREFIX_COST).get());

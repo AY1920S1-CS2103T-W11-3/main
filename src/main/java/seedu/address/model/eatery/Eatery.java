@@ -73,6 +73,7 @@ public class Eatery {
     }
 
     public void setReviews(Set<Review> reviews) {
+        this.reviews.clear();
         for (Review r : reviews) {
             this.addReview(r);
         }
@@ -126,7 +127,6 @@ public class Eatery {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, isOpen, address, reviews, tags);
-
     }
 
     @Override
