@@ -65,7 +65,7 @@ public class Review {
      * Returns true if the given cost is valid.
      */
     public static boolean isValidCost(double test) {
-        return (test > 0 && test < 10000);
+        return (test >= 0 && test < 10000);
     }
 
     /**

@@ -72,6 +72,12 @@ public class Eatery {
         return reviews;
     }
 
+    public void setReviews(Set<Review> reviews) {
+        for (Review r : reviews) {
+            this.addReview(r);
+        }
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
