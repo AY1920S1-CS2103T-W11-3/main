@@ -182,8 +182,6 @@ The following sequence diagram shows how the undo operation works:
 
 image::CloseSequenceDiagram.png[]
 
-image::UndoSequenceDiagram.png[]
-
 The following activity diagram summarizes what happens when a user executes a new CloseCommand:
 
 image::CloseCommitActivityDiagram.png[]
