@@ -111,6 +111,22 @@ public class Review {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Review)) {
+            return false;
+        }
+
+        Review otherReview = (Review) other;
+        return otherReview.getDescription().equals(getDescription())
+                && otherReview.getCost() == getCost()
+                && otherReview.getRating() == getRating();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(description, cost, rating);
     }
