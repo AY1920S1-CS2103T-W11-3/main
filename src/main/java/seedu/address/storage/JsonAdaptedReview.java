@@ -1,38 +1,54 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.eatery.Review;
 
+/**
+ * Jackson friendly version of {@code Review}
+ */
 class JsonAdaptedReview {
-    private final String review;
 
+    private final String description;
+    private final double cost;
+    private final int rating;
 
     @JsonCreator
-    public JsonAdaptedReview(String reviewDescription, double reviewCost, int reviewRating) {
-        this.review = reviewDescription + String.valueOf(reviewCost) + String.valueOf(reviewRating);
+    public JsonAdaptedReview(@JsonProperty("description") String description,
+                             @JsonProperty("cost") double cost,
+                             @JsonProperty("rating") int rating) {
+
+        this.description = description;
+        this.cost = cost;
+        this.rating = rating;
     }
 
-    public JsonAdaptedReview(Review source) {
-         this.review = source.getDescription() + " " + source.getCost() + " " + source.getRating();
+    public JsonAdaptedReview(Review review) {
+        description = review.getDescription();
+        cost = review.getCost();
+        rating = review.getRating();
     }
 
-    @JsonValue
-    public String getReview() {
-        return review;
-    }
-
+    /**
+     * Converts this Jackson-friendly adapted review object into the model's {@code Review} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted review.
+     */
     public Review toModelType() throws IllegalValueException {
-        String toTest = this.review.trim();
-        int reviewRating = Integer.valueOf(toTest.charAt(toTest.length() - 1));
-        String withoutRating = toTest.substring(0,toTest.length() -3);
-        double reviewCost = Double.valueOf(withoutRating.substring(withoutRating.lastIndexOf(" ")));
-        String reviewDescription = withoutRating.substring(0, withoutRating.lastIndexOf(" ") - 1);
-
-        if(!Review.isValidReview(reviewDescription, reviewCost, reviewRating)) {
+        if (!Review.isValidDescription(description)) {
             throw new IllegalValueException(Review.REVIEW_CONSTRAINTS);
         }
-        return new Review(reviewDescription, reviewCost, reviewRating);
+
+        if (!Review.isValidCost(cost)) {
+            throw new IllegalValueException(Review.REVIEW_CONSTRAINTS);
+        }
+
+        if (!Review.isValidRating(String.valueOf(rating))) {
+            throw new IllegalValueException((Review.REVIEW_CONSTRAINTS));
+        }
+
+        return new Review(description, cost, rating);
     }
 }

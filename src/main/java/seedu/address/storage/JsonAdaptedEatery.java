@@ -10,7 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.eatery.*;
+import seedu.address.model.eatery.Address;
+import seedu.address.model.eatery.Category;
+import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Name;
+import seedu.address.model.eatery.Review;
+import seedu.address.model.eatery.Tag;
 
 /**
  * Jackson-friendly version of {@link Eatery}.
@@ -40,7 +45,7 @@ class JsonAdaptedEatery {
         this.isOpen = isOpen;
         this.address = address;
         this.category = category;
-        if(reviews != null) {
+        if (reviews != null) {
             this.reviews.addAll(reviews);
         }
         if (tagged != null) {
