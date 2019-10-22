@@ -122,7 +122,7 @@ class JsonAdaptedEatery {
         final Set<Review> modelReviews = new HashSet<>(eateryReviews);
         final Set<Tag> modelTags = new HashSet<>(eateryTags);
         Eatery eatery = new Eatery(modelName, modelIsOpen, modelAddress, modelCategory, modelTags);
-        for( JsonAdaptedReview r : reviews) {
+        for (JsonAdaptedReview r : reviews) {
             eatery.addReview(r.toModelType());
         }
         return eatery;
