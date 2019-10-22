@@ -162,10 +162,6 @@ This method of replacing an Eatery with a modified Eatery (isOpen field set to f
 
 Given below is an example usage scenario and how the close mechanism behaves at each step.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial Json data stored.
 
 Step 2. The user executes `close `1 command to close the 1st Eatery in the address book.
