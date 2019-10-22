@@ -215,7 +215,7 @@ image::CloseCommitActivityDiagram.png[]
 
 // tag::add[]
 === Add eatery feature
-==== Proposed Implementation
+==== Implementation
 
 The add mechanism is facilitated by `AddressBook`. It implements the following operations:
 
