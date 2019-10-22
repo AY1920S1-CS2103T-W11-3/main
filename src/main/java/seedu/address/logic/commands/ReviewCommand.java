@@ -30,9 +30,9 @@ public class ReviewCommand extends Command {
             + PREFIX_COST + "[PRICE PER PAX]"
             + PREFIX_RATING + "[RATING]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "Nice condensed milk pork ribs "
-            + PREFIX_COST + "6.20 "
-            + PREFIX_RATING + "4";
+            + PREFIX_DESCRIPTION + " Nice condensed milk pork ribs "
+            + PREFIX_COST + " 6.20 "
+            + PREFIX_RATING + " 4";
 
     public static final String MESSAGE_ADD_REVIEW_SUCCESS = "Added review to eatery: %1$s";
 
