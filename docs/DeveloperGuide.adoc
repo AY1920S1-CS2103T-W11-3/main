@@ -153,6 +153,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::close[]
+=== Close feature
+==== Implementation
+
+The close mechanism is facilitated by `AddressBook`. It implements ReadOnlyAddressBook with a AddressBook#setEatery() method.
+This method of replacing an Eatery with a modified Eatery (isOpen field set to false) is similar to the edit mechanism of EditCommand.
+
+Given below is an example usage scenario and how the close mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial Json data stored.
+
+Step 2. The user executes `close `1 command to close the 1st Eatery in the address book.
+[NOTE] If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to close the Eatery.
+
+Step 3. The address book now returns a success message upon successfully closing the Eatery, and the Eatery will be greyed out [proposed].
+
+Step 4. The user now decides that he wants to close another Eatery.
+
+If the index given points to an Eatery already closed (Ie, 1 in this situation), it will return an error to the user rather than attempting to close the Eatery.
+
+The following sequence diagram shows how the undo operation works:
+
+image::CloseSequenceDiagram.png[]
+
+The following activity diagram summarizes what happens when a user executes a new CloseCommand:
+
+image::CloseCommitActivityDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: How close executes
+
+* **Alternative 1 (current choice):** Returns a new Eatery with the same fields except the isOpen field.
+** Pros:
+*** Follows pre-exisitng EditCommand implementation.
+*** No need for setter methods.
+** Cons: Have to return a new object each time a change is made.
+* **Alternative 2:** Setter method for isOpen field of Eatery.
+** Pros: No need for extra methods in the flow to change the object.
+** Cons:
+*** Breaks pre-existing EditCommand implementation.
+*** Need for setter methods.
+
+===== Aspect: Data structure to support the close commands
+
+* **Alternative 1 (current choice):** Use a boolean isOpen field for an Eatery Object to keep track if the Eatery is open or closed.
+** Pros:
+*** Only one saved Json file needed.
+*** Eatery ID easily implemented.
+** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
+* **Alternative 2:** Maintain two lists of Eateries, one for open, another for close.
+** Pros: Closed Eateries kept separate from Open Eateries
+** Cons: Requires proper handling of individual data structures to ensure each list is maintained and updated correctly.
+// end::close[]
+
 // tag::add[]
 === Add eatery feature
 ==== Proposed Implementation
@@ -169,15 +224,12 @@ Given below is an example usage scenario and how the add eatery mechanism behave
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the default eateries.
 
 Step 2. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. The `add` command also calls `Model#addEatery(Eatery e)`.
-
-[NOTE]
-If the command is missing a `Name`, `Address`, or `Category` parameter, the execution of the add command will fail and the application will throw a `ParseException`.
+[NOTE] If the command is missing a `Name`, `Address`, or `Category` parameter, the execution of the add command will fail and the application will throw a `ParseException`.
 
 The following sequence diagram shows how the add operation works:
 image:add-sd.PNG[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
-
 image::add-ad.PNG[]
 
 // tag::dataencryption[]
@@ -242,15 +294,20 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |foodie |remember places |share this experience with my family and friends
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* *` |digital nomad |tag places with free power + wifi |sit there for extended periods of time
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`*` |working adult |view the menu beforehand |save time from thinking what to eat
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |user |find an eatery by name |locate details of eateries without having to go through the entire list
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |foodie |remember places |share this experience with my family and friends
+
+|`*` |user with many eateries in the address book |sort eateries by name |locate a person easily
+
+|`*` |working adult |view the menu beforehand |save time from thinking what to eat
+
 |=======================================================================
 
 _{More to be added}_
@@ -265,10 +322,12 @@ _{More to be added}_
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view his todo list
+2.  EatMe toggles to the todo mode
+3.  User requests to mark an eatery as visited in the list
+4.  EatMe shifts the data over
+5.  EatMe toggles to the main mode
+6.  EatMe requests user for whatever information left that is required before saving in the main mode
 +
 Use case ends.
 
