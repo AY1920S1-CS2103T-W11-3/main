@@ -12,6 +12,8 @@ import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Review;
 
+import java.util.Date;
+
 /**
  * Parses review type of commands.
  */
@@ -34,12 +36,12 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
                     .parseReviewDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION).get());
             double reviewCost = ParserUtil.parseReviewCost(argumentMultimap.getValue(PREFIX_COST).get());
             int reviewRating = ParserUtil.parseReviewRating(argumentMultimap.getValue(PREFIX_RATING).get());
-            String reviewDate = ParserUtil.parseReviewDate(argumentMultimap.getValue(PREFIX_DATE).get());
+            Date reviewDate = ParserUtil.parseReviewDate(argumentMultimap.getValue(PREFIX_DATE).get());
 
             Review review = new Review(reviewDescription, reviewCost, reviewRating, reviewDate);
 
             return new ReviewCommand(index, review);
-        } catch (ParseException pe) {
+        } catch (ParseException | java.text.ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviewCommand.MESSAGE_USAGE), pe);
         }
     }

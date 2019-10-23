@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.eatery.Review;
 
+import java.util.Date;
+
 /**
  * Jackson friendly version of {@code Review}
  */
@@ -14,13 +16,13 @@ class JsonAdaptedReview {
     private final String description;
     private final double cost;
     private final int rating;
-    private final String date;
+    private final Date date;
 
     @JsonCreator
     public JsonAdaptedReview(@JsonProperty("description") String description,
                              @JsonProperty("cost") double cost,
                              @JsonProperty("rating") int rating,
-                             @JsonProperty("date") String date) {
+                             @JsonProperty("date") Date date) {
 
         this.description = description;
         this.cost = cost;
