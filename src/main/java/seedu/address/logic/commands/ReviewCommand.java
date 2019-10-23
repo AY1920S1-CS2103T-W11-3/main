@@ -63,6 +63,11 @@ public class ReviewCommand extends Command {
         }
 
         Eatery eateryToAddReview = lastShownList.get(index.getZeroBased());
+
+        if (!eateryToAddReview.getIsOpen()) {
+            throw new CommandException(Messages.MESSAGE_EATERY_CLOSED);
+        }
+
         eateryToAddReview.addReview(review);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
 
