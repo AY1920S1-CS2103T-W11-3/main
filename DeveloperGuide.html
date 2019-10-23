@@ -23,10 +23,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#close-feature">3.1. Close feature</a></li>
-<li><a href="#add-eatery-feature">3.2. Add eatery feature</a></li>
-<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#proposed-mode-command-feature">3.2. [Proposed] Mode Command feature</a></li>
+<li><a href="#add-eatery-feature">3.3. Add eatery feature</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -501,9 +502,82 @@ If the index given points to an Eatery already closed (Ie, 1 in this situation),
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-eatery-feature"><a class="link" href="#add-eatery-feature">3.2. Add eatery feature</a></h3>
+<h3 id="proposed-mode-command-feature"><a class="link" href="#proposed-mode-command-feature">3.2. [Proposed] Mode Command feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>Allows the user to toggle between Main mode and Todo mode. It extends 'Command', and once mode had been switched, will affect all other command functions.
+The mode is determined through the value of a boolean variable named 'isMainMode'.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage of how the Mode Command behaved.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application. Data from <code>addressbook</code> will be fetched and will be initialised as <code>Main Mode</code> by default.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The user execute <code>mode</code> command and the mode of the application will be switched to <code>todo</code> mode, displaying items in the <code>todo</code> list instead.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The user can execute <code>mode</code> command again, returning the application to <code>main</code> mode, showing the items stored in the <code>main</code> list.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>mode</code> command works:
+image::ModeCommandSequenceDiagram.png[]</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:
+image::ModeCommandActivity.png[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Toggle between mode through a boolean value.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy for implementation.</p>
+</li>
+<li>
+<p>Cons: An additional factor to check when executing any other commands; Possibility of mis-manipulation of data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-mode-command"><a class="link" href="#aspect-data-structure-to-support-mode-command">Aspect: Data structure to support Mode Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Maintain 2 separate lists for Main mode and Todo Mode.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Data between the 2 modes will be separated apart. Commands executed will only affect data stored in the list for the particular mode.</p>
+</li>
+<li>
+<p>Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-eatery-feature"><a class="link" href="#add-eatery-feature">3.3. Add eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The add mechanism is facilitated by <code>AddressBook</code>. It implements the following operations:</p>
 </div>
@@ -552,20 +626,20 @@ image::add-ad.PNG[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -596,7 +670,7 @@ image::add-ad.PNG[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1094,4 +1168,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 11:49:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 14:39:31 UTC</div></div></div></body></html>
