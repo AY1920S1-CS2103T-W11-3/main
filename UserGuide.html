@@ -10,17 +10,20 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#Features">3. Features</a>
+<li><a href="#about">2. About</a></li>
+<li><a href="#quick-start">3. Quick Start</a></li>
+<li><a href="#features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#general">3.1. General</a></li>
-<li><a href="#crud">3.2. CRUD</a></li>
-<li><a href="#visualisation">3.3. Visualisation</a></li>
-<li><a href="#todo">3.4. Todo</a></li>
-<li><a href="#news-feed">3.5. News Feed</a></li>
+<li><a href="#general">4.1. General</a></li>
+<li><a href="#working-with-eateries">4.2. Working with eateries</a></li>
+<li><a href="#import-export">4.3. Import/Export</a></li>
+<li><a href="#visualisation">4.4. Visualisation</a></li>
+<li><a href="#todo">4.5. Todo</a></li>
+<li><a href="#news-feed">4.6. News Feed</a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
+<li><a href="#quick-reference">5. Quick Reference</a></li>
+<li><a href="#faq">6. FAQ</a></li>
 </ul>
 </div>
 </div>
@@ -28,64 +31,102 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>EatMe is for students who are trying to find <strong>cheap and good places to eat or hang out</strong>. EatMe will help you manage places you have been to, and keep track of your experience and expenditure. More importantly, EatMe is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EatMe can get your tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>EatMe is a <strong>food diary app for people who love good food</strong>. It will help you manage places you have been to, keep track of your experience and expenditure, and even keep you up-to-date with the latest food trends and events!</p>
+</div>
+<div class="paragraph">
+<p>EatMe is optimized for those who like the speed of a Command Line Interface (CLI) while still maintaining the user-friendliness of a Graphical User Interface (GUI). <strong>Interested to keep track of your favorite food places with maximum efficiency? Try EatMe today!</strong> Jump to the <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> to get started.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
+<h2 id="about"><a class="link" href="#about">2. About</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This user guide shows you how to use the features in EatMe. The commands that can be executed are explained in detail, and sample commands are provided for ease of understanding.</p>
+</div>
+<div class="paragraph">
+<p>The following are some terms used in this document:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command Line Interface (CLI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A means of interacting with a computer program where the user issues commands to the program in the form of successive lines of text.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Graphical User Interface (GUI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A means of interacting with a computer program through graphical icons and visual indicators.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text in this font (called monospaced font) indicates that this is a command that can be typed into the command line and executed by the application.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="link" href="#quick-start">3. Quick Start</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
+<p>Ensure you have Java 11 or above installed on your computer. If not, you can download it <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html">here</a>.</p>
 </li>
 <li>
-<p>Download the latest <code>eatme.jar</code> <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/releases">here</a>.</p>
+<p>Download the latest release of EatMe <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for the EatMe app.</p>
+<p>Copy the file to the folder you want to use as the home folder for EatMe.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The app should appear in a few seconds.</p>
+</li>
+</ol>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
 </div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+<p>Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+e.g. typing <code>help</code> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </li>
 <li>
 <p>Some example commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>add</code></strong><code>\n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code> : adds an eatery named Two Chefs Eating Place</p>
+<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code> : Adds an eatery named Two Chefs Eating Place with the specified address and category.</p>
 </li>
 <li>
-<p><strong><code>review</code></strong><code>\n Two Chefs Eating Place \d Nice Condensed Milk Pork Ribs \p 15 \r 4</code> : adds a review to Two Chefs Eating Place</p>
+<p><code>review \n Two Chefs Eating Place \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019</code> : Adds a review to Two Chefs Eating Place with the specified description, price, rating and date.</p>
 </li>
 <li>
-<p><strong><code>random</code></strong> : shows a random eatery (if you can&#8217;t decide what to eat)</p>
+<p><code>random</code> : Shows a random eatery - Useful if you can&#8217;t decide what to eat!</p>
 </li>
 <li>
-<p><strong><code>bye</code></strong> : exits the app</p>
+<p><code>exit</code> : Exits the app.</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
-</li>
 </ol>
+</div>
+<div class="paragraph">
+<p>These are just a few of the commands you can execute on EatMe. Refer to <a href="#features">Section 4, &#8220;Features&#8221;</a> for the full list of available commands and their details.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
+<h2 id="features"><a class="link" href="#features">4. Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -95,37 +136,40 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Items in square brackets are the parameters to be supplied by the user e.g. in <code>add n\ [name of eatery]</code>, <code>[name of eatery]</code> is a parameter which can be used as <code>add n\Two Chefs Eating Place</code>.</p>
+<p>Items in square brackets are the parameters to be supplied by the user. For example, in <code>add \n [name of eatery]</code>, <code>[name of eatery]</code> is a parameter which can be used as <code>add n\ Two Chefs Eating Place</code>.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>\n [name of eatery] \a [address] \c [category]</code>, <code>\a [address] \n [name of eatery] \c [category]</code> is also acceptable.</p>
+<p>Items in curly brackets are optional parameters. For example, in <code>add \n [name of eatery] \a [address] \c [category] {\t [tags, space-delimited]}</code>, <code>{\t [tags, space-delimited]}</code> is an optional parameter that the user can choose to supply if he/she wishes to add certain tags to the eatery.</p>
+</li>
+<li>
+<p>Parameters can be in any order. For example, if the command specifies <code>\n [name of eatery] \a [address] \c [category]</code>, <code>\a [address] \n [name of eatery] \c [category]</code> is also acceptable.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="general"><a class="link" href="#general">3.1. General</a></h3>
+<h3 id="general"><a class="link" href="#general">4.1. General</a></h3>
 <div class="sect3">
-<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1.1. Viewing help : <code>help</code></a></h4>
+<h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.1.1. Viewing help: <code>help</code></a></h4>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-the-app-code-bye-code"><a class="link" href="#exit-the-app-code-bye-code">3.1.2. Exit the app : <code>bye</code></a></h4>
+<h4 id="exit-the-app-code-exit-code"><a class="link" href="#exit-the-app-code-exit-code">4.1.2. Exit the app: <code>exit</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>bye</code></p>
+<p>Format: <code>exit</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="crud"><a class="link" href="#crud">3.2. CRUD</a></h3>
+<h3 id="working-with-eateries"><a class="link" href="#working-with-eateries">4.2. Working with eateries</a></h3>
 <div class="sect3">
-<h4 id="adding-an-eatery-code-add-code"><a class="link" href="#adding-an-eatery-code-add-code">3.2.1. Adding an eatery : <code>add</code></a></h4>
+<h4 id="adding-an-eatery-code-add-code"><a class="link" href="#adding-an-eatery-code-add-code">4.2.1. Adding an eatery: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Adds an eatery in the app<br>
-Format: <code>add \n [name of eatery] \a [address] \c [category]</code></p>
+<p>Adds an eatery to the app.<br>
+Format: <code>add \n [name of eatery] \a [address] \c [category] {\t [tags, space-delimited]}</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -135,14 +179,17 @@ Format: <code>add \n [name of eatery] \a [address] \c [category]</code></p>
 <li>
 <p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code></p>
 </li>
+<li>
+<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese \t good-for-groups non-aircon</code></p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="searching-for-an-eatery-code-search-code"><a class="link" href="#searching-for-an-eatery-code-search-code">3.2.2. Searching for an eatery : <code>search</code></a></h4>
+<h4 id="finding-an-eatery-code-find-code"><a class="link" href="#finding-an-eatery-code-find-code">4.2.2. Finding an eatery: <code>find</code></a></h4>
 <div class="paragraph">
-<p>Searches for an eatery based on name or tag.<br>
-Format: <code>search \n [name of eatery]</code> or <code>search \t [tag]</code></p>
+<p>Finds an eatery based on name or tag.<br>
+Format: <code>find \n [name of eatery]</code> or <code>find \t [tag]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -150,19 +197,19 @@ Format: <code>search \n [name of eatery]</code> or <code>search \t [tag]</code><
 <div class="ulist">
 <ul>
 <li>
-<p><code>search \n Two Chefs Eating Place</code></p>
+<p><code>find \n Two Chefs Eating Place</code></p>
 </li>
 <li>
-<p><code>search \t Chinese</code></p>
+<p><code>find \t Chinese</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-address-of-an-eatery-code-changeaddress-code"><a class="link" href="#changing-address-of-an-eatery-code-changeaddress-code">3.2.3. Changing address of an eatery : <code>changeaddress</code></a></h4>
+<h4 id="changing-address-of-an-eatery-code-changeaddress-code"><a class="link" href="#changing-address-of-an-eatery-code-changeaddress-code">4.2.3. Changing address of an eatery: <code>changeaddress</code></a></h4>
 <div class="paragraph">
 <p>Changes the address of an eatery.<br>
-Format: <code>changeaddress \n [name of eatery] \a [new address]</code></p>
+Format: <code>changeaddress [id] \a [new address]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -170,16 +217,16 @@ Format: <code>changeaddress \n [name of eatery] \a [new address]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>changeaddress \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-130</code></p>
+<p><code>changeaddress 2 \a 116 Commonwealth Cres, #01-130</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-an-eatery-as-closed-code-close-code"><a class="link" href="#marking-an-eatery-as-closed-code-close-code">3.2.4. Marking an eatery as closed : <code>close</code></a></h4>
+<h4 id="marking-an-eatery-as-closed-code-close-code"><a class="link" href="#marking-an-eatery-as-closed-code-close-code">4.2.4. Marking an eatery as closed: <code>close</code></a></h4>
 <div class="paragraph">
-<p>Marks an eatery as permanently closed, deletes the eatery’s record.<br>
-Format: <code>close \n [name of eatery]</code></p>
+<p>Closes an eatery if the eatery is no longer there. The eatery will still be listed, but will be grayed out to inform you that the eatery no longer exists. In the case that you accidentally closed the wrong eatery or the eatery reopens, typing <code>reopen</code> does the opposite of <code>close</code>.<br>
+Format: <code>close [id]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -187,16 +234,33 @@ Format: <code>close \n [name of eatery]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>close \n Two Chefs Eating Place</code></p>
+<p><code>close 2</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="reviewing-an-eatery-code-review-code"><a class="link" href="#reviewing-an-eatery-code-review-code">3.2.5. Reviewing an eatery : <code>review</code></a></h4>
+<h4 id="reopening-a-closed-eatery-code-reopen-code"><a class="link" href="#reopening-a-closed-eatery-code-reopen-code">4.2.5. Reopening a closed eatery: <code>reopen</code></a></h4>
+<div class="paragraph">
+<p>Reopens a previously closed eatery.<br>
+Format: <code>reopen [id]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>reopen 2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reviewing-an-eatery-code-review-code"><a class="link" href="#reviewing-an-eatery-code-review-code">4.2.6. Reviewing an eatery: <code>review</code></a></h4>
 <div class="paragraph">
 <p>Leaves a review for an eatery.<br>
-Format: <code>review \n [name of eatery] \d [description] \p [price per pax] \r [rating]</code></p>
+Format: <code>review [id] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -204,16 +268,16 @@ Format: <code>review \n [name of eatery] \d [description] \p [price per pax] \r 
 <div class="ulist">
 <ul>
 <li>
-<p><code>review \n Two Chefs Eating Place \d Nice Condensed Milk Pork Ribs \p 15 \r 4</code></p>
+<p><code>review 2 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tagging-an-eatery-code-addtag-code"><a class="link" href="#tagging-an-eatery-code-addtag-code">3.2.6. Tagging an eatery : <code>addtag</code></a></h4>
+<h4 id="tagging-an-eatery-code-addtag-code"><a class="link" href="#tagging-an-eatery-code-addtag-code">4.2.7. Tagging an eatery: <code>addtag</code></a></h4>
 <div class="paragraph">
 <p>Adds tags to an eatery.<br>
-Format: <code>addtag \n [name of eatery] \t [tags, space-delimited]</code></p>
+Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -221,16 +285,16 @@ Format: <code>addtag \n [name of eatery] \t [tags, space-delimited]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addtag \n Two Chefs Eating Place \t Hawker</code></p>
+<p><code>addtag 2 \t hawker good-for-sharing</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-tags-from-an-eatery-code-removetag-code"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code">3.2.7. Removing tags from an eatery : <code>removetag</code></a></h4>
+<h4 id="removing-tags-from-an-eatery-code-removetag-code"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code">4.2.8. Removing tags from an eatery: <code>removetag</code></a></h4>
 <div class="paragraph">
 <p>Removes tags from an eatery.<br>
-Format: <code>removetag \n [name of eatery] \t [tags, space-delimited]</code></p>
+Format: <code>removetag [id] \t [tags, space-delimited]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -238,51 +302,30 @@ Format: <code>removetag \n [name of eatery] \t [tags, space-delimited]</code></p
 <div class="ulist">
 <ul>
 <li>
-<p><code>removetag \n Two Chefs Eating Place \t Hawker</code></p>
+<p><code>removetag 2 \t hawker</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-an-eatery-code-view-code"><a class="link" href="#viewing-an-eatery-code-view-code">3.2.8. Viewing an eatery : <code>view</code></a></h4>
+<h4 id="listing-all-eateries-code-list-code"><a class="link" href="#listing-all-eateries-code-list-code">4.2.9. Listing all eateries: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows an eatery’s entry containing its details, reviews, external reviews and a map of its location.<br>
-Format: <code>view \n [name of eatery]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="paragraph">
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-=== Listing all eateries : <code>list</code></p>
-</div>
-<div class="paragraph">
-<p>Shows a list of all eateries in the address book.<br>
+<p>Shows a list of all eateries in the app.<br>
 Format: <code>list</code></p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>view \n Two Chefs Eating Place</code></p>
-</li>
-</ul>
 </div>
+<div class="sect3">
+<h4 id="getting-a-random-eatery-code-random-code"><a class="link" href="#getting-a-random-eatery-code-random-code">4.2.10. Getting a random eatery: <code>random</code></a></h4>
 <div class="paragraph">
-<p>==== Getting a random eatery : <code>random</code>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; upstream/master</p>
-</div>
-<div class="paragraph">
-<p>Shows a completely random restaurant, useful in case you cannot decide what to eat.<br>
+<p>Shows a completely random restaurant - Useful in case you cannot decide what to eat!<br>
 Format: <code>random</code></p>
 </div>
-<div class="paragraph">
-<p>==== Viewing an eatery : <code>view</code></p>
 </div>
+<div class="sect3">
+<h4 id="viewing-an-eatery-code-show-code"><a class="link" href="#viewing-an-eatery-code-show-code">4.2.11. Viewing an eatery: <code>show</code></a></h4>
 <div class="paragraph">
-<p>Shows an eatery’s entry containing its details, reviews, external reviews and a map of its location.<br>
-Format: <code>view \n [name of eatery]</code></p>
+<p>Shows an eatery with all its details - Address, category, tags, reviews, external reviews and a map of its location.<br>
+Format: <code>show [id]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -290,47 +333,16 @@ Format: <code>view \n [name of eatery]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>view \n Two Chefs Eating Place</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>=== Import/Export
-==== Importing eateries : <code>import</code></p>
-</div>
-<div class="paragraph">
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-=== Locating eateries by name: <code>find</code></p>
-</div>
-<div class="paragraph">
-<p>Finds eateries whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Eaterys matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p><code>show 2</code></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-</div>
-</div>
+<div class="sect2">
+<h3 id="import-export"><a class="link" href="#import-export">4.3. Import/Export</a></h3>
+<div class="sect3">
+<h4 id="importing-eateries-code-import-code"><a class="link" href="#importing-eateries-code-import-code">4.3.1. Importing eateries: <code>import</code></a></h4>
 <div class="paragraph">
 <p>Imports eateries from a text file.<br>
 Format: <code>import \f [filename]</code></p>
@@ -347,11 +359,10 @@ Format: <code>import \f [filename]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exporting-eateries-code-export-code"><a class="link" href="#exporting-eateries-code-export-code">3.2.9. Exporting eateries : <code>export</code></a></h4>
+<h4 id="exporting-eateries-code-export-code"><a class="link" href="#exporting-eateries-code-export-code">4.3.2. Exporting eateries: <code>export</code></a></h4>
 <div class="paragraph">
 <p>Exports eateries to a text file.<br>
-Format: <code>export \f [filename]</code>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; upstream/master</p>
+Format: <code>export \f [filename]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -366,9 +377,9 @@ Format: <code>export \f [filename]</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="visualisation"><a class="link" href="#visualisation">3.3. Visualisation</a></h3>
+<h3 id="visualisation"><a class="link" href="#visualisation">4.4. Visualisation</a></h3>
 <div class="sect3">
-<h4 id="showing-overall-statistics-code-stats-code"><a class="link" href="#showing-overall-statistics-code-stats-code">3.3.1. Showing overall statistics : <code>stats</code></a></h4>
+<h4 id="showing-overall-statistics-code-stats-code"><a class="link" href="#showing-overall-statistics-code-stats-code">4.4.1. Showing overall statistics: <code>stats</code></a></h4>
 <div class="paragraph">
 <p>Presents a visual overview of the user’s eateries and reviews.<br>
 Format: <code>stats</code></p>
@@ -376,19 +387,19 @@ Format: <code>stats</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="todo"><a class="link" href="#todo">3.4. Todo</a></h3>
+<h3 id="todo"><a class="link" href="#todo">4.5. Todo</a></h3>
 <div class="sect3">
-<h4 id="changing-between-main-and-todo-modes-code-mode-code"><a class="link" href="#changing-between-main-and-todo-modes-code-mode-code">3.4.1. Changing between main and todo modes : <code>mode</code></a></h4>
+<h4 id="toggling-between-main-and-todo-modes-code-mode-code"><a class="link" href="#toggling-between-main-and-todo-modes-code-mode-code">4.5.1. Toggling between main and todo modes: <code>mode</code></a></h4>
 <div class="paragraph">
-<p>Toggles between normal and todo modes.<br>
+<p>Toggles between main and todo modes.<br>
 Format: <code>mode</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-new-todo-eatery-code-add-code"><a class="link" href="#adding-a-new-todo-eatery-code-add-code">3.4.2. Adding a new todo eatery : <code>add</code></a></h4>
+<h4 id="adding-a-new-todo-eatery-code-addtodo-code"><a class="link" href="#adding-a-new-todo-eatery-code-addtodo-code">4.5.2. Adding a new todo eatery: <code>addtodo</code></a></h4>
 <div class="paragraph">
 <p>Adds a new eatery to the todo list.<br>
-Format: <code>add \n [name of eatery] \a [address]</code></p>
+Format: <code>addtodo \n [name of eatery] \a [address] {\t [tags, space-delimited]}</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -396,16 +407,16 @@ Format: <code>add \n [name of eatery] \a [address]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>add \n Koma \a Marina Bay Sands, 2 Bayfront Ave, #B1-67, 018972</code></p>
+<p><code>addtodo \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \t must-try</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-todo-eatery-code-delete-code"><a class="link" href="#deleting-a-todo-eatery-code-delete-code">3.4.3. Deleting a todo eatery : <code>delete</code></a></h4>
+<h4 id="deleting-a-todo-eatery-code-deletetodo-code"><a class="link" href="#deleting-a-todo-eatery-code-deletetodo-code">4.5.3. Deleting a todo eatery: <code>deletetodo</code></a></h4>
 <div class="paragraph">
-<p>Removes an eatery from the todo list.<br>
-Format: <code>delete \n [name of eatery]</code></p>
+<p>Deletes an eatery from the todo list.<br>
+Format: <code>deletetodo [id]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -413,16 +424,16 @@ Format: <code>delete \n [name of eatery]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete \n Koma</code></p>
+<p><code>deletetodo 2</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-a-todo-eatery-as-visited-with-optional-saving-code-visited-code"><a class="link" href="#marking-a-todo-eatery-as-visited-with-optional-saving-code-visited-code">3.4.4. Marking a todo eatery as visited with optional saving : <code>visited</code></a></h4>
+<h4 id="marking-a-todo-eatery-as-visited-with-optional-saving-code-visited-code"><a class="link" href="#marking-a-todo-eatery-as-visited-with-optional-saving-code-visited-code">4.5.4. Marking a todo eatery as visited with optional saving : <code>visited</code></a></h4>
 <div class="paragraph">
 <p>Marks a todo eatery as visited and provides a quick way to add it to the main list of eateries.<br>
-Format: <code>visited \n [name of eatery]</code> or <code>visited \n [name of eatery] \s</code> (saves the eatery to the main list)</p>
+Format: <code>visited [id]</code> or <code>visited [id] \s</code> (saves the eatery to the main list)</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -430,22 +441,22 @@ Format: <code>visited \n [name of eatery]</code> or <code>visited \n [name of ea
 <div class="ulist">
 <ul>
 <li>
-<p><code>visited \n Koma</code></p>
+<p><code>visited 2</code></p>
 </li>
 <li>
-<p><code>visited \n Koma \s</code></p>
+<p><code>visited 2 \s</code></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="news-feed"><a class="link" href="#news-feed">3.5. News Feed</a></h3>
+<h3 id="news-feed"><a class="link" href="#news-feed">4.6. News Feed</a></h3>
 <div class="sect3">
-<h4 id="adding-a-feed-code-addfeed-code"><a class="link" href="#adding-a-feed-code-addfeed-code">3.5.1. Adding a feed : <code>addfeed</code></a></h4>
+<h4 id="adding-a-feed-code-addfeed-code"><a class="link" href="#adding-a-feed-code-addfeed-code">4.6.1. Adding a feed : <code>addfeed</code></a></h4>
 <div class="paragraph">
-<p>Adds a new feed to the news feed. Expects the URL of an XML feed.<br>
-Format: <code>addfeed \n [name of feed] \u [url]</code></p>
+<p>Adds a feed to the news feed.<br>
+Format: <code>addfeed \n [name of feed] \a [address of the RSS feed]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -453,16 +464,16 @@ Format: <code>addfeed \n [name of feed] \u [url]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addfeed \n [Seth Lui] \u <a href="https://sethlui.com/feed" class="bare">https://sethlui.com/feed</a></code></p>
+<p><code>addfeed \n [Eatbook] \a <a href="https://eatbook.com/feed" class="bare">https://eatbook.com/feed</a></code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-feed-code-removefeed-code"><a class="link" href="#removing-a-feed-code-removefeed-code">3.5.2. Removing a feed : <code>removefeed</code></a></h4>
+<h4 id="deleting-a-feed-code-deletefeed-code"><a class="link" href="#deleting-a-feed-code-deletefeed-code">4.6.2. Deleting a feed : <code>deletefeed</code></a></h4>
 <div class="paragraph">
-<p>Removes a feed from the news feed.<br>
-Format: <code>removefeed \n [name of feed]</code></p>
+<p>Deletes a feed from the news feed.<br>
+Format: <code>deletefeed \n [name of feed]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -470,7 +481,7 @@ Format: <code>removefeed \n [name of feed]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>removefeed \n Seth Lui</code></p>
+<p><code>deletefeed \n Eatbook</code></p>
 </li>
 </ul>
 </div>
@@ -479,11 +490,118 @@ Format: <code>removefeed \n [name of feed]</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
+<h2 id="quick-reference"><a class="link" href="#quick-reference">5. Quick Reference</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type this&#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">For this&#8230;&#8203;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>help</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Viewing help</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exiting the app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finding an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeaddress</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changing address of an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>close</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marking an eatery as closed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reopen</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reopening a closed eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>review</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reviewing an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addtag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tagging an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>removetag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Removing tags from an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>list</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Listing all eateries</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>random</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Getting a random eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>show</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Viewing an eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>import</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Importing eateries</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exporting eateries</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stats</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Showing overall statistics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toggling between main and todo modes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addtodo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding a todo eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deletetodo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deleting a todo eatery</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>visited</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marking a todo eatery as visited with optional saving</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addfeed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding a feed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deletefeed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deleting a feed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">6. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 19:09:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 23:33:28 UTC</div></div></div></body></html>
