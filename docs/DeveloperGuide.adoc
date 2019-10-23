@@ -294,9 +294,30 @@ Step 2. The user executes `review 1 ...` command to add a review to the 1st eate
 Step 3. The user executes `open 1` to get the complete details of the 1st eatery.
 
 Ste] 4. The user now decides to execute `edit review 1 ...` to edit the 1st review of the eatery shown on using the `open 1` command in the previous step. This calls the `EatMe#editcommand()`.
+=======
+
+The following sequence diagram shows how the `mode` command works:
+image::ModeCommandSequenceDiagram.png[]
+
+The following activity diagram summarizes what happens when a user executes a new command:
+image::ModeCommandActivity.png[]
 
 ==== Design Considerations
+===== Aspect: How Mode execute
+* **Alternative 1 (current choice):** Toggle between mode through a boolean value.
+** Pros: Easy for implementation.
+** Cons: An additional factor to check when executing any other commands; Possibility of mis-manipulation of data.
 
+===== Aspect: Data structure to support Mode Command
+* **Alternative 1 (current choice):** Maintain 2 separate lists for Main mode and Todo Mode.
+** Pros: Data between the 2 modes will be separated apart. Commands executed will only affect data stored in the list for the particular mode.
+** Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa
+
+//end::modeCommand[]
+
+// tag::add[]
+=== Add eatery feature
+==== Implementation
 ===== Aspect: How review and edit review execute
 
 * **Alternative 1 (current choice):** Review field under eatery is not nested further. It adds and modifies review of eateries without created new eatery objects as in the case of edit command.
@@ -306,12 +327,31 @@ Ste] 4. The user now decides to execute `edit review 1 ...` to edit the 1st revi
 ** Pros: Is structured in a more OOP manner.
 ** Cons: May decrease performance and difficult to implement.
 
-===== Aspect: Data structure to support the undo/redo commands
+* `AddressBook#hasEatery(Eatery e)` -- Checks if an Eatery with the same identity as Eatery e exists in the address book.
+* `AddressBook#addEatery(Eatery e)` -- Adds an Eatery to the address book. The eatery must not already exist in the address book.
+
+These operations are exposed in the `Model` interface as `Model#hasEatery()` and `Model#addEatery()` respectively.
+
 
 * **Alternative 1 (current choice):** Use a list to store and edit the reviews of an eatery.
 ** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
 ** Cons: List is not immutable.
 
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the default eateries.
+
+Step 2. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. The `add` command also calls `Model#addEatery(Eatery e)`.
+
+[NOTE]
+If the command is missing a `Name`, `Address`, or `Category` parameter, the execution of the add command will fail and the application will throw a `ParseException`.
+
+The following sequence diagram shows how the add operation works:
+image:add-sd.PNG[]
+
+The following activity diagram summarizes what happens when a user executes a new command:
+image::add-ad.PNG[]
+// end ::add[]
+
+// tag::dataencryption[]
 
 // end::revieweatery[]
 
