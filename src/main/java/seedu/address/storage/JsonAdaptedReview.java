@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.eatery.Review;
-
-import java.util.Date;
 
 /**
  * Jackson friendly version of {@code Review}
