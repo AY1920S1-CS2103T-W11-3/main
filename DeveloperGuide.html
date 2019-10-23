@@ -22,10 +22,10 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#close-feature">3.1. Close feature</a></li>
-<li><a href="#proposed-mode-command-feature">3.2. [Proposed] Mode Command feature</a></li>
-<li><a href="#add-eatery-feature">3.3. Add eatery feature</a></li>
-<li><a href="#proposed-review-eatery">3.4. [Proposed] Review eatery</a></li>
+<li><a href="#add-eatery-feature">3.1. Add Eatery feature</a></li>
+<li><a href="#proposed-review-eatery-feature">3.2. [Proposed] Review Eatery feature</a></li>
+<li><a href="#close-eatery-feature">3.3. Close Eatery feature</a></li>
+<li><a href="#proposed-mode-command-feature">3.4. [Proposed] Mode Command feature</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
@@ -42,7 +42,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#deleting-an-eatery">G.2. Deleting an Eatery</a></li>
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
@@ -175,7 +175,7 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>EateryListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -215,7 +215,7 @@ The following class plays an important role at the architecture level:</p>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding an <code>Eatery</code>).</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -270,7 +270,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>stores the Address Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Eatery&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -284,7 +284,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store all the Tag objects in a static Tag HashMap which resides in the Tag class. An Eatery can reference a Tag object from the static Tag HashMap. This would allow EatMe to only require one Tag object per unique Tag, instead of each Eatery needing their own Tag object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
 </td>
@@ -332,27 +332,219 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="close-feature"><a class="link" href="#close-feature">3.1. Close feature</a></h3>
+<h3 id="add-eatery-feature"><a class="link" href="#add-eatery-feature">3.1. Add Eatery feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The close mechanism is facilitated by <code>AddressBook</code>. It implements ReadOnlyAddressBook with a AddressBook#setEatery() method.
-This method of replacing an Eatery with a modified Eatery (isOpen field set to false) is similar to the edit mechanism of EditCommand.</p>
+<p>The add mechanism is facilitated by <code>AddressBook</code>. It implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddressBook#hasEatery()</code>&#8201;&#8212;&#8201;Checks if an Eatery with the same identity as Eatery e exists in the address book.</p>
+</li>
+<li>
+<p><code>AddressBook#addEatery()</code>&#8201;&#8212;&#8201;Adds an Eatery to the address book. The eatery must not already exist in the address book.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#hasEatery()</code> and <code>Model#addEatery()</code> respectively.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the add mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the initial json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code> to add a new eatery. The <code>add</code> command will call <code>Model#addEatery()</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the command is missing a <code>Name</code>, <code>Address</code>, or <code>Category</code> parameter, it will return an error to the user rather than attempting to add the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the add operation works:
+<span class="image"><img src="images/add-sd.PNG" alt="add sd"></span></p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:
+image::add-ad.PNG[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-add-executes"><a class="link" href="#aspect-how-add-executes">Aspect: How Add executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Making Tag field not final.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easily implemented.</p>
+</li>
+<li>
+<p>More user-friendly as users would most likely want to delete or add new tags.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons: Does not follow the logic of the original Address Book 3 application. More code needs to be refactored.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Making Tag field final.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Follows the logic of the original Address Book 3 application; don&#8217;t need to refactor more code.</p>
+</li>
+<li>
+<p>Cons: Not as user-friendly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-review-eatery-feature"><a class="link" href="#proposed-review-eatery-feature">3.2. [Proposed] Review Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The review mechanism is facilitated by the existing <code>AddressBook</code>.
+It extends <code>AddressBook</code> with a review field, stored internally as an array list of reviews along with other
+attributes of an eatery.
+Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddressBook#review()</code>&#8201;&#8212;&#8201;Adds a review to the eatery identified by the user input.</p>
+</li>
+<li>
+<p><code>AddressBook#editReview()</code>&#8201;&#8212;&#8201;Edits a previously written review.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the review mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the initial json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>review 1 &#8230;&#8203;</code> command to add a review to the first Eatery in the address book. The <code>review</code> command will call <code>Eatery#addReview()</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to review the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The user executes <code>open 1</code> to get the complete details of the first Eatery.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then decides to execute <code>edit review 1 &#8230;&#8203;</code> to edit the first review of the Eatery opened in the previous step. This calls the <code>EatMe#editcommand()</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-review-and-edit-review-executes"><a class="link" href="#aspect-how-review-and-edit-review-executes">Aspect: How review and edit review executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> No further nesting of Review field in Eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easily implemented.</p>
+</li>
+<li>
+<p>Cons: May be worse OOP model as compared to other commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Further nesting of Review field in Eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A better OOP model.</p>
+</li>
+<li>
+<p>Cons: May decrease performance and difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Current choice:</strong> Store and edit the reviews of an eatery in a list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
+</li>
+<li>
+<p>Cons: List is not immutable.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="close-eatery-feature"><a class="link" href="#close-eatery-feature">3.3. Close Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The close mechanism is facilitated by <code>AddressBook</code>. It implements ReadOnlyAddressBook interface with the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddressBook#setEatery()</code>&#8201;&#8212;&#8201;Replaces an Eatery with a modified Eatery specified by the user input.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the close mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
+<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the initial json data stored.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the initial Json data stored.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes `close `1 command to close the 1st Eatery in the address book.</p>
+<p>Step 2. The user executes <code>close 1</code> command to close the 1st Eatery in the address book.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -370,7 +562,7 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 <p>Step 3. The address book now returns a success message upon successfully closing the Eatery, and the Eatery will be greyed out [proposed].</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that he wants to close another Eatery.</p>
+<p>Step 4. The user then decides that he wants to close another Eatery.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -379,36 +571,28 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the index given points to an Eatery already closed (Ie, 1 in this situation), it will return an error to the user rather than attempting to close the Eatery.
+If the index given points to an Eatery already closed (ie, 1 in this situation), it will return an error to the user rather than attempting to close the Eatery.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CloseSequenceDiagram.png" alt="CloseSequenceDiagram">
-</div>
+<p>The following sequence diagram shows how the <code>close</code> command works:
+image::CloseSequenceDiagram.png[]</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new CloseCommand:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/CloseCommitActivityDiagram.png" alt="CloseCommitActivityDiagram">
-</div>
+<p>The following activity diagram summarizes what happens when a user executes a new <code>close</code> command:
+image::CloseCommitActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-close-executes"><a class="link" href="#aspect-how-close-executes">Aspect: How close executes</a></h5>
+<h5 id="aspect-how-close-executes"><a class="link" href="#aspect-how-close-executes">Aspect: How Close executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Returns a new Eatery with the same fields except the isOpen field.</p>
+<p><strong>Alternative 1 (current choice):</strong> Returns a new Eatery with identical fields except for the isOpen field.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -416,7 +600,7 @@ If the index given points to an Eatery already closed (Ie, 1 in this situation),
 <div class="ulist">
 <ul>
 <li>
-<p>Follows pre-exisitng EditCommand implementation.</p>
+<p>Follows pre-exisiting EditCommand implementation.</p>
 </li>
 <li>
 <p>No need for setter methods.</p>
@@ -457,38 +641,28 @@ If the index given points to an Eatery already closed (Ie, 1 in this situation),
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-close-commands"><a class="link" href="#aspect-data-structure-to-support-the-close-commands">Aspect: Data structure to support the close commands</a></h5>
+<h5 id="aspect-data-structure-to-support-the-close-command"><a class="link" href="#aspect-data-structure-to-support-the-close-command">Aspect: Data structure to support the Close command</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a boolean isOpen field for an Eatery Object to keep track if the Eatery is open or closed.</p>
+<p><strong>Alternative 1 (current choice):</strong> Uses a boolean value to keep track if the Eatery is reopened or closed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Only one saved Json file needed.</p>
+<p>Pros: Easily implemented.</p>
 </li>
 <li>
-<p>Eatery ID easily implemented.</p>
+<p>Cons: An additional variable to check when executing other commands. Possibility of incorrect manipulation of an Eatery object</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Maintain two lists of Eateries, one for open, another for close.</p>
+<p><strong>Alternative 2:</strong> Maintain two separate lists of Eateries for Reopened and Closed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Closed Eateries kept separate from Open Eateries</p>
+<p>Pros: Closed Eateries stored apart from Reopened Eateries. Commands executed will only affect Eateries stored in a particular list.</p>
 </li>
 <li>
 <p>Cons: Requires proper handling of individual data structures to ensure each list is maintained and updated correctly.</p>
@@ -502,49 +676,49 @@ If the index given points to an Eatery already closed (Ie, 1 in this situation),
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-mode-command-feature"><a class="link" href="#proposed-mode-command-feature">3.2. [Proposed] Mode Command feature</a></h3>
+<h3 id="proposed-mode-command-feature"><a class="link" href="#proposed-mode-command-feature">3.4. [Proposed] Mode Command feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
 <div class="paragraph">
-<p>Allows the user to toggle between Main mode and Todo mode. It extends 'Command', and once mode had been switched, will affect all other command functions.
-The mode is determined through the value of a boolean variable named 'isMainMode'.</p>
+<p>Allows the user to toggle between Main mode and Todo mode. It extends <code>Command</code>, and once the mode has been switched, it will affect all other command functions.
+The mode is determined through the <code>isMainMode</code> boolean variable.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage of how the Mode Command behaved.</p>
+<p>Given below is an example usage scenario and how the mode mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: The user launches the application. Data from <code>addressbook</code> will be fetched and will be initialised as <code>Main Mode</code> by default.</p>
+<p>Step 1: The user launches the application. The <code>AddressBook</code> will be will be initialised as the <strong>Main Mode</strong> with the initial json data stored.</p>
 </div>
 <div class="paragraph">
-<p>Step 2: The user execute <code>mode</code> command and the mode of the application will be switched to <code>todo</code> mode, displaying items in the <code>todo</code> list instead.</p>
+<p>Step 2: The user executes <code>mode</code> command to switch EatMe to the <strong>Todo Mode</strong> which displays <code>Eateries</code> in the <strong>Todo</strong> list.</p>
 </div>
 <div class="paragraph">
-<p>Step 3: The user can execute <code>mode</code> command again, returning the application to <code>main</code> mode, showing the items stored in the <code>main</code> list.</p>
+<p>Step 3: The user can execute <code>mode</code> command again to switch EatMe back to the <strong>Main Mode</strong> which displays the <code>Eateries</code> in the <strong>Main</strong> list.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the <code>mode</code> command works:
 image::ModeCommandSequenceDiagram.png[]</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:
+<p>The following activity diagram summarizes what happens when a user executes a new <code>mode</code> command:
 image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
+<h5 id="aspect-how-mode-executes"><a class="link" href="#aspect-how-mode-executes">Aspect: How Mode executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Toggle between mode through a boolean value.</p>
+<p><strong>Current choice:</strong> Toggles between mode through a boolean value.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy for implementation.</p>
+<p>Pros: Easily implemented.</p>
 </li>
 <li>
-<p>Cons: An additional factor to check when executing any other commands; Possibility of mis-manipulation of data.</p>
+<p>Cons: An additional variable to check when executing other commands. Possibility of incorrect manipulation of an Eatery object.</p>
 </li>
 </ul>
 </div>
@@ -557,151 +731,20 @@ image::ModeCommandActivity.png[]</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Maintain 2 separate lists for Main mode and Todo Mode.</p>
+<p><strong>Current choice:</strong> Maintains two separate lists of Eateries for Main mode and Todo Mode.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Data between the 2 modes will be separated apart. Commands executed will only affect data stored in the list for the particular mode.</p>
+<p>Pros: Todo Eateries stored apart from Main Eateries. Commands executed will only affect Eateries stored in a particular list.</p>
 </li>
 <li>
-<p>Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa</p>
+<p>Cons: Requires proper handling of individual data structures to ensure each list is maintained and updated correctly.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="add-eatery-feature"><a class="link" href="#add-eatery-feature">3.3. Add eatery feature</a></h3>
-<div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.3.1. Implementation</a></h4>
-<div class="paragraph">
-<p>The add mechanism is facilitated by <code>AddressBook</code>. It implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AddressBook#hasEatery(Eatery e)</code>&#8201;&#8212;&#8201;Checks if an Eatery with the same identity as Eatery e exists in the address book.</p>
-</li>
-<li>
-<p><code>AddressBook#addEatery(Eatery e)</code>&#8201;&#8212;&#8201;Adds an Eatery to the address book. The eatery must not already exist in the address book.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#hasEatery()</code> and <code>Model#addEatery()</code> respectively.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the add eatery mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the default eateries.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code> to add a new eatery. The <code>add</code> command also calls <code>Model#addEatery(Eatery e)</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the command is missing a <code>Name</code>, <code>Address</code>, or <code>Category</code> parameter, the execution of the add command will fail and the application will throw a <code>ParseException</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the add operation works:
-<span class="image"><img src="images/add-sd.PNG" alt="add sd"></span></p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:
-image::add-ad.PNG[]</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-review-eatery"><a class="link" href="#proposed-review-eatery">3.4. [Proposed] Review eatery</a></h3>
-<div class="paragraph">
-<p>The review mechanism is facilitated by the existing <code>AddressBook</code>.
-It extends <code>AddressBook</code> with a review field, stored internally as an array list of reviews along with other
-attributes of an eatery.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AddressBook#review()</code>&#8201;&#8212;&#8201;Adds a review to the eatery identified by the user  input.</p>
-</li>
-<li>
-<p><code>AddressBook#editReview()</code>&#8201;&#8212;&#8201;Edits a previously written review.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the review mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The user adds an eatery to through an <code>add command</code>.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>review 1 &#8230;&#8203;</code> command to add a review to the 1st eatery in the address book. The <code>review</code> command calls <code>Eatery#addReview()</code>, causing the application to add a review field correspondingly to the specified eatery.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>open 1</code> to get the complete details of the 1st eatery.</p>
-</div>
-<div class="paragraph">
-<p>Ste] 4. The user now decides to execute <code>edit review 1 &#8230;&#8203;</code> to edit the 1st review of the eatery shown on using the <code>open 1</code> command in the previous step. This calls the <code>EatMe#editcommand()</code>.</p>
-</div>
-<div class="sect4">
-<h5 id="aspect-how-review-and-edit-review-execute"><a class="link" href="#aspect-how-review-and-edit-review-execute">Aspect: How review and edit review execute</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Review field under eatery is not nested further. It adds and modifies review of eateries without created new eatery objects as in the case of edit command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement and is faster.</p>
-</li>
-<li>
-<p>Cons: May have less OOP structure as compared to other commands.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Review field is nested further and each addition of review or edit to a review creates a new eatery object with all the reviews.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Is structured in a more OOP manner.</p>
-</li>
-<li>
-<p>Cons: May decrease performance and difficult to implement.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store and edit the reviews of an eatery.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: List is not immutable.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -735,7 +778,7 @@ Additionally, it implements the following operations:</p>
 <p><code>WARNING</code> : Can continue, but with caution</p>
 </li>
 <li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+<p><code>INFO</code> : Information showing the noteworthy actions by EatMe</p>
 </li>
 <li>
 <p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
@@ -1090,7 +1133,7 @@ Additionally, it implements the following operations:</p>
 </dd>
 <dt class="hdlist1"><a id="category"></a> Category</dt>
 <dd>
-<p>Broadly containts cuisines (self-explanatory) and eating place (ie, a buffet, fusion)</p>
+<p>Broadly contains cuisines (ie, Chinese, International)</p>
 </dd>
 </dl>
 </div>
@@ -1160,7 +1203,7 @@ These instructions only provide a starting point for testers to work on; testers
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Download the jar file and copy into an empty folder</p>
+<p>Download the jar file and copy into an empty folder.</p>
 </li>
 <li>
 <p>Double-click the jar file<br>
@@ -1190,26 +1233,26 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="deleting-an-eatery"><a class="link" href="#deleting-an-eatery">G.2. Deleting an Eatery</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting an <code>Eatery</code> while all <code>Eateries</code> are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the list command. Multiple persons in the list.</p>
+<p>Prerequisites: List all <code>Eateries</code> using the list command. Multiple <code>Eateries</code> in the list.</p>
 </li>
 <li>
-<p>Test case: delete 1<br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case: <code>delete 1</code><br>
+Expected: First <code>Eatery</code> is deleted from the list. Details of the deleted <code>Eatery</code> shown in the status message. Timestamp in the status bar is updated.</p>
 </li>
 <li>
-<p>Test case: delete 0<br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>delete 0</code><br>
+Expected: No <code>Eatery</code> is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: delete, delete x (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size, or x is a non-integer)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -1218,7 +1261,7 @@ Expected: Similar to previous.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p><em>{ more test cases to be added }</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -1226,11 +1269,15 @@ Expected: Similar to previous.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
+<p>[Proposed] Dealing with missing/corrupted data files</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Prerequisites: json file type present in a data file where the EatMe app is.</p>
+</li>
+<li>
+<p>Test case: Running the application with json file type with incorrect format<br>
+Expected: Application starts with a blank <code>Eatery</code> list panel. Error details shown in the status message.</p>
 </li>
 </ol>
 </div>
@@ -1238,8 +1285,8 @@ Expected: Similar to previous.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p><em>{ more test cases to be added }</em></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 16:12:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 19:09:11 UTC</div></div></div></body></html>
