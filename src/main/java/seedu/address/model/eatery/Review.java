@@ -38,12 +38,13 @@ public class Review {
      * @param cost Cost of the meal being reviewed.
      * @param rating Rating out of 5 for the meal being reviewed.
      */
-    public Review(String description, double cost, int rating) {
+    public Review(String description, double cost, int rating, String date) {
         requireAllNonNull(description, cost, rating);
         checkArgument(isValidReview(description, cost, rating), REVIEW_CONSTRAINTS);
         this.description = description;
         this.cost = cost;
         this.rating = rating;
+        this.date = date;
     }
 
     /**
@@ -75,14 +76,6 @@ public class Review {
         return test.matches(RATING_VALIDATION_INDEX);
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public boolean hasDate() {
-        return date != null;
-    }
-
     public String getDate() {
         return this.date;
     }
@@ -106,7 +99,9 @@ public class Review {
                 .append(" Price: ")
                 .append(getCost())
                 .append(" Rating: ")
-                .append(getRating());
+                .append(getRating())
+                .append(" Date: ")
+                .append(getDate());
         return builder.toString();
     }
 
@@ -123,12 +118,13 @@ public class Review {
         Review otherReview = (Review) other;
         return otherReview.getDescription().equals(getDescription())
                 && otherReview.getCost() == getCost()
-                && otherReview.getRating() == getRating();
+                && otherReview.getRating() == getRating()
+                && otherReview.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, cost, rating);
+        return Objects.hash(description, cost, rating, date);
     }
 
 }

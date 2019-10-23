@@ -140,7 +140,7 @@ public class ParserUtil {
     /**
      * Parses {@code reviewRating} to integer value corresponding to rating.
      *
-     * @return
+     * @throws ParseException if the given {@code reviewRating} is invalid.
      */
     public static int parseReviewRating(String reviewRating) throws ParseException {
         requireNonNull(reviewRating);
@@ -149,5 +149,14 @@ public class ParserUtil {
             throw new ParseException(Review.REVIEW_CONSTRAINTS);
         }
         return Integer.valueOf(trimmedRating);
+    }
+
+    /**
+     * Parses {@code reviewDate} to String value corresponding to date.
+     */
+    public static String parseReviewDate(String reviewDate) {
+        requireNonNull(reviewDate);
+        String trimmedDate = reviewDate.trim();
+        return trimmedDate;
     }
 }

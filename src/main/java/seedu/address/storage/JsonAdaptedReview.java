@@ -14,21 +14,25 @@ class JsonAdaptedReview {
     private final String description;
     private final double cost;
     private final int rating;
+    private final String date;
 
     @JsonCreator
     public JsonAdaptedReview(@JsonProperty("description") String description,
                              @JsonProperty("cost") double cost,
-                             @JsonProperty("rating") int rating) {
+                             @JsonProperty("rating") int rating,
+                             @JsonProperty("date") String date) {
 
         this.description = description;
         this.cost = cost;
         this.rating = rating;
+        this.date = date;
     }
 
     public JsonAdaptedReview(Review review) {
         description = review.getDescription();
         cost = review.getCost();
         rating = review.getRating();
+        date = review.getDate();
     }
 
     /**
@@ -49,6 +53,6 @@ class JsonAdaptedReview {
             throw new IllegalValueException((Review.REVIEW_CONSTRAINTS));
         }
 
-        return new Review(description, cost, rating);
+        return new Review(description, cost, rating, date);
     }
 }
