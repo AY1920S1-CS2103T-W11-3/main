@@ -432,158 +432,6 @@ Any place that serves food open to the public (ie, restaurants, cafes, roadside,
 Broadly containts cuisines (self-explanatory) and eating place (ie, a buffet, fusion)
 
 [appendix]
-== Product Scope
-
-*Target user profile*:
-
-* has a need to manage a significant number of <<eatery, eateries>>
-** budget
-** <<category, category>>
-** location
-* prefer desktop apps over other types
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI apps
-
-*Value proposition*: manage eateries faster than a typical mouse/GUI driven app with statistics of key details such as budget, category and location
-
-[appendix]
-== User Stories
-
-Priorities: High (must have) - * * \*, Medium (nice to have) - * \*, Low (unlikely to have) - *
-
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
-|=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |food blogger |keep a list of outstanding cafes |clear them in an orderly fashion.
-
-|`* * *` |student |keep a list of affordable eateries |save money
-
-|`* * *` |person with many food allergies |keep track of dishes I have ordered before |avoid ordering hazardous food
-
-|`* * *` |foodie |remember places |share this experience with my family and friends
-
-|`* *` |digital nomad |tag places with free power + wifi |sit there for extended periods of time
-
-|`*` |working adult |view the menu beforehand |save time from thinking what to eat
-|=======================================================================
-
-_{More to be added}_
-
-[appendix]
-== Use Cases
-
-(For all use cases below, the *System* is the EatMe and the *Actor* is the user, unless specified otherwise)
-
-[discrete]
-=== Use case: Removing an eatery from todo
-
-*MSS*
-
-1.  User requests to view his todo list
-2.  EatMe toggles to the todo mode
-3.  User requests to mark an eatery as visited in the list
-4.  EatMe shifts the data over
-5.  EatMe toggles to the main mode
-6.  EatMe requests user for whatever information left that is required before saving in the main mode
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given eatery is invalid.
-+
-[none]
-** 3a1. EatMe shows an error message.
-+
-Use case resumes at step 2.
-
-* 6a. The given information is of the wrong format.
-+
-[none]
-** 6a1. EatMe shows an error message.
-+
-Use case resumes at step 8.
-
-[discrete]
-=== Use case: Tagging an eatery in main
-
-*MSS*
-
-1.  User requests to add a tag to an eatery
-2.  EatMe updates the eatery accordingly
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. The list is empty.
-+
-Use case ends.
-
-* 1b. The user gives invalid information.
-+
-[none]
-** 1b1. EatMe shows an error message.
-+
-Use case resumes at step 1.
-
-[discrete]
-=== Use case: Viewing a menu beforehand
-
-*MSS*
-
-1.  User searches for an eatery
-2.  EatMe displays the eatery accordingly
-3.  User reads the entry for the menu
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. The list is empty.
-+
-Use case ends.
-
-* 1b. The user gives invalid information.
-+
-[none]
-** 1b1. EatMe shows an error message.
-+
-Use case resumes at step 1.
-
-_{More to be added}_
-
-[appendix]
-== Non Functional Requirements
-
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java 11 or above installed.
-.  Should be able to hold up to 1000 eateries without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.  Main functionalities (CRUD) should work without WiFi.
-
-_{More to be added}_
-
-[appendix]
-== Glossary
-
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
-
-[[eatery]] Eatery::
-Any place that serves food open to the public (ie, restaurants, cafes, roadside, pushcart)
-
-[[category]] Category::
-Broadly containts cuisines (self-explanatory) and eating place (ie, a buffet, fusion)
-
-[appendix]
 == Product Survey
 
 *Soon*
@@ -599,3 +447,49 @@ Cons:
 
 * Unable to delete lists
 * Unable to search
+
+[appendix]
+== Instructions for Manual Testing
+
+Given below are instructions to test the app manually.
+
+[NOTE]
+These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
+
+=== Launch and Shutdown
+
+. Initial launch
+
+.. Download the jar file and copy into an empty folder
+.. Double-click the jar file +
+   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+. Saving window preferences
+
+.. Resize the window to an optimum size. Move the window to a different location. Close the window.
+.. Re-launch the app by double-clicking the jar file. +
+   Expected: The most recent window size and location is retained.
+
+_{ more test cases ... }_
+
+=== Deleting a person
+
+. Deleting a person while all persons are listed
+
+.. Prerequisites: List all persons using the list command. Multiple persons in the list.
+.. Test case: delete 1 +
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+.. Test case: delete 0 +
+   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: delete, delete x (where x is larger than the list size) _{give more}_ +
+   Expected: Similar to previous.
+
+_{ more test cases ... }_
+
+=== Saving data
+
+. Dealing with missing/corrupted data files
+
+.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+
+_{ more test cases ... }_
