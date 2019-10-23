@@ -18,36 +18,37 @@ By: `Team AY1920S1-CS2103T-W11-3`      Since: `September 2019`      Licence: `MI
 
 == Introduction
 
-EatMe is for students who are trying to find *cheap and good places to eat or hang out*. EatMe will help you manage places you have been to, and keep track of your experience and expenditure. More importantly, EatMe is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EatMe can get your tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+EatMe is a *food diary app for people who love good food*. It will help you manage places you have been to, keep track of your experience and expenditure, and even keep you up-to-date with the latest food trends and events!
+
+EatMe is optimized for those who like the speed of a Command Line Interface (CLI) while still maintaining the user-friendliness of a Graphical User Interface (GUI). *Interested to keep track of your favorite food places with maximum efficiency? Try EatMe today!* Jump to the <<Quick Start>> to get started.
 
 == Quick Start
 
-.  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `eatme.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for the EatMe app.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
-+
+. Ensure you have Java `11` or above installed on your computer. If not, you can download it link:https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html[here].
+. Download the latest release of EatMe link:{repoURL}/releases[here].
+. Copy the file to the folder you want to use as the home folder for EatMe.
+. Double-click the file to start the app. The app should appear in a few seconds.
+
 image::Ui.png[width="790"]
-+
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
 
-* **`add`**`\n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` : adds an eatery named Two Chefs Eating Place
-* **`review`**`\n Two Chefs Eating Place \d Nice Condensed Milk Pork Ribs \p 15 \r 4` : adds a review to Two Chefs Eating Place
-* *`random`* : shows a random eatery (if you can't decide what to eat)
-* *`bye`* : exits the app
+. Type a command in the command box and press kbd:[Enter] to execute it. +
+e.g. typing `help` and pressing kbd:[Enter] will open the help window.
+. Some example commands you can try:
 
-.  Refer to <<Features>> for details of each command.
+* `add \n Two Chefs Eating Place \a 116 Commonwealth Crescent, #01-129 \c Chinese` : Adds an eatery named Two Chefs Eating Place with the specified address and category.
+* `review \n Two Chefs Eating Place \d Nice Condensed Milk Pork Ribs \p 15 \r 4` : Adds a review to Two Chefs Eating Place with the specified description, price and rating.
+* `random` : Shows a random eatery - Useful if you can't decide what to eat!
+* `bye` : Exits the app.
 
-[[Features]]
+These are just a few of the commands you can execute on EatMe. Refer to <<Features>> for the full list of available commands and their details.
+
 == Features
 
 ====
 *Command Format*
 
-* Items in square brackets are the parameters to be supplied by the user e.g. in `add n\ [name of eatery]`, `[name of eatery]` is a parameter which can be used as `add n\Two Chefs Eating Place`.
-* Parameters can be in any order e.g. if the command specifies `\n [name of eatery] \a [address] \c [category]`, `\a [address] \n [name of eatery] \c [category]` is also acceptable.
+* Items in square brackets are the parameters to be supplied by the user. For example, in `add n\ [name of eatery]`, `[name of eatery]` is a parameter which can be used as `add n\ Two Chefs Eating Place`.
+* Parameters can be in any order. For example, if the command specifies `\n [name of eatery] \a [address] \c [category]`, `\a [address] \n [name of eatery] \c [category]` is also acceptable.
 ====
 
 === General
@@ -59,7 +60,7 @@ Format: `help`
 
 Format: `bye`
 
-=== CRUD
+=== Working with eateries
 ==== Adding an eatery : `add`
 
 Adds an eatery in the app +
@@ -69,10 +70,10 @@ Examples:
 
 * `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese`
 
-==== Searching for an eatery : `search`
+==== Finding an eatery : `find`
 
-Searches for an eatery based on name or tag. +
-Format: `search \n [name of eatery]` or `search \t [tag]`
+Finds for an eatery based on name or tag. +
+Format: `find \n [name of eatery]` or `find \t [tag]`
 
 Examples:
 
@@ -124,53 +125,28 @@ Examples:
 
 * `removetag \n Two Chefs Eating Place \t Hawker`
 
-==== Viewing an eatery : `view`
-
-Shows an eatery’s entry containing its details, reviews, external reviews and a map of its location. +
-Format: `view \n [name of eatery]`
-
-Examples:
-
-<<<<<<< HEAD
-=== Listing all eateries : `list`
+==== Listing all eateries : `list`
 
 Shows a list of all eateries in the address book. +
 Format: `list`
-=======
-* `view \n Two Chefs Eating Place`
 
 ==== Getting a random eatery : `random`
->>>>>>> upstream/master
 
 Shows a completely random restaurant, useful in case you cannot decide what to eat. +
 Format: `random`
 
-==== Viewing an eatery : `view`
+==== Viewing an eatery : `show`
 
 Shows an eatery’s entry containing its details, reviews, external reviews and a map of its location. +
-Format: `view \n [name of eatery]`
+Format: `show \n [name of eatery]`
 
 Examples:
 
-* `view \n Two Chefs Eating Place`
+* `show \n Two Chefs Eating Place`
 
 === Import/Export
 ==== Importing eateries : `import`
 
-<<<<<<< HEAD
-=== Locating eateries by name: `find`
-
-Finds eateries whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Eaterys matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
-=======
 Imports eateries from a text file. +
 Format: `import \f [filename]`
 
@@ -182,7 +158,6 @@ Examples:
 
 Exports eateries to a text file. +
 Format: `export \f [filename]`
->>>>>>> upstream/master
 
 Examples:
 
@@ -231,23 +206,24 @@ Examples:
 === News Feed
 ==== Adding a feed : `addfeed`
 
-Adds a new feed to the news feed. Expects the URL of an XML feed. +
-Format: `addfeed \n [name of feed] \u [url]`
+Adds a feed to the news feed. +
+Format: `addfeed \n [name of feed] \a [address of the RSS feed]`
 
 Examples:
 
-* `addfeed \n [Seth Lui] \u https://sethlui.com/feed`
+* `addfeed \n [Eatbook] \a https://eatbook.com/feed`
 
-==== Removing a feed : `removefeed`
+==== Deleting a feed : `deletefeed`
 
-Removes a feed from the news feed. +
-Format: `removefeed \n [name of feed]`
+Deletes a feed from the news feed. +
+Format: `deletefeed \n [name of feed]`
 
 Examples:
 
-* `removefeed \n Seth Lui`
+* `deletefeed \n Eatbook`
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.
+
