@@ -32,7 +32,7 @@ public class ReviewCommand extends Command {
             + PREFIX_DESCRIPTION + " [DESCRIPTION] "
             + PREFIX_COST + " [PRICE PER PAX] "
             + PREFIX_RATING + " [RATING]"
-            + PREFIX_DATE + " [DATE]\n"
+            + PREFIX_DATE + " [DATE] (should be in the dd/MM/YYYY format)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + " Nice condensed milk pork ribs "
             + PREFIX_COST + " 6.20 "

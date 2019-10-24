@@ -159,7 +159,8 @@ public class ParserUtil {
      */
     public static Date parseReviewDate(String reviewDate) throws java.text.ParseException {
         requireNonNull(reviewDate);
+        String trimmedDate = reviewDate.trim();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return df.parse(reviewDate);
+        return df.parse(trimmedDate);
     }
 }
