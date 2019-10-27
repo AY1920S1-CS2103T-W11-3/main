@@ -80,7 +80,9 @@ public class CloseCommand extends Command {
         Address address = eateryToClose.getAddress();
         Category category = eateryToClose.getCategory();
         Set<Tag> tags = eateryToClose.getTags();
+        Eatery closedEatery = new Eatery(name, false, address, category, tags);
+        closedEatery.setReviews(eateryToClose.getReviews());
 
-        return new Eatery(name, false, address, category, tags);
+        return closedEatery;
     }
 }
