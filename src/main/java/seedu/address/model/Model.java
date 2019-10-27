@@ -5,14 +5,18 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.eatery.Eatery;
+import seedu.address.model.feed.Feed;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Eatery> PREDICATE_SHOW_ALL_EATERIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -49,39 +53,100 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a eatery with the same identity as {@code eatery} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasEatery(Eatery eatery);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given eatery.
+     * The eatery must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteEatery(Eatery target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given eatery.
+     * {@code eatery} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addEatery(Eatery eatery);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given eatery {@code target} with {@code editedEatery}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The eatery identity of {@code editedEatery} must not be the same as another existing eatery in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setEatery(Eatery target, Eatery editedEatery);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns an unmodifiable view of the filtered eatery list
+     */
+    ObservableList<Eatery> getFilteredEateryList();
+
+    /** Returns an unmodifiable view of the filtered list */
+    ObservableList<Eatery> getFilteredTodoList();
+
+    /**
+     * Updates the filter of the filtered eatery list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredEateryList(Predicate<Eatery> predicate);
+
+    /**
+     *  Switch between main mode and to-do mode.
+     * */
+    void toggle();
+
+    /**
+     * Return status of mode, Main or To-do.
+     * */
+    boolean isMainMode();
+
+    /*
+     * Returns the user prefs' feed list file path.
+     */
+    Path getFeedListFilePath();
+
+    /**
+     * Sets the user prefs' feed list file path.
+     */
+    void setFeedListFilePath(Path feedListFilePath);
+
+    /**
+     * Replaces feed list data with the data in {@code feedList}.
+     */
+    void setFeedList(ReadOnlyFeedList feedList);
+
+    /**
+     * Returns the FeedList
+     */
+    ReadOnlyFeedList getFeedList();
+
+    /**
+     * Returns true if a feed with the same identity as {@code feed} exists in the address book.
+     */
+    boolean hasFeed(Feed feed);
+
+    /**
+     * Deletes the given feed.
+     * The feed must exist in the feed list.
+     */
+    void deleteFeed(Feed target);
+
+    /**
+     * Adds the given feed.
+     * {@code feed} must not already exist in the feed list.
+     */
+    void addFeed(Feed feed);
+
+    /**
+     * Replaces the given feed {@code target} with {@code editedFeed}.
+     * {@code target} must exist in the feed list.
+     * The feed identity of {@code editedFeed} must not be the same as another existing feed in the feed list.
+     */
+    void setFeed(Feed target, Feed editedFeed);
 }
