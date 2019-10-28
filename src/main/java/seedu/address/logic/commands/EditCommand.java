@@ -70,9 +70,11 @@ public class EditCommand extends Command {
         Eatery eateryToEdit = lastShownList.get(index.getZeroBased());
         Eatery editedEatery = createEditedEatery(eateryToEdit, editEateryDescriptor);
 
-        if (!eateryToEdit.isSameEatery(editedEatery) && model.hasEatery(eateryToEdit)) {
+        if (!eateryToEdit.isSameEatery(editedEatery) && model.hasEatery(editedEatery)) {
             throw new CommandException(MESSAGE_DUPLICATE_EATERY);
         }
+
+        editedEatery.setReviews(eateryToEdit.getReviews());
 
         model.setEatery(eateryToEdit, editedEatery);
         model.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
