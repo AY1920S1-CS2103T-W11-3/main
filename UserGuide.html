@@ -396,27 +396,10 @@ Format: <code>mode</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-new-todo-eatery-code-addtodo-code"><a class="link" href="#adding-a-new-todo-eatery-code-addtodo-code">4.5.2. Adding a new todo eatery: <code>addtodo</code></a></h4>
+<h4 id="saving-a-todo-eatery-to-the-main-eatery-list-code-save-code"><a class="link" href="#saving-a-todo-eatery-to-the-main-eatery-list-code-save-code">4.5.2. Saving a todo eatery to the main eatery list : <code>save</code></a></h4>
 <div class="paragraph">
-<p>Adds a new eatery to the todo list.<br>
-Format: <code>addtodo \n [name of eatery] \a [address] {\t [tags, space-delimited]}</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addtodo \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \t must-try</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="deleting-a-todo-eatery-code-deletetodo-code"><a class="link" href="#deleting-a-todo-eatery-code-deletetodo-code">4.5.3. Deleting a todo eatery: <code>deletetodo</code></a></h4>
-<div class="paragraph">
-<p>Deletes an eatery from the todo list.<br>
-Format: <code>deletetodo [id]</code></p>
+<p>Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries.<br>
+Format: <code>save [id]</code> (saves the eatery to the main list)</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -424,27 +407,7 @@ Format: <code>deletetodo [id]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deletetodo 2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="marking-a-todo-eatery-as-visited-with-optional-saving-code-visited-code"><a class="link" href="#marking-a-todo-eatery-as-visited-with-optional-saving-code-visited-code">4.5.4. Marking a todo eatery as visited with optional saving : <code>visited</code></a></h4>
-<div class="paragraph">
-<p>Marks a todo eatery as visited and provides a quick way to add it to the main list of eateries.<br>
-Format: <code>visited [id]</code> or <code>visited [id] \s</code> (saves the eatery to the main list)</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>visited 2</code></p>
-</li>
-<li>
-<p><code>visited 2 \s</code></p>
+<p><code>save 2</code></p>
 </li>
 </ul>
 </div>
@@ -573,16 +536,8 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Toggling between main and todo modes</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addtodo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adding a todo eatery</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deletetodo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deleting a todo eatery</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>visited</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Marking a todo eatery as visited with optional saving</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>save</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Saving a todo eatery to the main eatery list</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>addfeed</code></p></td>
@@ -604,4 +559,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 15:48:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-01 07:20:04 UTC</div></div></div></body></html>
