@@ -163,4 +163,17 @@ public class ParserUtil {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.parse(trimmedDate);
     }
+
+    public static Set<Tag> parseTagsToAdd(String tags) {
+        requireNonNull(tags);
+
+        String trimmedTags = tags.trim();
+        String[] tag = trimmedTags.split(" ");
+        Set<Tag> tagList = new HashSet<>();
+        for(String tagGiven : tag) {
+            tagList.add(new Tag(tagGiven));
+        }
+
+        return tagList;
+    }
 }
