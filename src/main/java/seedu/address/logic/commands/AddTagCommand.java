@@ -104,8 +104,8 @@ public class AddTagCommand extends Command {
             addTags(toCopy.tags);
         }
 
-        public void addTags(Set<Tag> tags) {
-            this.tags.addAll(tags);
+        public void addTags(Set<Tag> tag) {
+            this.tags.addAll(tag);
         }
 
         public Set<Tag> getTags() {

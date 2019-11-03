@@ -33,7 +33,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand>{
 
     }
 
-    private Set<Tag> parseTagsForAdding(String tags) {
+    private Set<Tag> parseTagsForAdding(String tags) throws ParseException {
         assert tags != null;
 
         return ParserUtil.parseTagsToAdd(tags);
