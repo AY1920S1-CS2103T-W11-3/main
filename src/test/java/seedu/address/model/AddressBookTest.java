@@ -3,11 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NO_PREFIX_CHEAP;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEateries.ALICE;
-import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEateries.POPEYES;
+import static seedu.address.testutil.TypicalEateries.getTypicalOpenAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +37,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = getTypicalOpenAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -46,9 +45,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateEateries_throwsDuplicateEateryException() {
         // Two eateries with the same identity fields
-        Eatery editedAlice = new EateryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Eatery editedAlice = new EateryBuilder(POPEYES).withTags(VALID_TAG_NO_PREFIX_CHEAP)
                 .build();
-        List<Eatery> newEateries = Arrays.asList(ALICE, editedAlice);
+        List<Eatery> newEateries = Arrays.asList(POPEYES, editedAlice);
         AddressBookStub newData = new AddressBookStub(newEateries);
 
         assertThrows(DuplicateEateryException.class, () -> addressBook.resetData(newData));
@@ -61,19 +60,19 @@ public class AddressBookTest {
 
     @Test
     public void hasEatery_eateryNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEatery(ALICE));
+        assertFalse(addressBook.hasEatery(POPEYES));
     }
 
     @Test
     public void hasEatery_eateryInAddressBook_returnsTrue() {
-        addressBook.addEatery(ALICE);
-        assertTrue(addressBook.hasEatery(ALICE));
+        addressBook.addEatery(POPEYES);
+        assertTrue(addressBook.hasEatery(POPEYES));
     }
 
     @Test
     public void hasEatery_eateryWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEatery(ALICE);
-        Eatery editedAlice = new EateryBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addEatery(POPEYES);
+        Eatery editedAlice = new EateryBuilder(POPEYES).withTags(VALID_TAG_NO_PREFIX_CHEAP)
                 .build();
         assertTrue(addressBook.hasEatery(editedAlice));
     }
@@ -82,12 +81,12 @@ public class AddressBookTest {
     public void getEateryList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getEateryList().remove(0));
     }
-
     /**
      * A stub ReadOnlyAddressBook whose eateries list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Eatery> eateries = FXCollections.observableArrayList();
+        private final ObservableList<Eatery> todos = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Eatery> eateries) {
             this.eateries.setAll(eateries);
@@ -96,6 +95,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Eatery> getEateryList() {
             return eateries;
+        }
+
+        @Override
+        public ObservableList<Eatery> getTodoList() {
+            return todos;
         }
     }
 

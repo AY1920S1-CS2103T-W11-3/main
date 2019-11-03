@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EATERIES;
@@ -18,9 +19,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.eatery.Address;
+import seedu.address.model.eatery.Category;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Name;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.eatery.Tag;
 
 /**
  * Edits the details of an existing eatery in the address book.
@@ -33,9 +35,10 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed eatery list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
+            + "[" + PREFIX_CATEGORY + " CATEGORY] "
+            + "[" + PREFIX_TAG + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_EATERY_SUCCESS = "Edited Eatery: %1$s";
@@ -69,7 +72,7 @@ public class EditCommand extends Command {
         Eatery eateryToEdit = lastShownList.get(index.getZeroBased());
         Eatery editedEatery = createEditedEatery(eateryToEdit, editEateryDescriptor);
 
-        if (!eateryToEdit.isSameEatery(editedEatery) && model.hasEatery(eateryToEdit)) {
+        if (!eateryToEdit.isSameEatery(editedEatery) && model.hasEatery(editedEatery)) {
             throw new CommandException(MESSAGE_DUPLICATE_EATERY);
         }
 
@@ -87,9 +90,10 @@ public class EditCommand extends Command {
 
         Name updatedName = editEateryDescriptor.getName().orElse(eateryToEdit.getName());
         Address updatedAddress = editEateryDescriptor.getAddress().orElse(eateryToEdit.getAddress());
+        Category updatedCategory = editEateryDescriptor.getCategory().orElse(eateryToEdit.getCategory());
         Set<Tag> updatedTags = editEateryDescriptor.getTags().orElse(eateryToEdit.getTags());
 
-        return new Eatery(updatedName, updatedAddress, updatedTags);
+        return new Eatery(updatedName, updatedAddress, updatedCategory, updatedTags);
     }
 
     @Override
@@ -116,7 +120,9 @@ public class EditCommand extends Command {
      */
     public static class EditEateryDescriptor {
         private Name name;
+        private boolean isOpen;
         private Address address;
+        private Category category;
         private Set<Tag> tags;
 
         public EditEateryDescriptor() {}
@@ -127,6 +133,7 @@ public class EditCommand extends Command {
          */
         public EditEateryDescriptor(EditEateryDescriptor toCopy) {
             setName(toCopy.name);
+            setCategory(toCopy.category);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -135,7 +142,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, address, tags);
+            return CollectionUtil.isAnyNonNull(name, address, category, tags);
         }
 
         public void setName(Name name) {
@@ -152,6 +159,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setCategory(Category category) {
+            this.category = category;
+        }
+
+        public Optional<Category> getCategory() {
+            return Optional.ofNullable(category);
         }
 
         /**
@@ -188,6 +203,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
+                    && getCategory().equals(e.getCategory())
                     && getTags().equals(e.getTags());
         }
     }

@@ -43,12 +43,14 @@ public class Category {
      * else it returns the existing Category object.
      */
     public static Category create(String name) {
-        Category cat = categories.get(name);
+        Category category = categories.get(name);
 
-        if (cat == null) {
-            return new Category(name);
+        if (category == null) {
+            Category newCategory = new Category(name);
+            categories.put(newCategory.getName(), newCategory);
+            return newCategory;
         } else {
-            return cat;
+            return category;
         }
     }
 
@@ -77,5 +79,10 @@ public class Category {
         return other == this
                 || (other instanceof Category)
                 && name.equals(((Category) other).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

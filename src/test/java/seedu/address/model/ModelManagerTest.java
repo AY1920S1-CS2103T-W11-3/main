@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EATERIES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEateries.ALICE;
-import static seedu.address.testutil.TypicalEateries.BENSON;
+import static seedu.address.testutil.TypicalEateries.POPEYES;
+import static seedu.address.testutil.TypicalEateries.TEXAS;
+import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +80,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasEatery_eateryNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasEatery(ALICE));
+        assertFalse(modelManager.hasEatery(POPEYES));
     }
 
     @Test
     public void hasEatery_eateryInAddressBook_returnsTrue() {
-        modelManager.addEatery(ALICE);
-        assertTrue(modelManager.hasEatery(ALICE));
+        modelManager.addEatery(POPEYES);
+        assertTrue(modelManager.hasEatery(POPEYES));
     }
 
     @Test
@@ -95,13 +96,15 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withEatery(ALICE).withEatery(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withEatery(POPEYES).withEatery(TEXAS).build();
         AddressBook differentAddressBook = new AddressBook();
+        FeedList feedList = getTypicalFeedList();
+        FeedList differentFeedList = new FeedList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, feedList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, feedList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +117,15 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, feedList, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = POPEYES.getName().fullName.split("\\s+");
         modelManager.updateFilteredEateryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, feedList, userPrefs)));
+
+        // different feedList -> returns false
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentFeedList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
@@ -127,6 +133,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, feedList, differentUserPrefs)));
     }
 }
