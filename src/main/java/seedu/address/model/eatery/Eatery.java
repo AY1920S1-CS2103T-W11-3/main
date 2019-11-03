@@ -2,6 +2,7 @@ package seedu.address.model.eatery;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -98,7 +99,7 @@ public class Eatery {
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return tags;
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
