@@ -139,7 +139,10 @@ e.g. typing <code>help</code> and pressing <kbd>Enter</kbd> will open the help w
 <p>Items in square brackets are the parameters to be supplied by the user. For example, in <code>add \n [name of eatery]</code>, <code>[name of eatery]</code> is a parameter which can be used as <code>add n\ Two Chefs Eating Place</code>.</p>
 </li>
 <li>
-<p>Items in curly brackets are optional parameters. For example, in <code>add \n [name of eatery] \a [address] \c [category] {\t [tags, space-delimited]}</code>, <code>{\t [tags, space-delimited]}</code> is an optional parameter that the user can choose to supply if he/she wishes to add certain tags to the eatery.</p>
+<p>Items in curly brackets are optional parameters. For example, in <code>add \n [name of eatery] \a [address] \c [category] {\t [tags]&#8230;&#8203;}</code>, <code>{\t [tags]&#8230;&#8203;}</code> is an optional parameter that the user can choose to supply if he/she wishes to add certain tags to the eatery.</p>
+</li>
+<li>
+<p>Items with <code>…</code> after them can be used multiple times including zero times e.g. <code>&#160;</code> can be used as (i.e. 0 times), <code>\t non-aircon</code>, <code>\t good-for-groups \t non-aircon</code>, etc.</p>
 </li>
 <li>
 <p>Parameters can be in any order. For example, if the command specifies <code>\n [name of eatery] \a [address] \c [category]</code>, <code>\a [address] \n [name of eatery] \c [category]</code> is also acceptable.</p>
@@ -169,7 +172,7 @@ e.g. typing <code>help</code> and pressing <kbd>Enter</kbd> will open the help w
 <h4 id="adding-an-eatery-code-add-code"><a class="link" href="#adding-an-eatery-code-add-code">4.2.1. Adding an eatery: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds an eatery to the app.<br>
-Format: <code>add \n [name of eatery] \a [address] \c [category] {\t [tags, space-delimited]}</code></p>
+Format: <code>add \n [name of eatery] \a [address] \c [category] {\t [tags]&#8230;&#8203;}</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -180,7 +183,7 @@ Format: <code>add \n [name of eatery] \a [address] \c [category] {\t [tags, spac
 <p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code></p>
 </li>
 <li>
-<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese \t good-for-groups non-aircon</code></p>
+<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese \t good-for-groups \t non-aircon</code></p>
 </li>
 </ul>
 </div>
@@ -283,7 +286,7 @@ Format: <code>review [id] \d [description] \p [price per person] \r [rating] \w 
 <h4 id="tagging-an-eatery-code-addtag-code"><a class="link" href="#tagging-an-eatery-code-addtag-code">4.2.7. Tagging an eatery: <code>addtag</code></a></h4>
 <div class="paragraph">
 <p>Adds tags to an eatery.<br>
-Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
+Format: <code>addtag [id] \t [tags]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -291,7 +294,7 @@ Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addtag 2 \t hawker good-for-sharing</code></p>
+<p><code>addtag 2 \t hawker \t good-for-sharing</code></p>
 </li>
 </ul>
 </div>
@@ -300,7 +303,7 @@ Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
 <h4 id="removing-tags-from-an-eatery-code-removetag-code"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code">4.2.8. Removing tags from an eatery: <code>removetag</code></a></h4>
 <div class="paragraph">
 <p>Removes tags from an eatery.<br>
-Format: <code>removetag [id] \t [tags, space-delimited]</code></p>
+Format: <code>removetag [id] \t [tags]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -574,4 +577,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-01 07:32:22 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-03 09:00:17 UTC</div></div></div></body></html>
