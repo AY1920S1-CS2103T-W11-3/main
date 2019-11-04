@@ -19,29 +19,29 @@ import seedu.address.model.eatery.Name;
 import seedu.address.model.eatery.Tag;
 
 /**
- * Adds tags to an existing eatery in the eatme application.
+ * Removes tag from an existing eatery in the eatme application.
  */
-public class AddTagCommand extends Command {
+public class RemoveTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtag";
+    public static final String COMMAND_WORD = "removetag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the TAGS of the eatery identified "
             + "by the index number used in the displayed eatery list. "
-            + "The new tags will be added to the existing tags.\n"
+            + "The tags will be removed from the existing tags.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + " TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + " good elder-friendly";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + " good";
 
-    public static final String ADD_TAG_SUCCESS = "Added tags to Eatery: %1$s";
+    public static final String REMOVE_TAG_SUCCESS = "Removed tags from the Eatery: %1$s";
 
     private final Index index;
     private final EditEateryDescriptor editEateryDescriptor;
 
     /**
      * @param index of the eatery in the displayed list to be edited.
-     * @param editEateryDescriptor details of the tags to be added.
+     * @param editEateryDescriptor details of the tags to be removed.
      */
-    public AddTagCommand(Index index, EditEateryDescriptor editEateryDescriptor) {
+    public RemoveTagCommand(Index index, EditEateryDescriptor editEateryDescriptor) {
 
         requireNonNull(index);
         requireNonNull(editEateryDescriptor);
@@ -65,7 +65,7 @@ public class AddTagCommand extends Command {
 
         model.setEatery(eateryToEdit, editedEatery);
         model.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(ADD_TAG_SUCCESS, editedEatery));
+        return new CommandResult(String.format(REMOVE_TAG_SUCCESS, editedEatery));
     }
     /**
      * Creates and returns a {@code Eatery} with the details of {@code eateryToEdit}
@@ -76,8 +76,7 @@ public class AddTagCommand extends Command {
         Address address = eateryToEdit.getAddress();
         Category category = eateryToEdit.getCategory();
 
-        editEateryDescriptor.addTags(eateryToEdit.getTags());
-        Set<Tag> updatedTags = editEateryDescriptor.getTags();
+        Set<Tag> updatedTags = editEateryDescriptor.removeTags(eateryToEdit);
 
         return new Eatery(name, address, category, updatedTags);
     }
@@ -90,12 +89,12 @@ public class AddTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTagCommand)) {
+        if (!(other instanceof RemoveTagCommand)) {
             return false;
         }
 
         // state check
-        AddTagCommand e = (AddTagCommand) other;
+        RemoveTagCommand e = (RemoveTagCommand) other;
         return index.equals(e.index)
                 && editEateryDescriptor.equals(e.editEateryDescriptor);
     }
@@ -105,7 +104,7 @@ public class AddTagCommand extends Command {
      */
     public static class EditEateryDescriptor {
 
-        private Set<Tag> tags = new HashSet<>();
+        private Set<Tag> tagsToRemove = new HashSet<>();
 
         public EditEateryDescriptor() {}
 
@@ -113,23 +112,32 @@ public class AddTagCommand extends Command {
          * Copy constructor.
          */
         public EditEateryDescriptor(EditEateryDescriptor toCopy) {
-            addTags(toCopy.tags);
+            addTags(toCopy.tagsToRemove);
         }
 
         /**
          * Adds {@code tags} to this object's {@code tags}.
          */
-        public void addTags(Set<Tag> newTag) {
-            for (Tag t : newTag) {
-                this.tags.add(t);
-            }
+        public void addTags(Set<Tag> tags) {
+            this.tagsToRemove.addAll(tags);
         }
 
         /**
          * @return the tags corresponding to this object.
          */
         public Set<Tag> getTags() {
-            return tags;
+            return tagsToRemove;
+        }
+
+        /**
+         * Removes the tags from an eatery's list of according to user input.
+         */
+        public Set<Tag> removeTags(Eatery eatery) {
+            Set<Tag> listAfterRemoving = new HashSet<>(eatery.getTags());
+            for (Tag t : this.tagsToRemove) {
+                listAfterRemoving.remove(t);
+            }
+            return listAfterRemoving;
         }
 
         @Override
@@ -150,4 +158,6 @@ public class AddTagCommand extends Command {
             return getTags().equals(e.getTags());
         }
     }
+
+
 }
