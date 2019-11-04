@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EATERIES;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -10,13 +18,9 @@ import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Name;
 import seedu.address.model.eatery.Tag;
 
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EATERIES;
-
+/**
+ * Adds tags to an existing eatery in the eatme application.
+ */
 public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "addtag";
@@ -29,11 +33,14 @@ public class AddTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "good elder-friendly";
 
     public static final String ADD_TAG_SUCCESS = "Added tags to Eatery: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one tag to add must be new.";
 
     private final Index index;
     private final EditEateryDescriptor editEateryDescriptor;
 
+    /**
+     * @param index of the eatery in the displayed list to be edited.
+     * @param editEateryDescriptor details of the tags to be added.
+     */
     public AddTagCommand(Index index, EditEateryDescriptor editEateryDescriptor) {
 
         requireNonNull(index);
@@ -60,7 +67,10 @@ public class AddTagCommand extends Command {
         model.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
         return new CommandResult(String.format(ADD_TAG_SUCCESS, editedEatery));
     }
-
+    /**
+     * Creates and returns a {@code Eatery} with the details of {@code eateryToEdit}
+     * edited with {@code editEateryDescriptor}.
+     */
     private static Eatery createEditedEatery(Eatery eateryToEdit, EditEateryDescriptor editEateryDescriptor) {
         Name name = eateryToEdit.getName();
         Address address = eateryToEdit.getAddress();
@@ -90,27 +100,54 @@ public class AddTagCommand extends Command {
                 && editEateryDescriptor.equals(e.editEateryDescriptor);
     }
 
+    /**
+     * Contains the details of the new tags to be added.
+     */
     public static class EditEateryDescriptor {
 
-        private Set<Tag> tags;
+        private Set<Tag> tags = new HashSet<>();
 
         public EditEateryDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditEateryDescriptor(EditEateryDescriptor toCopy) {
             addTags(toCopy.tags);
         }
 
-        public void addTags(Set<Tag> tag) {
-            this.tags.addAll(tag);
+        /**
+         * Adds {@code tags} to this object's {@code tags}.
+         */
+        public void addTags(Set<Tag> newTag) {
+            for (Tag t : newTag) {
+                this.tags.add(t);
+            }
         }
 
+        /**
+         * @return the tags corresponding to this object.
+         */
         public Set<Tag> getTags() {
             return tags;
         }
-    }
 
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditEateryDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditEateryDescriptor e = (EditEateryDescriptor) other;
+
+            return getTags().equals(e.getTags());
+        }
+    }
 }
