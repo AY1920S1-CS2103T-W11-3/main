@@ -100,7 +100,7 @@ public class RemoveTagCommand extends Command {
     }
 
     /**
-     * Contains the details of the new tags to be added.
+     * Contains the details of the new tags to be deleted.
      */
     public static class EditEateryDescriptor {
 
