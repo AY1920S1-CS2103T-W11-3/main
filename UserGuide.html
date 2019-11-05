@@ -212,27 +212,7 @@ Format: <code>find \n [name of eatery]</code> or <code>find \t [tag]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-address-of-an-eatery-code-changeaddress-code"><a class="link" href="#changing-address-of-an-eatery-code-changeaddress-code">4.2.3. Changing address of an eatery: <code>changeaddress</code></a></h4>
-<div class="paragraph">
-<p><strong>Coming in v1.4</strong></p>
-</div>
-<div class="paragraph">
-<p>Changes the address of an eatery.<br>
-Format: <code>changeaddress [id] \a [new address]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>changeaddress 2 \a 116 Commonwealth Cres, #01-130</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="marking-an-eatery-as-closed-code-close-code"><a class="link" href="#marking-an-eatery-as-closed-code-close-code">4.2.4. Marking an eatery as closed: <code>close</code></a></h4>
+<h4 id="marking-an-eatery-as-closed-code-close-code"><a class="link" href="#marking-an-eatery-as-closed-code-close-code">4.2.3. Marking an eatery as closed: <code>close</code></a></h4>
 <div class="paragraph">
 <p>Closes an eatery if the eatery is no longer there. The eatery will still be listed, but will be grayed out to inform you that the eatery no longer exists. In the case that you accidentally closed the wrong eatery or the eatery reopens, typing <code>reopen</code> does the opposite of <code>close</code>.<br>
 Format: <code>close [id]</code></p>
@@ -249,7 +229,7 @@ Format: <code>close [id]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="reopening-a-closed-eatery-code-reopen-code"><a class="link" href="#reopening-a-closed-eatery-code-reopen-code">4.2.5. Reopening a closed eatery: <code>reopen</code></a></h4>
+<h4 id="reopening-a-closed-eatery-code-reopen-code"><a class="link" href="#reopening-a-closed-eatery-code-reopen-code">4.2.4. Reopening a closed eatery: <code>reopen</code></a></h4>
 <div class="paragraph">
 <p>Reopens a previously closed eatery.<br>
 Format: <code>reopen [id]</code></p>
@@ -266,7 +246,7 @@ Format: <code>reopen [id]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="reviewing-an-eatery-code-review-code"><a class="link" href="#reviewing-an-eatery-code-review-code">4.2.6. Reviewing an eatery: <code>review</code></a></h4>
+<h4 id="reviewing-an-eatery-code-review-code"><a class="link" href="#reviewing-an-eatery-code-review-code">4.2.5. Reviewing an eatery: <code>review</code></a></h4>
 <div class="paragraph">
 <p>Leaves a review for an eatery.<br>
 Format: <code>review [id] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]</code></p>
@@ -283,7 +263,7 @@ Format: <code>review [id] \d [description] \p [price per person] \r [rating] \w 
 </div>
 </div>
 <div class="sect3">
-<h4 id="tagging-an-eatery-code-addtag-code"><a class="link" href="#tagging-an-eatery-code-addtag-code">4.2.7. Tagging an eatery: <code>addtag</code></a></h4>
+<h4 id="tagging-an-eatery-code-addtag-code"><a class="link" href="#tagging-an-eatery-code-addtag-code">4.2.6. Tagging an eatery: <code>addtag</code></a></h4>
 <div class="paragraph">
 <p>Adds tags to an eatery.<br>
 Format: <code>addtag [id] \t [tags]&#8230;&#8203;</code></p>
@@ -300,7 +280,7 @@ Format: <code>addtag [id] \t [tags]&#8230;&#8203;</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-tags-from-an-eatery-code-removetag-code"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code">4.2.8. Removing tags from an eatery: <code>removetag</code></a></h4>
+<h4 id="removing-tags-from-an-eatery-code-removetag-code"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code">4.2.7. Removing tags from an eatery: <code>removetag</code></a></h4>
 <div class="paragraph">
 <p>Removes tags from an eatery.<br>
 Format: <code>removetag [id] \t [tags]&#8230;&#8203;</code></p>
@@ -317,21 +297,21 @@ Format: <code>removetag [id] \t [tags]&#8230;&#8203;</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-all-eateries-code-list-code"><a class="link" href="#listing-all-eateries-code-list-code">4.2.9. Listing all eateries: <code>list</code></a></h4>
+<h4 id="listing-all-eateries-code-list-code"><a class="link" href="#listing-all-eateries-code-list-code">4.2.8. Listing all eateries: <code>list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of all eateries in the app.<br>
 Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-a-random-eatery-code-random-code"><a class="link" href="#getting-a-random-eatery-code-random-code">4.2.10. Getting a random eatery: <code>random</code></a></h4>
+<h4 id="getting-a-random-eatery-code-random-code"><a class="link" href="#getting-a-random-eatery-code-random-code">4.2.9. Getting a random eatery: <code>random</code></a></h4>
 <div class="paragraph">
 <p>Shows a completely random restaurant - Useful in case you cannot decide what to eat!<br>
 Format: <code>random</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-an-eatery-code-show-code"><a class="link" href="#viewing-an-eatery-code-show-code">4.2.11. Viewing an eatery: <code>show</code></a></h4>
+<h4 id="viewing-an-eatery-code-show-code"><a class="link" href="#viewing-an-eatery-code-show-code">4.2.10. Viewing an eatery: <code>show</code></a></h4>
 <div class="paragraph">
 <p>Shows an eatery with all its details - Address, category, tags, reviews, external reviews and a map of its location.<br>
 Format: <code>show [id]</code></p>
@@ -577,4 +557,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-03 09:00:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 06:30:48 UTC</div></div></div></body></html>
