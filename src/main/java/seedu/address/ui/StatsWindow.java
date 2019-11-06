@@ -99,18 +99,22 @@ public class StatsWindow extends UiPart<Stage> {
         Text titleMostExp = new Text("Top 3 eateries you spent the most at\n");
         titleMostExp.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
         mostExpEateries.getChildren().add(titleMostExp);
-        for (Eatery e : statistics.mostExpEatery) {
-            mostExpEateries.getChildren().add(new Text(e.getName().fullName + "\n"));
+
+        for (int i = 0; i < statistics.mostExpEatery.size(); i++) {
+            mostExpEateries.getChildren().add(new Text(String.format("%d. %s\n", i + 1,
+                    statistics.mostExpEatery.get(i).getName())));
         }
 
         TextFlow leastExpEateries = new TextFlow();
         leastExpEateries.setTextAlignment(TextAlignment.CENTER);
         leastExpEateries.setStyle(String.format("-fx-padding: 0 20 0 20"));
-        Text titleLeastExp = new Text("Top 3 eateries you spent the least at\n");
+        Text titleLeastExp = new Text("Top  eateries you spent the least at\n");
         titleLeastExp.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
         leastExpEateries.getChildren().add(titleLeastExp);
-        for (Eatery e : statistics.leastExpEatery) {
-            leastExpEateries.getChildren().add(new Text(e.getName().fullName + "\n"));
+
+        for (int i = 0; i < statistics.leastExpEatery.size(); i++) {
+            leastExpEateries.getChildren().add(new Text(String.format("%d. %s\n", i + 1,
+                    statistics.leastExpEatery.get(i).getName())));
         }
 
         TextFlow mostVisitedEateries = new TextFlow();
@@ -118,8 +122,10 @@ public class StatsWindow extends UiPart<Stage> {
         Text titleMostVisited = new Text("Top 3 eateries you visited the most\n");
         titleMostVisited.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
         mostVisitedEateries.getChildren().add(titleMostVisited);
-        for (Eatery e : statistics.mostVisitedEatery) {
-            mostVisitedEateries.getChildren().add(new Text(e.getName().fullName + "\n"));
+
+        for (int i = 0; i < statistics.mostVisitedEatery.size(); i++) {
+            mostVisitedEateries.getChildren().add(new Text(String.format("%d. %s\n", i + 1,
+                    statistics.mostVisitedEatery.get(i).getName())));
         }
 
         TextFlow leastVisitedEateries = new TextFlow();
@@ -128,8 +134,10 @@ public class StatsWindow extends UiPart<Stage> {
         Text titleLeastVisited = new Text("Top 3 eateries you visited the least\n");
         titleLeastVisited.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
         leastVisitedEateries.getChildren().add(titleLeastVisited);
-        for (Eatery e : statistics.leastVisitedEatery) {
-            leastVisitedEateries.getChildren().add(new Text(e.getName().fullName + "\n"));
+
+        for (int i = 0; i < statistics.leastVisitedEatery.size(); i++) {
+            leastVisitedEateries.getChildren().add(new Text(String.format("%d. %s\n", i + 1,
+                    statistics.leastVisitedEatery.get(i).getName())));
         }
 
         numDisplayView.getChildren().addAll(mostExpEateries, leastExpEateries, mostVisitedEateries,
