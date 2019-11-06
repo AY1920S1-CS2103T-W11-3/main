@@ -8,7 +8,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import javafx.stage.WindowEvent;
-import seedu.address.model.eatery.Eatery;
 import seedu.address.model.statistics.Statistics;
 
 /**
