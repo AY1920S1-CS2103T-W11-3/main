@@ -1,20 +1,22 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.RemoveTagCommand;
-import seedu.address.logic.commands.RemoveTagCommand.EditEateryDescriptor;
-import seedu.address.model.eatery.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NO_PREFIX_NICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_WITH_PREFIX_NICE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.RemoveTagCommand;
+import seedu.address.logic.commands.RemoveTagCommand.EditEateryDescriptor;
+import seedu.address.model.eatery.Tag;
+
 
 public class RemoveTagCommandParserTest {
     private RemoveTagCommandParser parser = new RemoveTagCommandParser();

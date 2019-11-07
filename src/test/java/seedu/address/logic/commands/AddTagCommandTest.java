@@ -11,21 +11,21 @@ import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddTagCommand.EditEateryDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Tag;
-import seedu.address.logic.commands.AddTagCommand.EditEateryDescriptor;
 import seedu.address.testutil.EateryBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class AddTagCommandTest {
     private Model model = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());

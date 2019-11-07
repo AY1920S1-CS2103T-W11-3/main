@@ -7,14 +7,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.AddTagCommand.EditEateryDescriptor;
 import seedu.address.model.eatery.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class AddTagCommandParserTest {
     private AddTagCommandParser parser = new AddTagCommandParser();
