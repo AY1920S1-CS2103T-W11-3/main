@@ -14,10 +14,41 @@
 <li><a href="#quick-start">3. Quick Start</a></li>
 <li><a href="#features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#general">4.1. General</a></li>
-<li><a href="#main-mode">4.2. Main Mode</a></li>
-<li><a href="#todo-mode">4.3. Todo Mode</a></li>
-<li><a href="#news-feed">4.4. News Feed</a></li>
+<li><a href="#general">4.1. General</a>
+<ul class="sectlevel3">
+<li><a href="#viewing-help-code-help-code">4.1.1. Viewing help: <code>help</code></a></li>
+<li><a href="#listing-all-eateries-code-list-code">4.1.2. Listing all eateries: <code>list</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">4.1.3. Clearing all entries: <code>clear</code></a></li>
+<li><a href="#importing-eateries-code-import-code">4.1.4. Importing eateries: <code>import</code></a></li>
+<li><a href="#exporting-eateries-code-export-code">4.1.5. Exporting eateries: <code>export</code></a></li>
+<li><a href="#exit-the-app-code-exit-code">4.1.6. Exit the app: <code>exit</code></a></li>
+</ul>
+</li>
+<li><a href="#main-mode">4.2. Main Mode</a>
+<ul class="sectlevel3">
+<li><a href="#working-with-eateries">4.2.1. Working with Eateries</a></li>
+<li><a href="#visualisation">4.2.2. Visualisation</a></li>
+</ul>
+</li>
+<li><a href="#todo-mode">4.3. Todo Mode</a>
+<ul class="sectlevel3">
+<li><a href="#toggling-between-main-and-todo-modes-code-mode-code">4.3.1. Toggling between main and todo modes: <code>mode</code></a></li>
+<li><a href="#adding-an-eatery-code-add-code-2">4.3.2. Adding an eatery: <code>add</code></a></li>
+<li><a href="#saving-a-todo-eatery-to-the-main-eatery-list-code-save-code">4.3.3. Saving a todo eatery to the main eatery list : <code>save</code></a></li>
+<li><a href="#finding-an-eatery-code-find-code-2">4.3.4. Finding an eatery: <code>find</code></a></li>
+<li><a href="#changing-address-of-an-eatery-code-changeaddress-code-2">4.3.5. Changing address of an eatery: <code>changeaddress</code></a></li>
+<li><a href="#tagging-an-eatery-code-addtag-code-2">4.3.6. Tagging an eatery: <code>addtag</code></a></li>
+<li><a href="#removing-tags-from-an-eatery-code-removetag-code-2">4.3.7. Removing tags from an eatery: <code>removetag</code></a></li>
+<li><a href="#viewing-an-eatery-code-show-code-2">4.3.8. Viewing an eatery: <code>show</code></a></li>
+<li><a href="#deleting-an-eatery-code-delete-code-2">4.3.9. Deleting an eatery: <code>delete</code></a></li>
+</ul>
+</li>
+<li><a href="#news-feed">4.4. News Feed</a>
+<ul class="sectlevel3">
+<li><a href="#adding-a-feed-code-addfeed-code">4.4.1. Adding a feed : <code>addfeed</code></a></li>
+<li><a href="#deleting-a-feed-code-deletefeed-code">4.4.2. Deleting a feed : <code>deletefeed</code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#quick-reference">5. Quick Reference</a></li>
@@ -510,41 +541,7 @@ Format: <code>changeaddress [id] \a [new address]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="marking-an-eatery-as-closed-code-close-code-2"><a class="link" href="#marking-an-eatery-as-closed-code-close-code-2">4.3.6. Marking an eatery as closed: <code>close</code></a></h4>
-<div class="paragraph">
-<p>Closes an eatery if the eatery is no longer there. The eatery will still be listed, but will be grayed out to inform you that the eatery no longer exists. In the case that you accidentally closed the wrong eatery or the eatery reopens, typing <code>reopen</code> does the opposite of <code>close</code>.<br>
-Format: <code>close [id]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>close 2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="reopening-a-closed-eatery-code-reopen-code-2"><a class="link" href="#reopening-a-closed-eatery-code-reopen-code-2">4.3.7. Reopening a closed eatery: <code>reopen</code></a></h4>
-<div class="paragraph">
-<p>Reopens a previously closed eatery.<br>
-Format: <code>reopen [id]</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>reopen 2</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="tagging-an-eatery-code-addtag-code-2"><a class="link" href="#tagging-an-eatery-code-addtag-code-2">4.3.8. Tagging an eatery: <code>addtag</code></a></h4>
+<h4 id="tagging-an-eatery-code-addtag-code-2"><a class="link" href="#tagging-an-eatery-code-addtag-code-2">4.3.6. Tagging an eatery: <code>addtag</code></a></h4>
 <div class="paragraph">
 <p>Adds tags to an eatery.<br>
 Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
@@ -561,7 +558,7 @@ Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-tags-from-an-eatery-code-removetag-code-2"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code-2">4.3.9. Removing tags from an eatery: <code>removetag</code></a></h4>
+<h4 id="removing-tags-from-an-eatery-code-removetag-code-2"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code-2">4.3.7. Removing tags from an eatery: <code>removetag</code></a></h4>
 <div class="paragraph">
 <p>Removes tags from an eatery.<br>
 Format: <code>removetag [id] \t [tags, space-delimited]</code></p>
@@ -578,7 +575,7 @@ Format: <code>removetag [id] \t [tags, space-delimited]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-an-eatery-code-show-code-2"><a class="link" href="#viewing-an-eatery-code-show-code-2">4.3.10. Viewing an eatery: <code>show</code></a></h4>
+<h4 id="viewing-an-eatery-code-show-code-2"><a class="link" href="#viewing-an-eatery-code-show-code-2">4.3.8. Viewing an eatery: <code>show</code></a></h4>
 <div class="paragraph">
 <p>Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location.
 Format: <code>show [id]</code></p>
@@ -595,7 +592,7 @@ Format: <code>show [id]</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-an-eatery-code-delete-code-2"><a class="link" href="#deleting-an-eatery-code-delete-code-2">4.3.11. Deleting an eatery: <code>delete</code></a></h4>
+<h4 id="deleting-an-eatery-code-delete-code-2"><a class="link" href="#deleting-an-eatery-code-delete-code-2">4.3.9. Deleting an eatery: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Delete an eatery in the application.<br>
 Format: <code>delete 1</code></p>
@@ -752,4 +749,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 01:54:47 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 17:50:17 UTC</div></div></div></body></html>
