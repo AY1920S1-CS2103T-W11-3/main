@@ -15,9 +15,9 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class EateryBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_NAME = "Popeyes";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_CATEGORY = "Chinese";
+    public static final String DEFAULT_CATEGORY = "Western";
 
     private Name name;
     private boolean isOpen;
@@ -54,7 +54,6 @@ public class EateryBuilder {
     }
 
     /**
-<<<<<<< HEAD
      * Sets the {@code isOpen} of the {@code Eatery} that we are building.
      */
     public EateryBuilder withIsOpen(boolean isOpen) {
@@ -63,8 +62,6 @@ public class EateryBuilder {
     }
 
     /**
-=======
->>>>>>> upstream/master
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Eatery} that we are building.
      */
     public EateryBuilder withTags(String ... tags) {

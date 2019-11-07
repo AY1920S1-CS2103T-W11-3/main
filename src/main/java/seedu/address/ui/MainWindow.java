@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -34,8 +35,11 @@ public class MainWindow extends UiPart<Stage> {
     private FeedPostListPanel feedPostListPanel;
     private HelpWindow helpWindow;
 
+    private CommandBox commandBox;
+    private ReviewListPanel reviewListPanel;
+
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private VBox commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -44,13 +48,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane eateryListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private VBox resultDisplayPlaceholder;
 
     @FXML
     private StackPane feedPostListPanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private VBox statusbarPlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -77,16 +81,18 @@ public class MainWindow extends UiPart<Stage> {
         eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
         eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
 
-        feedPostListPanel = new FeedPostListPanel(logic.getFeedList());
+        feedPostListPanel = new FeedPostListPanel(logic.getFeedList(), logic);
         feedPostListPanelPlaceholder.getChildren().add(feedPostListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
+        reviewListPanel = new ReviewListPanel(logic.getActiveReviews());
+
+        resultDisplay = new ResultDisplay(reviewListPanel);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -145,6 +151,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Display pending command generated from to-do in commandbox.
+     */
+    private void handleSaveTodo(String pendingCommand) {
+        String[] resTokens = pendingCommand.split(":");
+        commandBox = new CommandBox(this::executeCommand, resTokens[1]);
+        commandBoxPlaceholder.getChildren().clear();
+        commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
+    }
+
     public EateryListPanel getEateryListPanel() {
         return eateryListPanel;
     }
@@ -158,7 +174,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -168,11 +184,15 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.wantToSave()) {
+                handleSaveTodo(commandResult.getFeedbackToUser());
+            }
+
             fillDataParts();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setFeedbackToUser(e);
             throw e;
         }
     }

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEateryAtIndex;
-import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEateries.getTypicalOpenAddressBook;
 import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
@@ -26,17 +26,17 @@ import seedu.address.testutil.EateryBuilder;
  */
 public class CloseCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalFeedList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Eatery closedEatery = new EateryBuilder().withTags("friends").withIsOpen(false).build();
+        Eatery closedEatery = new EateryBuilder().withTags("fastfood").withIsOpen(false).build();
         CloseCommand closeCommand = new CloseCommand(INDEX_FIRST_EATERY);
 
         String expectedMessage = String.format(CloseCommand.MESSAGE_CLOSED_EATERY_SUCCESS, closedEatery);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getFeedList(), new UserPrefs());
-        expectedModel.setEatery(model.getFilteredEateryList().get(0), closedEatery);
+        expectedModel.setEatery(model.getFilteredEateryList().get(INDEX_FIRST_EATERY.getZeroBased()), closedEatery);
 
         assertCommandSuccess(closeCommand, model, expectedMessage, expectedModel);
     }
@@ -54,7 +54,7 @@ public class CloseCommandTest {
         showEateryAtIndex(model, INDEX_FIRST_EATERY);
 
         model.getFilteredEateryList().get(INDEX_FIRST_EATERY.getZeroBased());
-        Eatery closedEatery = new EateryBuilder().withTags("friends").withIsOpen(false).build();
+        Eatery closedEatery = new EateryBuilder().withTags("fastfood").withIsOpen(false).build();
         CloseCommand closeCommand = new CloseCommand(INDEX_FIRST_EATERY);
 
         String expectedMessage = String.format(CloseCommand.MESSAGE_CLOSED_EATERY_SUCCESS, closedEatery);

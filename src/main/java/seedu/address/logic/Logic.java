@@ -11,6 +11,7 @@ import seedu.address.model.FeedList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyFeedList;
 import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Review;
 
 /**
  * API of the Logic component
@@ -41,6 +42,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of todos */
     ObservableList<Eatery> getFilteredTodoList();
 
+    /** Returns an unmodifiable view of the active reviews */
+    ObservableList<Review> getActiveReviews();
+
     boolean isMainMode();
 
     /**
@@ -69,4 +73,9 @@ public interface Logic {
      * Returns the user prefs' feed list file path.
      */
     Path getFeedListFilePath();
+
+    /**
+     * Saves the feed list to disk.
+     */
+    void saveFeedList();
 }

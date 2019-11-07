@@ -14,7 +14,7 @@ public class CloseCommandParser implements Parser<CloseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the CloseCommand
-     * and returns an CloseCommand object for execution.
+     * and returns a CloseCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CloseCommand parse(String args) throws ParseException {

@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EATERIES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEateries.CARL;
-import static seedu.address.testutil.TypicalEateries.ELLE;
-import static seedu.address.testutil.TypicalEateries.FIONA;
-import static seedu.address.testutil.TypicalEateries.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEateries.KFC;
+import static seedu.address.testutil.TypicalEateries.MAC;
+import static seedu.address.testutil.TypicalEateries.TEXAS;
+import static seedu.address.testutil.TypicalEateries.getTypicalOpenAddressBook;
 import static seedu.address.testutil.TypicalFeeds.getTypicalFeedList;
 
 import java.util.Arrays;
@@ -25,8 +25,8 @@ import seedu.address.model.eatery.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalFeedList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalFeedList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -68,11 +68,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleEateriesFound() {
         String expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("McDonald Kentucky Texas");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEateryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEateryList());
+        assertEquals(Arrays.asList(MAC, KFC, TEXAS), model.getFilteredEateryList());
     }
 
     /**

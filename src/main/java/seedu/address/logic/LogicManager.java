@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyFeedList;
 import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Review;
 import seedu.address.storage.Storage;
 
 /**
@@ -40,7 +41,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, isMainMode());
         commandResult = command.execute(model);
 
         try {
@@ -66,6 +67,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Eatery> getFilteredTodoList() {
         return model.getFilteredTodoList();
+    }
+
+    @Override
+    public ObservableList<Review> getActiveReviews() {
+        return model.getActiveReviews();
     }
 
     @Override
@@ -96,5 +102,14 @@ public class LogicManager implements Logic {
     @Override
     public Path getFeedListFilePath() {
         return model.getFeedListFilePath();
+    }
+
+    @Override
+    public void saveFeedList() {
+        try {
+            storage.saveFeedList(model.getFeedList());
+        } catch (IOException ioe) {
+            logger.warning(FILE_OPS_ERROR_MESSAGE + ioe);
+        }
     }
 }
