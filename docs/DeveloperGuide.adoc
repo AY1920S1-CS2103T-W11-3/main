@@ -157,27 +157,32 @@ This section describes some noteworthy details on how certain features are imple
 === Add Eatery feature
 ==== Implementation
 
-The add mechanism is facilitated by `AddressBook`. It implements the following operations:
+The add feature allows the user to add an eatery with the compulsory fields: `Name`, `Address`, and `Category`. The `Tag` field(s), however, is an optional field. The user can add tag(s) to the eatery later on using the `addtag` feature, if needed. The add mechanism is facilitated by `EateryList`. It implements the following operations:
 
-* `AddressBook#hasEatery()` -- Checks if an Eatery with the same identity as Eatery e exists in the address book.
-* `AddressBook#addEatery()` -- Adds an Eatery to the address book. The eatery must not already exist in the address book.
+* `EateryList#hasEatery(Eatery eatery)` -- Checks if an Eatery with the same identity as Eatery eatery exists in the address book.
+* `EateryList#addEatery(Eatery eatery)` -- Adds an Eatery eatery to the address book. The eatery must not already exist in the address book.
 
 These operations are exposed in the `Model` interface as `Model#hasEatery()` and `Model#addEatery()` respectively.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial json data stored.
+Step 1. The user launches the application for the first time. The `EateryList` will be initialized with the initial json data stored.
 
-Step 2. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. The `add` command will call `Model#addEatery()`.
+Step 2. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. Before executing the command, the command would need to be parsed first. Hence, the `EatMeParser` would create `AddCommandParser`.
 
 [NOTE]
-If the command is missing a `Name`, `Address`, or `Category` parameter, it will return an error to the user rather than attempting to add the Eatery.
+If the command is missing the name, address, or category (i.e. `\n`, `\a`, and `\c`), `AddCommandParser` will throw an `ParserException` to the user with an error message specifying that the command parameters are incorrect, and an example usage of the command.
 
-The following sequence diagram shows how the add operation works:
-image:add-sd.PNG[]
+Step 3. `AddCommandParser` creates new objects for the different compulsory fields i.e. `Name`, `Address`, and `Category` (and also the `Tag`, if present), and passes these objects into the constructor for `Eatery` to create a new `Eatery`. 
 
-The following activity diagram summarizes what happens when a user executes a new command:
-image::add-ad.PNG[]
+Step 4. `AddCommandParser` returns a new `AddCommand` with the newly created `Eatery` as a parameter.
+
+Step 5. `AddCommand` calls `Model#hasEatery` to check if the eatery already exists. If it does exist, `AddCommand` will throw a CommandException specifying that there's already a duplicate eatery in `EateryList`. Else, `AddCommand` will call `Model#addEatery' to add the eatery into `EateryList`.
+
+Step 6. After successfully adding the eatery into `EateryList`, `AddCommand` will return the `CommandResult` to the `Ui`. 
+
+The following sequence diagram shows how the add eatery feature is executed.
+image:add-sd.png[]
 
 ==== Design Considerations
 ===== Aspect: How Add executes
