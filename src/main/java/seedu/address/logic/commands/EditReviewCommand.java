@@ -5,6 +5,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
 
 import java.util.Date;
@@ -57,7 +58,7 @@ public class EditReviewCommand extends Command {
 
         requireNonNull(model);
         List<Review> lastShownList = model.getActiveReviews();
-
+        Eatery activeEatery = model.getActiveEatery();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw  new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
         }
@@ -65,7 +66,9 @@ public class EditReviewCommand extends Command {
         Review reviewToEdit = lastShownList.get(index.getZeroBased());
         Review editedReview = createEditedReview(reviewToEdit, editReviewDescriptor);
 
-        model.setReview(reviewToEdit, editedReview);
+        //model.setReview(reviewToEdit, editedReview);
+        lastShownList.set(index.getZeroBased(), editedReview);
+        activeEatery.setReviews(lastShownList);
         return new CommandResult(String.format(MESSAGE_EDITED_REVIEW_SUCCESS), editedReview);
     }
 

@@ -31,6 +31,7 @@ public class ModelManager implements Model {
     private FilteredList<Eatery> filteredTodo;
     private FilteredList<Eatery> filteredEateries;
     private ObservableList<Review> activeReviews;
+    private Eatery activeEatery;
 
     /**
      * Initializes a ModelManager with the given addressBook, feedList and userPrefs.
@@ -134,6 +135,16 @@ public class ModelManager implements Model {
     public void setEatery(Eatery target, Eatery editedEatery) {
         requireAllNonNull(target, editedEatery);
         addressBook.setEatery(target, editedEatery);
+    }
+
+    @Override
+    public void setActiveEatery(Eatery eatery) {
+        this.activeEatery = activeEatery;
+    }
+
+    @Override
+    public Eatery getActiveEatery() {
+        return this.activeEatery;
     }
 
     //=========== Filtered Eatery List Accessors =============================================================
