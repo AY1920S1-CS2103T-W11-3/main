@@ -35,7 +35,7 @@ public class EditReviewCommand extends Command {
             + "[" + PREFIX_DATE + " DATE [dd/MM/yyyy format only]"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDITED_REVIEW_SUCCESS = "Edited Review";
+    public static final String MESSAGE_EDITED_REVIEW_SUCCESS = "Edited Review: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
