@@ -182,7 +182,7 @@ If the command is missing the name, address, or category (i.e. `\n`, `\a`, and `
 . After successfully adding the eatery into `EateryList`, `AddCommand` will return the `CommandResult` to the `Ui`. 
 
 The following sequence diagram shows how the add eatery feature is executed.
-image:add-sd.png[]
+image:add-sd.PNG[]
 image:add-create-sd.png[]
 
 ==== Design Considerations
