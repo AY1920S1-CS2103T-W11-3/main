@@ -1,0 +1,65 @@
+package seedu.address.logic.parser;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditReviewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.EditReviewCommand.EditReviewDescriptor;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+
+public class EditReviewCommandParser implements Parser<EditReviewCommand> {
+
+    public EditReviewCommand parse(String args) throws ParseException {
+
+        requireNonNull(args);
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_COST, PREFIX_RATING, PREFIX_DATE);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditReviewCommand.MESSAGE_USAGE), pe);
+        }
+
+        EditReviewCommand.EditReviewDescriptor editReviewDescriptor = new EditReviewDescriptor();
+
+        if (argumentMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editReviewDescriptor.setDescription(ParserUtil
+                    .parseReviewDescription(argumentMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+
+        if (argumentMultimap.getValue(PREFIX_COST).isPresent()) {
+            editReviewDescriptor.setCost(ParserUtil
+                    .parseReviewCost(argumentMultimap.getValue(PREFIX_COST).get()));
+        }
+
+        if (argumentMultimap.getValue(PREFIX_RATING).isPresent()) {
+            editReviewDescriptor.setRating(ParserUtil
+                    .parseReviewRating(argumentMultimap.getValue(PREFIX_RATING).get()));
+        }
+
+        if (argumentMultimap.getValue(PREFIX_DATE).isPresent()) {
+            try {
+                editReviewDescriptor.setDate(ParserUtil
+                        .parseReviewDate(argumentMultimap.getValue(PREFIX_DATE).get()));
+            } catch (java.text.ParseException e) {
+                throw new ParseException(String.format(EditReviewCommand.MESSAGE_USAGE));
+            }
+        }
+
+        if (!editReviewDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditReviewCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditReviewCommand(index, editReviewDescriptor);
+    }
+
+
+}

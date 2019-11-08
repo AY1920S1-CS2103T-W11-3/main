@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
+import seedu.address.model.eatery.exceptions.ReviewNotFoundException;
 import seedu.address.model.feed.Feed;
 
 /**
@@ -162,6 +163,16 @@ public class ModelManager implements Model {
     }
 
     //=========== Active Review Accessors =============================================================
+
+    @Override
+    public void setReview(Review target, Review editedReview) {
+        requireAllNonNull(target, editedReview);
+        int index = activeReviews.indexOf(target);
+        if (index == -1) {
+            throw new ReviewNotFoundException();
+        }
+        activeReviews.set(index, editedReview);
+    }
 
     /**
      * Returns an unmodifiable view of the active reviews

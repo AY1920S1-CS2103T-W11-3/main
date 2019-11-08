@@ -102,6 +102,11 @@ public interface Model {
     void updateFilteredEateryList(Predicate<Eatery> predicate);
 
     /**
+     * Replaces the given review {@code target} with {@code editedReview}.
+     */
+    void setReview(Review target, Review editedReview);
+
+    /**
      * Returns an unmodifiable view of the active reviews
      */
     ObservableList<Review> getActiveReviews();
