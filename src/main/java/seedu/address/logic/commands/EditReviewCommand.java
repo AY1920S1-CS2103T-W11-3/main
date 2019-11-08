@@ -66,7 +66,6 @@ public class EditReviewCommand extends Command {
         Review reviewToEdit = lastShownList.get(index.getZeroBased());
         Review editedReview = createEditedReview(reviewToEdit, editReviewDescriptor);
 
-        //model.setReview(reviewToEdit, editedReview);
         lastShownList.set(index.getZeroBased(), editedReview);
         activeEatery.setReviews(lastShownList);
         return new CommandResult(String.format(MESSAGE_EDITED_REVIEW_SUCCESS), editedReview);

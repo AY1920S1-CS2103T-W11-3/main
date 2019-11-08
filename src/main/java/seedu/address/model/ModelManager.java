@@ -139,7 +139,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setActiveEatery(Eatery eatery) {
-        this.activeEatery = activeEatery;
+        this.activeEatery = eatery;
     }
 
     @Override
