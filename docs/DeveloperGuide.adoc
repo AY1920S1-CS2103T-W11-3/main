@@ -183,6 +183,7 @@ If the command is missing the name, address, or category (i.e. `\n`, `\a`, and `
 
 The following sequence diagram shows how the add eatery feature is executed.
 image:add-sd.png[]
+image:add-create-sd.png[]
 
 ==== Design Considerations
 ===== Aspect: How Add executes
