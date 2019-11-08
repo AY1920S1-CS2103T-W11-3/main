@@ -232,13 +232,13 @@ Since the statistic feature has a different user interface compared to the other
 The following sequence diagram shows how the statistics feature shows the statistics to the user.
 image:stats-sd-ui.png[]
 
-=== Design Considerations
-==== Aspect: Whether the statistics should auto-update an eatery is added or a review is added to an eatery.
+==== Design Considerations
+===== Aspect: Whether the statistics should auto-update an eatery is added or a review is added to an eatery.
 * ** Alternative 1 (current choice):** Not making the statistics auto-update
 *** Pros: Easy to implement; don't need to refactor existing code to make use of ObservableList and add ListChange listeners.
 *** Cons: User would need to call `stats` command after every addition or change made to the eatery or reviews of an eatery. 
 
-** Alternative 2: ** Making the statistics auto-update
+* ** Alternative 2: ** Making the statistics auto-update
 *** Pros: User would not need to call `stats` command after every addition or change made to the eatery or reviews of an eatery. 
 *** Cons: Need to refactor a lot of existing code. 
 
