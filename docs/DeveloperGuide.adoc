@@ -59,7 +59,7 @@ Each of the four components
 For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
 .Class Diagram of the Logic Component
-image::logic-cd.png[]
+image::LogicClassDiagram.png[]
 
 [discrete]
 ==== How the architecture components interact with each other
@@ -67,7 +67,7 @@ image::logic-cd.png[]
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 .Component interactions for `delete 1` command
-image::archi-sd.png[]
+image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
 
@@ -75,7 +75,7 @@ The sections below give more details of each component.
 === UI component
 
 .Structure of the UI Component
-image::ui-cd.png[]
+image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
@@ -93,7 +93,7 @@ The `UI` component,
 
 [[fig-LogicClassDiagram]]
 .Structure of the Logic Component
-image::logic-cd.png[]
+image::LogicClassDiagram.png[]
 
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
@@ -107,7 +107,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
-image::archi-sd.png[]
+image::ArchitectureSequenceDiagram.png[]
 
 NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -115,7 +115,7 @@ NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X
 === Model component
 
 .Structure of the Model Component
-image::model-cd.png[]
+image::ModelClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
@@ -132,7 +132,7 @@ The `Model`,
 === Storage component
 
 .Structure of the Storage Component
-image::storage-cd.png[]
+image::StorageClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
@@ -180,8 +180,8 @@ If the command is missing the name, address, or category (i.e. `\n`, `\a`, and `
 . After successfully adding the eatery into `EateryList`, `AddCommand` will return the `CommandResult` to the `Ui`.
 
 The following sequence diagram shows how the add eatery feature is executed.
-image:add-sd.PNG[]
-image:add-create-sd.png[]
+image:AddSequenceDiagram.png[]
+image:AddCreateSequenceDiagram.png[]
 
 ==== Design Considerations
 ===== Aspect: How Add executes
@@ -218,7 +218,7 @@ If the user executes the `stats` command in the Todo mode, `StatsCommand` would 
 . After successfully generating the statistics, `StatsCommand` will return the `CommandResult` to the `Ui`.
 
 The following sequence diagram shows how the statistics feature is executed.
-image:stats-sd.png[]
+image:StatsSequenceDiagram.png[]
 
 Since the statistic feature has a different user interface compared to the other commands i.e. `AddCommand`, `AddTagCommand`, etc., it would be useful to explain how the different user interface components work.
 
@@ -229,7 +229,7 @@ Since the statistic feature has a different user interface compared to the other
 . In `StatsWindow#initStats()`, `StatsWindow` will create a `CustomLayeredGraph` and `CustomPiechart` to create the graph and pie chart needed for the statistics report.
 
 The following sequence diagram shows how the statistics feature shows the statistics to the user.
-image:stats-ui-sd.png[]
+image:StatsUiSequenceDiagram.png[]
 
 ==== Design Considerations
 ===== Aspect: Whether the statistics should auto-update an eatery is added or a review is added to an eatery.
