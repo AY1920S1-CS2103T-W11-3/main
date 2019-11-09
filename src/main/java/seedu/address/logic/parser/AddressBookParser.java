@@ -21,12 +21,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.LoadCommand;
 import seedu.address.logic.commands.ModeCommand;
 import seedu.address.logic.commands.RemoveTagCommand;
 import seedu.address.logic.commands.ReopenCommand;
 import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.SaveTodoCommand;
-
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -121,6 +121,9 @@ public class AddressBookParser {
 
         case DeleteReviewCommand.COMMAND_WORD:
             return new DeleteReviewCommandParser().parse(arguments);
+            
+        case LoadCommand.COMMAND_WORD:
+            return new LoadCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
