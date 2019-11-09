@@ -1,12 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.model.eatery.Review;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import seedu.address.model.eatery.Review;
+
+/**
+ * Builds a review with the specified fields.
+ */
 public class ReviewBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Good chocolate ice-cream";

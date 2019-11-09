@@ -1,12 +1,5 @@
 package seedu.address.model.eatery;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.ReviewBuilder;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -14,6 +7,14 @@ import static seedu.address.testutil.ReviewBuilder.DEFAULT_COST;
 import static seedu.address.testutil.ReviewBuilder.DEFAULT_DATE;
 import static seedu.address.testutil.ReviewBuilder.DEFAULT_DESCRIPTION;
 import static seedu.address.testutil.ReviewBuilder.DEFAULT_RATING;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.ReviewBuilder;
 
 public class ReviewTest {
 
@@ -30,16 +31,16 @@ public class ReviewTest {
     public void constructorInvalidReviewCost_throwsIllegalArgumentException() {
         double invalidCost = -2;
         DateFormat df = new SimpleDateFormat("dd/MM/YYYY");
-        assertThrows(IllegalArgumentException.class,
-                () -> new Review(REVIEW_DESCRIPTION, invalidCost, 0, df.parse(DEFAULT_DATE)));
+        assertThrows(IllegalArgumentException.class, () ->
+                new Review(REVIEW_DESCRIPTION, invalidCost, 0, df.parse(DEFAULT_DATE)));
     }
 
     @Test
     public void constructorInvalidReviewRating_throwsIllegalArgumentException() {
         int invalidRating = 6;
         DateFormat df = new SimpleDateFormat("dd/MM/YYYY");
-        assertThrows(IllegalArgumentException.class,
-                () -> new Review(REVIEW_DESCRIPTION, 0, invalidRating, df.parse(DEFAULT_DATE)));
+        assertThrows(IllegalArgumentException.class, () ->
+                new Review(REVIEW_DESCRIPTION, 0, invalidRating, df.parse(DEFAULT_DATE)));
     }
 
     @Test
@@ -99,7 +100,7 @@ public class ReviewTest {
         assertFalse(review.equals(2));
 
         //different description -> returns false
-        Review editedReviewDescription =  new ReviewBuilder(review).withDescription(REVIEW_DESCRIPTION).build();
+        Review editedReviewDescription = new ReviewBuilder(review).withDescription(REVIEW_DESCRIPTION).build();
         assertFalse(editedReviewDescription.equals(review));
 
         //different cost -> returns false

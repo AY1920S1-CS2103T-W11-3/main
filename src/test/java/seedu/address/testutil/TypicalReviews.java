@@ -1,32 +1,29 @@
 package seedu.address.testutil;
 
-import seedu.address.model.eatery.Review;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import seedu.address.model.eatery.Review;
+
+/**
+ * Contains a list of typical reviews used for testing.
+ */
 public class TypicalReviews {
 
-    static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-    public static Review REVIEW_1;
-
+    private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private static Date date;
     static {
         try {
-            REVIEW_1 = new Review("good", 3, 4, dateFormat.parse("22/11/2019"));
+            date = dateFormat.parse("22/11/2019");
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
+    public static final Review REVIEW_1 = new Review("good", 3, 4, date);
+    public static final Review REVIEW_2 = new Review("bad", 4, 3, date);
 
-    public static Review REVIEW_2;
-
-    static {
-        try {
-            REVIEW_2 = new Review("bad", 4, 3, dateFormat.parse("23/11/2019"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public TypicalReviews() {
     }
 }

@@ -121,7 +121,7 @@ public class AddressBookParser {
 
         case DeleteReviewCommand.COMMAND_WORD:
             return new DeleteReviewCommandParser().parse(arguments);
-                
+
         case LoadCommand.COMMAND_WORD:
             return new LoadCommandParser().parse(arguments);
 

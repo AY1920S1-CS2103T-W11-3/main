@@ -15,7 +15,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
-import seedu.address.model.eatery.exceptions.ReviewNotFoundException;
 import seedu.address.model.feed.Feed;
 
 /**

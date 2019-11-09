@@ -158,7 +158,7 @@ public class EditReviewCommand extends Command {
         }
 
         public OptionalInt getRating() {
-            if(rating == null) {
+            if (rating == null) {
                 return OptionalInt.empty();
             }
             return rating;

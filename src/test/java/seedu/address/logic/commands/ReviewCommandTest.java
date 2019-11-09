@@ -1,14 +1,8 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showEateryAtIndex;
 import static seedu.address.testutil.TypicalEateries.getTypicalOpenAddressBook;
@@ -18,10 +12,17 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EATERY;
 import static seedu.address.testutil.TypicalReviews.REVIEW_1;
 import static seedu.address.testutil.TypicalReviews.REVIEW_2;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+
 public class ReviewCommandTest {
 
     private Model model = new ModelManager(getTypicalOpenAddressBook(), getTypicalFeedList(), new UserPrefs());
-
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {

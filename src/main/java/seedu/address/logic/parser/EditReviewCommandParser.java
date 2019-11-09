@@ -7,13 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditReviewCommand;
 import seedu.address.logic.commands.EditReviewCommand.EditReviewDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
 /**
  * Parses edit review commands input by user.
@@ -71,6 +71,5 @@ public class EditReviewCommandParser implements Parser<EditReviewCommand> {
 
         return new EditReviewCommand(index, editReviewDescriptor);
     }
-
 
 }
