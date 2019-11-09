@@ -182,7 +182,9 @@ Format: `editreview [id] {\d DESCRIPTION} {\p COST} {\r RATING} {\w DATE}`
 
 Examples:
 
-* `editreview 2 \d Nice Milk Tea \p 4.6 \r 4 \w 23/10/2019`
+* `editreview 1 \p 3.6 \r 1`
+
+image::EditReviewCommand.png[width="790"]
 
 ===== Deleting a review: `deletereview`
 Deletes an eatery's review. The `show` command helps to view an eatery's reviews.
@@ -193,6 +195,8 @@ Format: `deletereview [id]`
 Examples:
 
 * `deletereview 2`
+
+image::DeleteReviewCommand.png[width=""790"]
 
 ===== Tagging an eatery: `addtag`
 `
