@@ -82,25 +82,12 @@ Format: `clear`
 
 ==== Importing eateries: `import`
 
-*Coming in v1.4*
-
 Imports eateries from a text file. +
 Format: `import \f [filename]`
 
 Examples:
 
 * `import \f /home/user/eatme-backup-john.txt`
-
-==== Exporting eateries: `export`
-
-*Coming in v1.4*
-
-Exports eateries to a text file. +
-Format: `export \f [filename]`
-
-Examples:
-
-* `export \f /home/user/eatme-backup-john.txt`
 
 ==== Exit the app: `exit`
 
@@ -207,7 +194,7 @@ Examples:
 
 * `deletereview 2`
 
-===== Tagging an eatery: `addtag
+===== Tagging an eatery: `addtag`
 `
 Adds tags to an eatery. +
 Format: `addtag [id] \t [tags]...`
