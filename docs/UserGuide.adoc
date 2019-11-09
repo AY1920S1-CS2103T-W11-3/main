@@ -165,6 +165,10 @@ Format: `edit INDEX {\n NAME} {\c CATEGORY} {\a ADDRESS} {\t TAG}...`
 * When editing tags, the existing tags of the eatery will be removed i.e adding of tags is not cumulative. To have a cumulative effect, use `addtag` and `removetag`
 * You can remove all the person's tags by typing `\t` without specifying any tags after it.
 ****
+Examples:
+
+* `edit 1 \t good-for-groups`
+* `edit 1 \a NUS Biz School`
 
 ===== Reviewing an eatery: `review`
 
