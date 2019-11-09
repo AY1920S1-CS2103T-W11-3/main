@@ -51,7 +51,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null,null,
+        this(feedbackToUser, null, null,
                 false, false, false);
     }
 
@@ -68,7 +68,7 @@ public class CommandResult {
      * and other fields are set to their default value.
      */
     public CommandResult(String feedbackToUser, Review reviewToShow) {
-        this(feedbackToUser, null, reviewToShow, false,false, false);
+        this(feedbackToUser, null, reviewToShow, false, false, false);
     }
     /**
      * Constructs a {@code CommandResult} with the specified fields,

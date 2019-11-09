@@ -1,5 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -7,16 +19,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 
 /**
  * Edits the details of an eatery's existing review.
@@ -35,7 +37,7 @@ public class EditReviewCommand extends Command {
             + "[" + PREFIX_DATE + " DATE [dd/MM/yyyy format only]"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDITED_REVIEW_SUCCESS = "Edited Review: %1$s";
+    public static final String MESSAGE_EDITED_REVIEW_SUCCESS = "Edited Review";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -60,7 +62,7 @@ public class EditReviewCommand extends Command {
         List<Review> lastShownList = model.getActiveReviews();
         Eatery activeEatery = model.getActiveEatery();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw  new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
         }
 
         Review reviewToEdit = lastShownList.get(index.getZeroBased());
@@ -92,7 +94,7 @@ public class EditReviewCommand extends Command {
             return true;
         }
 
-        if(!(other instanceof EditReviewCommand)) {
+        if (!(other instanceof EditReviewCommand)) {
             return false;
         }
 
@@ -143,16 +145,16 @@ public class EditReviewCommand extends Command {
             this.cost = cost;
         }
 
-        public Optional<Double> getCost() {
-            return Optional.ofNullable(cost);
+        public OptionalDouble getCost() {
+            return OptionalDouble.of(cost);
         }
 
         public void setRating(int rating) {
             this.rating = rating;
         }
 
-        public Optional<Integer> getRating() {
-            return Optional.ofNullable(rating);
+        public OptionalInt getRating() {
+            return OptionalInt.of(rating);
         }
 
         public void setDate(Date date) {
@@ -165,7 +167,7 @@ public class EditReviewCommand extends Command {
 
         @Override
         public boolean equals(Object other) {
-            if(other == this) {
+            if (other == this) {
                 return true;
             }
 
