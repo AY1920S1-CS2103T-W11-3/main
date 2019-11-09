@@ -175,16 +175,6 @@ public class ModelManager implements Model {
 
     //=========== Active Review Accessors =============================================================
 
-    @Override
-    public void setReview(Review target, Review editedReview) {
-        requireAllNonNull(target, editedReview);
-        int index = activeReviews.indexOf(target);
-        if (index == -1) {
-            throw new ReviewNotFoundException();
-        }
-        activeReviews.set(index, editedReview);
-    }
-
     /**
      * Returns an unmodifiable view of the active reviews
      */
