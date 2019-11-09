@@ -12,6 +12,9 @@ import seedu.address.logic.commands.EditReviewCommand;
 import seedu.address.logic.commands.EditReviewCommand.EditReviewDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+
 /**
  * Parses edit review commands input by user.
  */
@@ -44,13 +47,13 @@ public class EditReviewCommandParser implements Parser<EditReviewCommand> {
         }
 
         if (argumentMultimap.getValue(PREFIX_COST).isPresent()) {
-            editReviewDescriptor.setCost(ParserUtil
-                    .parseReviewCost(argumentMultimap.getValue(PREFIX_COST).get()));
+            editReviewDescriptor.setCost(OptionalDouble.of(ParserUtil
+                    .parseReviewCost(argumentMultimap.getValue(PREFIX_COST).get())));
         }
 
         if (argumentMultimap.getValue(PREFIX_RATING).isPresent()) {
-            editReviewDescriptor.setRating(ParserUtil
-                    .parseReviewRating(argumentMultimap.getValue(PREFIX_RATING).get()));
+            editReviewDescriptor.setRating(OptionalInt.of(ParserUtil
+                    .parseReviewRating(argumentMultimap.getValue(PREFIX_RATING).get())));
         }
 
         if (argumentMultimap.getValue(PREFIX_DATE).isPresent()) {

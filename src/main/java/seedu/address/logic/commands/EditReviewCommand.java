@@ -109,11 +109,12 @@ public class EditReviewCommand extends Command {
      */
     public static class EditReviewDescriptor {
         private String description;
-        private double cost;
-        private int rating;
+        private OptionalDouble cost;
+        private OptionalInt rating;
         private Date date;
 
-        public EditReviewDescriptor() {}
+        public EditReviewDescriptor() {
+        }
 
         /**
          * Copy constructor
@@ -141,20 +142,26 @@ public class EditReviewCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setCost(double cost) {
+        public void setCost(OptionalDouble cost) {
             this.cost = cost;
         }
 
         public OptionalDouble getCost() {
-            return OptionalDouble.of(cost);
+            if (cost == null) {
+                return OptionalDouble.empty();
+            }
+            return cost;
         }
 
-        public void setRating(int rating) {
+        public void setRating(OptionalInt rating) {
             this.rating = rating;
         }
 
         public OptionalInt getRating() {
-            return OptionalInt.of(rating);
+            if(rating == null) {
+                return OptionalInt.empty();
+            }
+            return rating;
         }
 
         public void setDate(Date date) {
