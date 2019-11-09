@@ -182,7 +182,7 @@ If the command is missing the name, address, or category (i.e. `\n`, `\a`, and `
 . After successfully adding the eatery into `EateryList`, `AddCommand` will return the `CommandResult` to the `Ui`. 
 
 The following sequence diagram shows how the add eatery feature is executed.
-image:add-sd.png[]
+image:add-sd.PNG[]
 image:add-create-sd.png[]
 
 ==== Design Considerations
@@ -231,7 +231,7 @@ Since the statistic feature has a different user interface compared to the other
 . In `StatsWindow#initStats()`, `StatsWindow` will create a `CustomLayeredGraph` and `CustomPiechart` to create the graph and pie chart needed for the statistics report. 
 
 The following sequence diagram shows how the statistics feature shows the statistics to the user.
-image:stats-sd-ui.png[]
+image:stats-ui-sd.png[]
 
 ==== Design Considerations
 ===== Aspect: Whether the statistics should auto-update an eatery is added or a review is added to an eatery.
