@@ -71,6 +71,9 @@ public class StatsWindow extends UiPart<Stage> {
      * @param statistics contains the data used to generate the charts and graphs.
      */
     public void initStats(Statistics statistics) {
+        numDisplayView.getChildren().clear();
+        chartDisplayView.getChildren().clear();
+
         initCharts(statistics);
         initNum(statistics);
     }

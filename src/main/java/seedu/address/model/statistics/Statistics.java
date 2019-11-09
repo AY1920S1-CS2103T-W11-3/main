@@ -11,8 +11,8 @@ import java.util.TreeMap;
 
 import seedu.address.model.eatery.Category;
 import seedu.address.model.eatery.Eatery;
-import seedu.address.model.statistics.exceptions.CannotGenerateStatistics;
-import seedu.address.model.statistics.exceptions.NoAvailableData;
+import seedu.address.model.statistics.exceptions.CannotGenerateStatisticsException;
+import seedu.address.model.statistics.exceptions.NoAvailableDataException;
 
 /**
  * This class represents a type of statistic that can be generated from the application.
@@ -34,11 +34,11 @@ public class Statistics {
     private List<Eatery> sortByExpense;
     private List<Eatery> sortByVisit;
 
-    public Statistics(List<Eatery> allEateries) throws NoAvailableData, CannotGenerateStatistics {
+    public Statistics(List<Eatery> allEateries) throws NoAvailableDataException, CannotGenerateStatisticsException {
         this.eateries = getEateriesWithReviews(allEateries);
 
         if (eateries.size() == 0) {
-            throw new NoAvailableData();
+            throw new NoAvailableDataException();
         }
 
         // needed for stats
@@ -57,7 +57,7 @@ public class Statistics {
             this.leastVisitedEatery = getLeastVisited();
 
         } catch (Exception e) {
-            throw new CannotGenerateStatistics();
+            throw new CannotGenerateStatisticsException();
         }
     }
 
@@ -111,11 +111,11 @@ public class Statistics {
     }
 
     /**
-     * Generates a priority queue that sorts the eateries by the number of reviews (i.e. visits).
-     * @return a priority queue of {@link Eatery} sorted by the number of visits.
+     * Generates a list that sorts the eateries by the number of reviews (i.e. visits).
+     * @return a list of {@link Eatery} sorted by the number of visits.
      */
     private List<Eatery> sortEateriesByVisit() {
-        PriorityQueue sortedVisits = new PriorityQueue(eateries.size(), new Comparator<Eatery>() {
+        PriorityQueue<Eatery> sortedVisits = new PriorityQueue<>(eateries.size(), new Comparator<Eatery>() {
             @Override
             public int compare(Eatery e1, Eatery e2) {
                 return e1.getNumberOfReviews() == e2.getNumberOfReviews() ? e1.getName().compareTo(e2.getName())
@@ -126,13 +126,18 @@ public class Statistics {
 
         sortedVisits.addAll(eateries);
 
-        return new ArrayList<Eatery>(sortedVisits);
+        List<Eatery> sortedVisitsList = new ArrayList<>();
+        for (int i = 0; i < eateries.size(); i++) {
+            sortedVisitsList.add((Eatery) sortedVisits.poll());
+        }
+
+        return sortedVisitsList;
     }
 
     /**
-     * Generates a priority queue that sorts the eateries by the total expense (i.e. total cost for every review in
+     * Generates a list that sorts the eateries by the total expense (i.e. total cost for every review in
      * the eatery).
-     * @return a priority queue of {@link Eatery} sorted by the total expense.
+     * @return a list of {@link Eatery} sorted by the total expense.
      */
     private List<Eatery> sortEateriesByExpense() {
         PriorityQueue<Eatery> sortedExpense = new PriorityQueue<>(eateries.size(), new Comparator<Eatery>() {
@@ -149,7 +154,12 @@ public class Statistics {
 
         sortedExpense.addAll(eateries);
 
-        return new ArrayList<>(sortedExpense);
+        List<Eatery> sortedExpenseList = new ArrayList<>();
+        for (int i = 0; i < eateries.size(); i++) {
+            sortedExpenseList.add((Eatery) sortedExpense.poll());
+        }
+
+        return sortedExpenseList;
     }
 
     /**

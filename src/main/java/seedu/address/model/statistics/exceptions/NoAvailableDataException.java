@@ -3,9 +3,9 @@ package seedu.address.model.statistics.exceptions;
 /**
  * Represents a statistics error that happens when there is no data to generate any form of statistics.
  */
-public class NoAvailableData extends Exception {
+public class NoAvailableDataException extends Exception {
 
-    public NoAvailableData() {
+    public NoAvailableDataException() {
         super("Unable to generate statistics due to unknown error.");
     }
 }
