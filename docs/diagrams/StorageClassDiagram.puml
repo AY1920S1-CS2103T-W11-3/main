@@ -20,14 +20,14 @@ class JsonUserPrefsStorage
 class JsonSerializableEateryList
 class JsonSerializableFeedList
 
-StorageManager ..|> Storage
-StorageManager o--> UserPrefsStorage
-StorageManager o--> EateryListStorage
-StorageManager o--> FeedListStorage
+StorageManager .up.|> Storage
+StorageManager o-down-> UserPrefsStorage
+StorageManager o-down-> EateryListStorage
+StorageManager o-down-> FeedListStorage
 
-JsonUserPrefsStorage ..|> UserPrefsStorage
-JsonEateryListStorage ..|> EateryListStorage
-JsonFeedListStorage ..|> FeedListStorage
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonEateryListStorage .up.|> EateryListStorage
+JsonFeedListStorage .up.|> FeedListStorage
 
 JsonEateryListStorage ..> JsonSerializableEateryList
 JsonSerializableEateryList --> JsonAdaptedEatery
