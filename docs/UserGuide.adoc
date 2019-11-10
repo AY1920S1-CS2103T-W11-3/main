@@ -181,7 +181,7 @@ Leaves a review for an eatery. +
 Format: `review [index] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]`
 
 ****
-* Writes a review for the eatery specified by the index in the displayed eatery list.
+* Leaves a review for the eatery at the specified index.
 * Date *must* be in DD/MM/YYYY format.
 ****
 
@@ -195,7 +195,7 @@ Edits an eatery's review. The `show` command helps to view an eatery's reviews.
 Format: `editreview [index] {\d [description]} {\p [price per person]} {\r [rating]} {\w [date in DD/MM/YYYY format]}`
 
 ****
-* Edits the review at the specified index. The index refers to the index number shown in the displayed review list. The index *must be a positive integer* 1, 2, 3, ...
+* Edits the review at the specified index.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Date *must* be in DD/MM/YYYY format.
@@ -212,7 +212,7 @@ Deletes an eatery's review. The `show` command helps to view an eatery's reviews
 Format: `deletereview [index]`
 
 ****
-* Deletes the review at the specified index. The index refers to the index number shown in the displayed review list. The index *must be a positive integer* 1, 2, 3, ...
+* Deletes the review at the specified index.
 ****
 
 Examples:
@@ -235,7 +235,7 @@ Examples:
 
 ===== Removing tags from an eatery: `removetag`
 Removes tags from an eatery. +
-Format: `removetag [id] \t [tags]...`
+Format: `removetag [index] \t [tags]...`
 
 ****
 * If the tags to be removed are not associated to the eatery in the first place, no changes will be made.
@@ -269,7 +269,7 @@ Deletes an eatery in the application. +
 Format: `delete [index]`
 
 ****
-* Deletes the eatery at the specified index. The index refers to the index number shown in the displayed review list. The index *must be a positive integer* 1, 2, 3, ...
+* Deletes the eatery at the specified index.
 ****
 
 Example: `delete 1`
@@ -309,11 +309,21 @@ Examples:
 ==== Saving a todo eatery to the main eatery list : `save`
 
 Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries. +
-Format: `save [index]` (saves the eatery to the main list)
+Format: `save [index]`
+
+****
+* Save the eatery at the specified index.
+* The eatery will be removed from the todo list after `save` is executed
+* User will be required to input the missing field before the eatery is saved in the main list.
+****
 
 Examples:
 
 * `save 2`
+** Save the second eatery in the todo list
+** The eatery is removed from the todo list
+** Application will toggle to Main
+** `add` command will be constructed, allowing user to just input missing fields.
 
 ==== Finding an eatery: `find`
 
