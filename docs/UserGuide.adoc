@@ -87,7 +87,7 @@ Format: `import \u [filename]`
 
 ****
 * Imports eatery data from the specified json file.
-* The user can type in the filename without the ".json" extension, however, the file *must* still be a json file. 
+* The user can type in the filename without the ".json" extension, however, the file *must* still be a json file.
 ****
 
 Examples:
