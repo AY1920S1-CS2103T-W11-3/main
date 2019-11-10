@@ -174,6 +174,9 @@ e.g. typing <code>help</code> and pressing <kbd>Enter</kbd> will open the help w
 <li>
 <p>Parameters can be in any order. For example, if the command specifies <code>\n [name of eatery] \a [address] \c [category]</code>, <code>\a [address] \n [name of eatery] \c [category]</code> is also acceptable.</p>
 </li>
+<li>
+<p>For parameters requiring <code>index</code>, <code>index</code> refers to the index number shown in the displayed eatery or review list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203; .</p>
+</li>
 </ul>
 </div>
 </div>
@@ -202,8 +205,22 @@ Format: <code>list</code></p>
 <div class="sect3">
 <h4 id="importing-eateries-code-import-code"><a class="link" href="#importing-eateries-code-import-code">4.1.4. Importing eateries: <code>import</code></a></h4>
 <div class="paragraph">
-<p>Imports eateries from a text file.<br>
-Format: <code>import \f [filename]</code></p>
+<p>Imports eateries from a json file.<br>
+Format: <code>import \u [filename]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Imports eatery data from the specified json file.</p>
+</li>
+<li>
+<p>The user can type in the filename without the ".json" extension, however, the file <strong>must</strong> still be a json file.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -211,7 +228,10 @@ Format: <code>import \f [filename]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>import \f /home/user/eatme-backup-john.txt</code></p>
+<p><code>import \u john</code></p>
+</li>
+<li>
+<p><code>import \u john.json</code></p>
 </li>
 </ul>
 </div>
@@ -236,17 +256,19 @@ Format: <code>import \f [filename]</code></p>
 <p>Adds an eatery to the app.<br>
 Format: <code>add \n [name of eatery] \a [address] \c [category] {\t [tags]&#8230;&#8203;}</code></p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-An eatery can have any number of tags (including 0)
-</td>
-</tr>
-</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The name, address, and category fields are compulsory and must be provided.</p>
+</li>
+<li>
+<p>The tag field is optional, and you can specify 0 to as many tags as you want.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -285,8 +307,8 @@ Format: <code>find \n [name of eatery]</code> or <code>find \t [tag]</code></p>
 <div class="sect4">
 <h5 id="marking-an-eatery-as-closed-code-close-code"><a class="link" href="#marking-an-eatery-as-closed-code-close-code">Marking an eatery as closed: <code>close</code></a></h5>
 <div class="paragraph">
-<p>Closes an eatery if the eatery no longer exists. The eatery will still be listed, but will be grayed out to inform you that the eatery no longer exists. In the case that you accidentally closed the wrong eatery or the eatery reopens, typing <code>reopen</code> does the opposite of <code>close</code>.<br>
-Format: <code>close [id]</code></p>
+<p>Closes an eatery if the eatery no longer exists. The eatery will still be listed, but will be highlighted in red to inform you that the eatery no longer exists. In the case that you accidentally closed the wrong eatery or the eatery reopens, typing <code>reopen</code> does the opposite of <code>close</code>.<br>
+Format: <code>close [index]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -303,7 +325,7 @@ Format: <code>close [id]</code></p>
 <h5 id="reopening-a-closed-eatery-code-reopen-code"><a class="link" href="#reopening-a-closed-eatery-code-reopen-code">Reopening a closed eatery: <code>reopen</code></a></h5>
 <div class="paragraph">
 <p>Reopens a previously closed eatery.<br>
-Format: <code>reopen [id]</code></p>
+Format: <code>reopen [index]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -320,15 +342,12 @@ Format: <code>reopen [id]</code></p>
 <h5 id="editing-an-eatery-code-edit-code"><a class="link" href="#editing-an-eatery-code-edit-code">Editing an eatery: <code>edit</code></a></h5>
 <div class="paragraph">
 <p>Edits an existing eatery in the application.<br>
-Format: <code>edit INDEX {\n NAME} {\c CATEGORY} {\a ADDRESS} {\t TAG}&#8230;&#8203;</code></p>
+Format: <code>edit [index] {\n [name of eatery]} {\a [address]} {\c [category]} {\t [tags]&#8230;&#8203;}</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
-<li>
-<p>Edits the eatery at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed eatery list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
 </li>
@@ -336,10 +355,10 @@ Format: <code>edit INDEX {\n NAME} {\c CATEGORY} {\a ADDRESS} {\t TAG}&#8230;&#8
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the eatery will be removed i.e adding of tags is not cumulative. To have a cumulative effect, use <code>addtag</code> and <code>removetag</code></p>
+<p>When editing tags, the existing tags of the eatery will be removed i.e adding of tags is not cumulative. To have a cumulative effect, use <code>addtag</code> and <code>removetag</code>.</p>
 </li>
 <li>
-<p>You can remove all the person&#8217;s tags by typing <code>\t</code> without specifying any tags after it.</p>
+<p>You can remove all the eatery&#8217;s tags by typing <code>\t</code> without specifying any tags after it.</p>
 </li>
 </ul>
 </div>
@@ -363,14 +382,17 @@ Format: <code>edit INDEX {\n NAME} {\c CATEGORY} {\a ADDRESS} {\t TAG}&#8230;&#8
 <h5 id="reviewing-an-eatery-code-review-code"><a class="link" href="#reviewing-an-eatery-code-review-code">Reviewing an eatery: <code>review</code></a></h5>
 <div class="paragraph">
 <p>Leaves a review for an eatery.<br>
-Format: <code>review [id] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]</code></p>
+Format: <code>review [index] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Writes a review for the eatery specified by <code>id</code> in the displayed eatery list.</p>
+<p>Leaves a review for the eatery at the specified index.</p>
+</li>
+<li>
+<p>Date <strong>must</strong> be in DD/MM/YYYY format.</p>
 </li>
 </ul>
 </div>
@@ -391,20 +413,23 @@ Format: <code>review [id] \d [description] \p [price per person] \r [rating] \w 
 <h5 id="editing-a-review-code-editreview-code"><a class="link" href="#editing-a-review-code-editreview-code">Editing a review: <code>editreview</code></a></h5>
 <div class="paragraph">
 <p>Edits an eatery&#8217;s review. The <code>show</code> command helps to view an eatery&#8217;s reviews.
-Format: <code>editreview [id] {\d DESCRIPTION} {\p COST} {\r RATING} {\w DATE}</code></p>
+Format: <code>editreview [index] {\d [description]} {\p [price per person]} {\r [rating]} {\w [date in DD/MM/YYYY format]}</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the review at the specified <code>id</code>. The index refers to the index number shown in the displayed review list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Edits the review at the specified index.</p>
 </li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
 </li>
 <li>
 <p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>Date <strong>must</strong> be in DD/MM/YYYY format.</p>
 </li>
 </ul>
 </div>
@@ -430,14 +455,14 @@ Format: <code>editreview [id] {\d DESCRIPTION} {\p COST} {\r RATING} {\w DATE}</
 <h5 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">Deleting a review: <code>deletereview</code></a></h5>
 <div class="paragraph">
 <p>Deletes an eatery&#8217;s review. The <code>show</code> command helps to view an eatery&#8217;s reviews.
-Format: <code>deletereview [id]</code></p>
+Format: <code>deletereview [index]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the review at the specified <code>id</code>. The index refers to the index number shown in the displayed review list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Deletes the review at the specified index.</p>
 </li>
 </ul>
 </div>
@@ -462,9 +487,19 @@ Format: <code>deletereview [id]</code></p>
 <div class="sect4">
 <h5 id="tagging-an-eatery-code-addtag-code"><a class="link" href="#tagging-an-eatery-code-addtag-code">Tagging an eatery: <code>addtag</code></a></h5>
 <div class="paragraph">
-<p>`
-Adds tags to an eatery.<br>
-Format: <code>addtag [id] \t [tags]&#8230;&#8203;</code></p>
+<p>Adds tags to an eatery.<br>
+Format: <code>addtag [index] \t [tags]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least <strong>one</strong> tag must be specified.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -481,7 +516,7 @@ Format: <code>addtag [id] \t [tags]&#8230;&#8203;</code></p>
 <h5 id="removing-tags-from-an-eatery-code-removetag-code"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code">Removing tags from an eatery: <code>removetag</code></a></h5>
 <div class="paragraph">
 <p>Removes tags from an eatery.<br>
-Format: <code>removetag [id] \t [tags]&#8230;&#8203;</code></p>
+Format: <code>removetag [index] \t [tags]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -515,7 +550,7 @@ Format: <code>random</code></p>
 <div class="sect4">
 <h5 id="viewing-an-eatery-code-show-code"><a class="link" href="#viewing-an-eatery-code-show-code">Viewing an eatery: <code>show</code></a></h5>
 <div class="paragraph">
-<p>Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location.Format: <code>show [id]</code>
+<p>Shows an eatery with all its details i.e. address, category, tags, reviews, and a map of its location.<br>
 Format: <code>show [index]</code></p>
 </div>
 <div class="sidebarblock">
@@ -523,7 +558,7 @@ Format: <code>show [index]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Shows the eatery at the specified <code>index</code>.</p>
+<p>Shows the eatery at the specified index.</p>
 </li>
 </ul>
 </div>
@@ -551,7 +586,7 @@ Format: <code>delete [index]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the eatery at the specified <code>id</code>. The index refers to the index number shown in the displayed review list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Deletes the eatery at the specified index.</p>
 </li>
 </ul>
 </div>
@@ -567,8 +602,22 @@ Format: <code>delete [index]</code></p>
 <div class="sect4">
 <h5 id="showing-overall-statistics-code-stats-code"><a class="link" href="#showing-overall-statistics-code-stats-code">Showing overall statistics: <code>stats</code></a></h5>
 <div class="paragraph">
-<p>Presents a visual overview of the user’s eateries and reviews.<br>
+<p>Presents a visual overview of the user’s eateries and reviews. Eatery and review data used to generate the statistics are collated from the start of the application. The command will generate six types of statistics:  most visited eateries, least visited eateries, eateries you spent the most at, eateries you spent the least at, price per category, number of visits per category.<br>
 Format: <code>stats</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>There must be at least <strong>one</strong> review and eatery to generate the statistics.</p>
+</li>
+<li>
+<p>After updating a review or eatery, the user must run the <code>stats</code> command again to update the statistics as it does <strong>not</strong> auto-update.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -589,7 +638,7 @@ Format: <code>mode</code></p>
 <h4 id="adding-an-eatery-code-add-code-2"><a class="link" href="#adding-an-eatery-code-add-code-2">4.3.2. Adding an eatery: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds an eatery to the todo list.<br>
-Format: <code>add \n [name of eatery] \a [address] {\t [tags, space-delimited]}</code></p>
+Format: <code>add \n [name of eatery] \a [address] {\t [tags]&#8230;&#8203;}</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -600,7 +649,7 @@ Format: <code>add \n [name of eatery] \a [address] {\t [tags, space-delimited]}<
 <p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129</code></p>
 </li>
 <li>
-<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \t good-for-groups non-aircon</code></p>
+<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \t good-for-groups \t non-aircon</code></p>
 </li>
 </ul>
 </div>
@@ -608,20 +657,15 @@ Format: <code>add \n [name of eatery] \a [address] {\t [tags, space-delimited]}<
 <div class="sect3">
 <h4 id="saving-a-todo-eatery-to-the-main-eatery-list-code-save-code"><a class="link" href="#saving-a-todo-eatery-to-the-main-eatery-list-code-save-code">4.3.3. Saving a todo eatery to the main eatery list : <code>save</code></a></h4>
 <div class="paragraph">
-<p>Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>save [index]</code></p>
+<p>Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries.<br>
+Format: <code>save [index]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Save the eatery at the specified index. The index refers to the index number shown in the displayed todo list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Save the eatery at the specified index.</p>
 </li>
 <li>
 <p>The eatery will be removed from the todo list after <code>save</code> is executed</p>
@@ -687,7 +731,18 @@ Format: <code>find \n [name of eatery]</code> or <code>find \t [tag]</code></p>
 <h4 id="tagging-an-eatery-code-addtag-code-2"><a class="link" href="#tagging-an-eatery-code-addtag-code-2">4.3.5. Tagging an eatery: <code>addtag</code></a></h4>
 <div class="paragraph">
 <p>Adds tags to an eatery.<br>
-Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
+Format: <code>addtag [index] \t [tags]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least <strong>one</strong> tag must be specified.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -704,7 +759,7 @@ Format: <code>addtag [id] \t [tags, space-delimited]</code></p>
 <h4 id="removing-tags-from-an-eatery-code-removetag-code-2"><a class="link" href="#removing-tags-from-an-eatery-code-removetag-code-2">4.3.6. Removing tags from an eatery: <code>removetag</code></a></h4>
 <div class="paragraph">
 <p>Removes tags from an eatery.<br>
-Format: <code>removetag [id] \t [tags, space-delimited]</code></p>
+Format: <code>removetag [index] \t [tags]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -721,7 +776,7 @@ Format: <code>removetag [id] \t [tags, space-delimited]</code></p>
 <h4 id="viewing-an-eatery-code-show-code-2"><a class="link" href="#viewing-an-eatery-code-show-code-2">4.3.7. Viewing an eatery: <code>show</code></a></h4>
 <div class="paragraph">
 <p>Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location.
-Format: <code>show [id]</code></p>
+Format: <code>show [index]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -738,7 +793,11 @@ Format: <code>show [id]</code></p>
 <h4 id="deleting-an-eatery-code-delete-code-2"><a class="link" href="#deleting-an-eatery-code-delete-code-2">4.3.8. Deleting an eatery: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Delete an eatery in the application.<br>
-Format: <code>delete 1</code></p>
+Format: <code>delete [index]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:
+* <code>delete 1</code></p>
 </div>
 </div>
 </div>
@@ -900,4 +959,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 10:39:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 10:42:34 UTC</div></div></div></body></html>
