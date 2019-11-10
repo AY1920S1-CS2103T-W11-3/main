@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_NO_PREFIX_JOHN;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EATERY;
@@ -15,16 +16,19 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.eatery.Address;
+import seedu.address.model.eatery.Category;
 import seedu.address.model.eatery.Name;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.eatery.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_CATEGORY = "0fish";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_CATEGORY = "Chinese";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -97,6 +101,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseCategory_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCategory((String) null));
+    }
+
+    @Test
+    public void parseCategory_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCategory(INVALID_CATEGORY));
+    }
+
+    @Test
+    public void parseCategory_validValueWithoutWhitespace_returnsCategory() throws Exception {
+        Category expectedCategory = new Category(VALID_CATEGORY);
+        assertEquals(expectedCategory, ParserUtil.parseCategory(VALID_CATEGORY));
+    }
+
+    @Test
+    public void parseCategory_validValueWithWhitespace_returnsTrimmedCategory() throws Exception {
+        String categoryWithWhitespace = WHITESPACE + VALID_CATEGORY + WHITESPACE;
+        Category expectedCategory = new Category(VALID_CATEGORY);
+        assertEquals(expectedCategory, ParserUtil.parseCategory(categoryWithWhitespace));
+    }
+
+    @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
     }
@@ -140,5 +167,20 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFile_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFile(null));
+    }
+
+    @Test
+    public void parseFile_withValidName_returnsUnchanged() {
+        assertEquals(VALID_FILE_NO_PREFIX_JOHN, ParserUtil.parseFile(VALID_FILE_NO_PREFIX_JOHN));
+    }
+
+    @Test
+    public void parseFile_withInvalidName_returnsFormatted() {
+        assertEquals(VALID_FILE_NO_PREFIX_JOHN, ParserUtil.parseFile("john"));
     }
 }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Represents an Eatery's category in the EatMe application.
  */
-public class Category {
+public class Category implements Comparable<Category> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Categories should only contain alphabets and spaces, and it should not be blank";
@@ -17,7 +17,7 @@ public class Category {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "([A-Za-z]\\w+[ A-Za-z]*)";
+    public static final String VALIDATION_REGEX = "([A-Za-z]\\w+[ A-Za-z]*|^[A-Za-z]+)";
 
     private static int categoryId = -1;
     private static HashMap<String, Category> categories = new HashMap<String, Category>();
@@ -43,12 +43,14 @@ public class Category {
      * else it returns the existing Category object.
      */
     public static Category create(String name) {
-        Category cat = categories.get(name);
+        Category category = categories.get(name);
 
-        if (cat == null) {
-            return new Category(name);
+        if (category == null) {
+            Category newCategory = new Category(name);
+            categories.put(newCategory.getName(), newCategory);
+            return newCategory;
         } else {
-            return cat;
+            return category;
         }
     }
 
@@ -77,5 +79,15 @@ public class Category {
         return other == this
                 || (other instanceof Category)
                 && name.equals(((Category) other).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public int compareTo(Category otherCategory) {
+        return name.compareTo(otherCategory.getName());
     }
 }

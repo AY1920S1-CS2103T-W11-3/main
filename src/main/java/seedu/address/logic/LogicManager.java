@@ -14,7 +14,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyFeedList;
 import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Review;
+import seedu.address.model.statistics.Statistics;
 import seedu.address.storage.Storage;
 
 /**
@@ -39,11 +42,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, isMainMode());
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveFeedList(model.getFeedList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -62,6 +66,21 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Eatery> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
+    public ObservableList<Review> getActiveReviews() {
+        return model.getActiveReviews();
+    }
+
+    @Override
+    public boolean isMainMode() {
+        return model.isMainMode();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -74,5 +93,29 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ReadOnlyFeedList getFeedList() {
+        return model.getFeedList();
+    }
+
+    @Override
+    public Path getFeedListFilePath() {
+        return model.getFeedListFilePath();
+    }
+
+    @Override
+    public void saveFeedList() {
+        try {
+            storage.saveFeedList(model.getFeedList());
+        } catch (IOException ioe) {
+            logger.warning(FILE_OPS_ERROR_MESSAGE + ioe);
+        }
+    }
+
+    @Override
+    public Statistics getStatistics() {
+        return model.getStatistics();
     }
 }

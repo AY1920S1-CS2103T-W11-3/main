@@ -4,14 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Review;
+import seedu.address.model.feed.Feed;
+import seedu.address.model.statistics.Statistics;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,25 +25,35 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final FeedList feedList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Eatery> filteredEateries;
+
+    private FilteredList<Eatery> filteredTodo;
+    private FilteredList<Eatery> filteredEateries;
+    private Statistics stats;
+    private ObservableList<Review> activeReviews;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, feedList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyFeedList feedList, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, feedList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", feed list: " + feedList
+                + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.feedList = new FeedList(feedList);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredEateries = new FilteredList<>(this.addressBook.getEateryList());
+        filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
+        activeReviews = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new FeedList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,6 +91,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getFeedListFilePath() {
+        return userPrefs.getFeedListFilePath();
+    }
+
+    @Override
+    public void setFeedListFilePath(Path feedListFilePath) {
+        requireNonNull(feedListFilePath);
+        userPrefs.setFeedListFilePath(feedListFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -108,7 +134,6 @@ public class ModelManager implements Model {
     @Override
     public void setEatery(Eatery target, Eatery editedEatery) {
         requireAllNonNull(target, editedEatery);
-
         addressBook.setEatery(target, editedEatery);
     }
 
@@ -124,10 +149,97 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Eatery> getFilteredTodoList() {
+        return filteredTodo;
+    }
+
+    @Override
     public void updateFilteredEateryList(Predicate<Eatery> predicate) {
         requireNonNull(predicate);
-        filteredEateries.setPredicate(predicate);
+        if (addressBook.isMainMode()) {
+            filteredEateries.setPredicate(predicate);
+        } else {
+            filteredTodo.setPredicate(predicate);
+        }
     }
+
+    //=========== Active Review Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the active reviews
+     */
+    @Override
+    public ObservableList<Review> getActiveReviews() {
+        return activeReviews;
+    }
+
+    /**
+     * Updates the list of active reviews based on the given {@code reviews}.
+     */
+    @Override
+    public void updateActiveReviews(List<Review> reviews) {
+        activeReviews.clear();
+        activeReviews.addAll(reviews);
+    }
+
+    //=========== General =============================================================
+
+    @Override
+    public void toggle() {
+        addressBook.toggle();
+    }
+
+    @Override
+    public boolean isMainMode() {
+        return addressBook.isMainMode();
+    }
+
+    //=========== FeedList ================================================================================
+
+    @Override
+    public void setFeedList(ReadOnlyFeedList feedList) {
+        this.feedList.resetData(feedList);
+    }
+
+    @Override
+    public ReadOnlyFeedList getFeedList() {
+        return feedList;
+    }
+
+    @Override
+    public boolean hasFeed(Feed feed) {
+        requireNonNull(feed);
+        return feedList.hasFeed(feed);
+    }
+
+    @Override
+    public void deleteFeed(Feed target) {
+        feedList.removeFeed(target);
+    }
+
+    @Override
+    public void addFeed(Feed feed) {
+        feedList.addFeed(feed);
+    }
+
+    @Override
+    public void setFeed(Feed target, Feed editedFeed) {
+        requireAllNonNull(target, editedFeed);
+
+        feedList.setFeed(target, editedFeed);
+    }
+
+    //=========== Statistics ===============================================================================
+    @Override
+    public void setStatistics(Statistics stats) {
+        this.stats = stats;
+    }
+
+    @Override
+    public Statistics getStatistics() {
+        return stats;
+    }
+    //=========== Utilities ================================================================================
 
     @Override
     public boolean equals(Object obj) {
@@ -144,6 +256,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && feedList.equals(other.feedList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEateries.equals(other.filteredEateries);
     }
