@@ -31,13 +31,6 @@ public class EateryBuilder {
     public static final Review DEFAULT_BAD_REVIEW = new Review("bad place", 5, 1,
             new Date());
 
-    public static final Review DEFAULT_GOOD_REVIEW = new Review("good place", 5, 5,
-            new Date());
-    public static final Review DEFAULT_NEUTRAL_REVIEW = new Review("ok place", 3, 3,
-            new Date());
-    public static final Review DEFAULT_BAD_REVIEW = new Review("bad place", 5, 1,
-            new Date());
-
     private Name name;
     private boolean isOpen;
     private Address address;
