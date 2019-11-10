@@ -139,8 +139,8 @@ image::StorageClassDiagram.png[]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the EateryList data in json format and read it back.
-* can save the FeedList data in the json format and read it back.
+* can save `EateryList` data in json format and read it back.
+* can save `FeedList` data in the json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -157,8 +157,8 @@ This section describes some noteworthy details on how certain features are imple
 
 The add feature allows the user to add an eatery with the compulsory fields: `Name`, `Address`, and `Category`. The `Tag` field(s), however, is an optional field. The user can add tag(s) to the eatery later on using the `addtag` feature, if needed. The add mechanism is facilitated by `EateryList`. It implements the following operations:
 
-* `EateryList#hasEatery()` -- Checks if an Eatery with the same identity as Eatery eatery exists in the address book.
-* `EateryList#addEatery()` -- Adds an Eatery eatery to the address book. The eatery must not already exist in the address book.
+* `EateryList#hasEatery()` -- Checks if an eatery with the same identity already exists in the eatery list.
+* `EateryList#addEatery()` -- Adds an eatery to the eatery list. The eatery must not already exist in the eatery list.
 
 These operations are exposed in the `Model` interface as `Model#hasEatery()` and `Model#addEatery()` respectively.
 
@@ -251,7 +251,7 @@ Since the statistic feature has a different user interface compared to the other
 
 Step 1. When the `Ui` receives the `CommandResult` from `StatsCommand`, the `Ui` will call `MainWindow#showStats()`.
 
-Step 2. `MainWindow#showStats()` will then if `StatsWindow` is already open, if yes then it will call `StatsWindow#initStats()` and focuses the window. Else, it will call `StatsWindow#initStats()` and shows the window.
+Step 2. `MainWindow#showStats() will check if `StatsWindow` is already open. If it is opened, it will call `StatsWindow#initStats()` and focuses the window. Else, it will call `StatsWindow#initStats()` and displays the window.
 
 Step 3. In `StatsWindow#initStats()`, `StatsWindow` will create a `CustomLayeredGraph` and `CustomPiechart` to create the graph and pie chart needed for the statistics report.
 
@@ -259,7 +259,7 @@ The following sequence diagram shows how the statistics feature shows the statis
 image:StatsUiSequenceDiagram.png[]
 
 ==== Design Considerations
-===== Aspect: Whether the statistics should auto-update an eatery is added or a review is added to an eatery.
+===== Aspect: Whether the statistics should auto-update when an eatery is added or a review is added to an eatery.
 * ** Alternative 1 (current choice):** Not making the statistics auto-update
 *** Pros: Easy to implement; don't need to refactor existing code to make use of ObservableList and add ListChange listeners.
 *** Cons: User would need to call `stats` command after every addition or change made to the eatery or reviews of an eatery.
