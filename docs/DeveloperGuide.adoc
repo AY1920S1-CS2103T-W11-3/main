@@ -253,6 +253,7 @@ No further nesting of Review field in Eatery.
 The edit review mechanism is facilitated by `EateryList`. It makes use of the following operations:
 
 * `EateryList#getActiveEatery`
+* `EateryList#getActiveReviews`
 
 Given below is an example usage scenario and how the close mechanism behaves at each step.
 
@@ -273,16 +274,139 @@ Step 3: The application returns a success message upon successfully editing the 
 ===== Aspect: How edit review executes
 * ** Alternative 1 (current choice)**:
 When the show command is used, `EateryList#setActiveEatery` will set the eatery shown as the active eatery.
-When the user attempts to edit review, the eatery is accessed using
+When the user attempts to edit review, the eatery is accessed using `EateryList#getActiveEatery`. The reviews are modified by using
+`EateryList#getActiveReviews`, which returns a list of reviews. The changed list is set to the `ActiveEatery`
+by `Eatery#setReviews`.
 
+** Pros: Easy to access and edit reviews.
+** Cons: The `ActiveEatery` is not modified until the `show` command is used on another eatery.
 
+* ** Alternative 2**:
+Operate directly on the list of reviews after using `show` command and set the changed list to the eatery.
+
+** Pros: `EditReview` is only accessible after using `show` command.
+** Cons: Difficult to implement and understand.
 // end::editreview[]
+
+//tag::deletereview[]
+=== Delete Review feature
+==== Implementation
+
+The delete review mechanism is facilitated by `EateryList`. It makes use of the following operations:
+
+* `EateryList#getActiveEatery`
+* `EateryList#getActiveReviews`
+
+Given below is an example usage scenario and how the close mechanism behaves at each step.
+
+Step 1: The user decides to check the reviews of an eatery by using `show` command.
+
+Step 2: The user then decides to delete the first review of the eatery and executes `deletereview 1 ...` .
+
+[NOTE]
+If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to close the Eatery.
+
+Step 3: The application returns a success message upon successfully deleting the review.
+
+==== Design Considerations:
+
+===== Aspect: How delete review executes
+* ** Alternative 1 (current choice)**:
+When the show command is used, `EateryList#setActiveEatery` will set the eatery shown as the active eatery.
+When the user attempts to delete a review, the eatery is accessed using `EateryList#getActiveEatery`. The reviews are modified by using
+`EateryList#getActiveReviews`, which returns a list of reviews. The changed list is set to the `ActiveEatery`
+by `Eatery#setReviews`.
+
+** Pros: Easy to access and delete reviews.
+** Cons: The `ActiveEatery` is not modified until the `show` command is used on another eatery.
+
+* ** Alternative 2**:
+Operate directly on the list of reviews after using `show` command and set the changed list to the eatery.
+
+** Pros: `DeleteReview` is only accessible after using `show` command.
+** Cons: Difficult to implement and understand.
+
+//end::deletereview[]
+
+//tag::addtag[]
+=== Add Tag Feature
+==== Implementation
+The addtag mechanism is facilitated by the EateryList and implement the following operations:
+
+* `EateryList#getFilteredEateryList`
+* `EateryList#setEatery`
+
+The effects of add tag are cumulative, ie it does not replace existing tags but adds the given tags.
+
+Given below is an example usage scenario and how the addtag mechanism behaves.
+
+Step 1. The user launches the application and wants to add tags to the first eatery displayed.
+
+Step 2. The user executes `addtag 1 ...` to add the required tags to the eatery.
+
+[NOTE]
+If the index specified is invalid (negative or out of bounds) or the format of the command is wrong,
+an error will be shown to the user.
+
+Step 3. If the tags to be added are not associated with eatery previously, they will be added to the eatery.
+
+Step 4. AddTag success message is shown to the user.
+
+==== Design Considerations:
+===== How AddTag executes:
+* ** Current choice: **
+Returns a new Eatery object with the existing and new tags. The tags to be added are checked
+if they are already associated with the eatery before adding.
+
+** Pros:
+Preserves the OOP model of the project and there is no need for setter methods.
+
+** Cons: Very inefficient to return new Eatery object every time tags are changed.
+
+//end::addtag[]
+
+//tag:: deletetag[]
+=== Delete Tag Feature
+
+==== Implementation
+The deleteTag mechanism is facilitated by the EateryList and implement the following operations:
+
+* `EateryList#getFilteredEateryList`
+* `EateryList#setEatery`
+
+Given below is an example usage scenario and how the addtag mechanism behaves.
+
+Step 1. The user launches the application and wants to delete tags from the first eatery displayed.
+
+Step 2. The user executes `deletetag 1 ...` to delete the required tags from the eatery.
+
+[NOTE]
+If the index specified is invalid (negative or out of bounds) or the format of the command is wrong,
+an error will be shown to the user.
+
+Step 3. If the tags to be deleted are not associated with eatery previously, no changes will be made.
+
+Step 4. DeleteTag success message is shown to the user.
+
+==== Design Considerations:
+===== How AddTag executes:
+* ** Current choice: **
+Returns a new Eatery object with the existing and new tags. The tags to be deleted are checked
+if they are already associated with the eatery before deleting.
+
+** Pros:
+Preserves the OOP model of the project and there is no need for setter methods.
+
+** Cons: Very inefficient to return new Eatery object every time tags are changed.
+
+
+//end::deletetag[]
 
 // tag::close[]
 === Close Eatery feature
 ==== Implementation
 
-The close mechanism is facilitated by `AddressBook`. It implements ReadOnlyAddressBook interface with the following operation:
+The close mechanism is facilitated by `AddressBook`. It implements the `ReadOnlyAddressBook` interface with the following operation:
 
 * `AddressBook#setEatery()` -- Replaces an Eatery with a modified Eatery specified by the user input.
 
