@@ -608,8 +608,30 @@ Format: <code>add \n [name of eatery] \a [address] {\t [tags, space-delimited]}<
 <div class="sect3">
 <h4 id="saving-a-todo-eatery-to-the-main-eatery-list-code-save-code"><a class="link" href="#saving-a-todo-eatery-to-the-main-eatery-list-code-save-code">4.3.3. Saving a todo eatery to the main eatery list : <code>save</code></a></h4>
 <div class="paragraph">
-<p>Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries.<br>
-Format: <code>save [id]</code> (saves the eatery to the main list)</p>
+<p>Remove a todo eatery from the todo list and provides a quick way to add it to the main list of eateries.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>save [index]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Save the eatery at the specified index. The index refers to the index number shown in the displayed todo list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The eatery will be removed from the todo list after <code>save</code> is executed</p>
+</li>
+<li>
+<p>User will be required to input the missing field before the eatery is saved in the main list.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -618,6 +640,22 @@ Format: <code>save [id]</code> (saves the eatery to the main list)</p>
 <ul>
 <li>
 <p><code>save 2</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Save the second eatery in the todo list</p>
+</li>
+<li>
+<p>The eatery is removed from the todo list</p>
+</li>
+<li>
+<p>Application will toggle to Main</p>
+</li>
+<li>
+<p><code>add</code> command will be constructed, allowing user to just input missing fields.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -862,4 +900,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 03:14:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 09:59:15 UTC</div></div></div></body></html>
