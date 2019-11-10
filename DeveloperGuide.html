@@ -24,13 +24,17 @@
 <ul class="sectlevel2">
 <li><a href="#add-eatery-feature-code-add-code">3.1. Add Eatery feature : <code>add</code></a></li>
 <li><a href="#statistics-feature-code-stats-code">3.2. Statistics feature : <code>stats</code></a></li>
-<li><a href="#proposed-review-eatery-feature">3.3. [Proposed] Review Eatery feature</a></li>
-<li><a href="#close-eatery-feature">3.4. Close Eatery feature</a></li>
-<li><a href="#changing-mode-of-eatme-feature">3.5. Changing Mode of EatMe feature</a></li>
-<li><a href="#news-feed-feature">3.6. News Feed Feature</a></li>
-<li><a href="#saving-todo-eatery-feature">3.7. Saving Todo Eatery feature</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
+<li><a href="#review-eatery-feature">3.3. Review Eatery feature</a></li>
+<li><a href="#edit-review-feature">3.4. Edit Review feature</a></li>
+<li><a href="#delete-review-feature">3.5. Delete Review feature</a></li>
+<li><a href="#add-tag-feature">3.6. Add Tag feature</a></li>
+<li><a href="#delete-tag-feature">3.7. Delete Tag feature</a></li>
+<li><a href="#close-eatery-feature">3.8. Close Eatery feature</a></li>
+<li><a href="#changing-mode-of-eatme-feature">3.9. Changing Mode of EatMe feature</a></li>
+<li><a href="#news-feed-feature">3.10. News Feed Feature</a></li>
+<li><a href="#saving-todo-eatery-feature">3.11. Saving Todo Eatery feature</a></li>
+<li><a href="#logging">3.12. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.13. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -633,22 +637,19 @@ If the user executes the <code>stats</code> command in the Todo mode, <code>Stat
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-review-eatery-feature"><a class="link" href="#proposed-review-eatery-feature">3.3. [Proposed] Review Eatery feature</a></h3>
+<h3 id="review-eatery-feature"><a class="link" href="#review-eatery-feature">3.3. Review Eatery feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The review mechanism is facilitated by the existing <code>AddressBook</code>.
-It extends <code>AddressBook</code> with a review field, stored internally as an array list of reviews along with other
+<p>The review mechanism is facilitated by <code>EateryList</code>.
+It is stored internally as a set of reviews along with the other
 attributes of an eatery.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>AddressBook#review()</code>&#8201;&#8212;&#8201;Adds a review to the eatery identified by the user input.</p>
-</li>
-<li>
-<p><code>AddressBook#editReview()</code>&#8201;&#8212;&#8201;Edits a previously written review.</p>
+<p><code>Eatery#addReview</code>&#8201;&#8212;&#8201;Adds a review to the eatery identified by the user input.</p>
 </li>
 </ul>
 </div>
@@ -656,7 +657,7 @@ Additionally, it implements the following operations:</p>
 <p>Given below is an example usage scenario and how the review mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the initial json data stored.</p>
+<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialized with the initial json data stored.</p>
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes <code>review 1 &#8230;&#8203;</code> command to add a review to the first Eatery in the address book. The <code>review</code> command will call <code>Eatery#addReview()</code>.</p>
@@ -673,25 +674,78 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>open 1</code> to get the complete details of the first Eatery.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the review is missing a <code>Description</code>, <code>Rating</code>, <code>Cost</code> or a <code>Date</code> field, an error will be shown to the user instead of adding the review.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user then decides to execute <code>edit review 1 &#8230;&#8203;</code> to edit the first review of the Eatery opened in the previous step. This calls the <code>EatMe#editcommand()</code>.</p>
+<p>Step 3. The eatery list now returns a success message upon successfully adding a review to the eatery.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the activities involved.
+<span class="image"><img src="images/ReviewActivityDiagram.png" alt="ReviewActivityDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows how the method is executed.
+<span class="image"><img src="images/ReviewSequenceDiagram.png" alt="ReviewSequenceDiagram"></span></p>
 </div>
 <div class="sect4">
-<h5 id="aspect-how-review-and-edit-review-executes"><a class="link" href="#aspect-how-review-and-edit-review-executes">Aspect: How review and edit review executes</a></h5>
+<h5 id="aspect-how-review-executes"><a class="link" href="#aspect-how-review-executes">Aspect: How review executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> No further nesting of Review field in Eatery.</p>
+<p><strong> Alternative 1 (current choice) </strong>
+Adds a review to an eatery&#8217;s list of reviews.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easily implemented.</p>
+<p>Pros: Easy to understand and implement.</p>
 </li>
 <li>
-<p>Cons: May be worse OOP model as compared to other commands.</p>
+<p>Cons: The set of reviews of an <code>Eatery</code> is not final, unlike tags.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2</strong>
+Return a new set of reviews every time a review is added.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes the set of reviews final, adhering to the existing model.</p>
+</li>
+<li>
+<p>Cons: Highly inefficient</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-used-to-store-reviews"><a class="link" href="#aspect-data-structure-used-to-store-reviews">Aspect: Data Structure used to store Reviews</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong>
+No further nesting of Review field in Eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easily implemented and will not compromise speed.</p>
+</li>
+<li>
+<p>Cons: The OOP model might be different from other Commands.</p>
 </li>
 </ul>
 </div>
@@ -709,15 +763,102 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 </ul>
 </div>
 </li>
-<li>
-<p><strong>Current choice:</strong> Store and edit the reviews of an eatery in a list.</p>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-review-feature"><a class="link" href="#edit-review-feature">3.4. Edit Review feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The edit review mechanism is facilitated by <code>EateryList</code>. It makes use of the following operations:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
+<p><code>EateryList#getActiveEatery</code></p>
 </li>
 <li>
-<p>Cons: List is not immutable.</p>
+<p><code>EateryList#getActiveReviews</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the close mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user decides to check the reviews of an eatery by using <code>show</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user then decides to edit the first review of the eatery and executes <code>editreview 1 &#8230;&#8203;</code> with the necessary fields.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If none of the fields entered are different from the existing fields, the user will be shown an error saying that at least one field should be different.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user input is not according to the given format, an error will be shown to the user instead of attempting to edit the review.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The application returns a success message upon successfully editing the review.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the activities involved.
+<span class="image"><img src="images/EditReviewActivityDiagram.png" alt="EditReviewActivityDiagram"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations:</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-edit-review-executes"><a class="link" href="#aspect-how-edit-review-executes">Aspect: How edit review executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice)</strong>:
+When the show command is used, <code>EateryList#setActiveEatery</code> will set the eatery shown as the active eatery.
+When the user attempts to edit review, the eatery is accessed using <code>EateryList#getActiveEatery</code>. The reviews are modified by using
+<code>EateryList#getActiveReviews</code>, which returns a list of reviews. The changed list is set to the <code>ActiveEatery</code>
+by <code>Eatery#setReviews</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to access and edit reviews.</p>
+</li>
+<li>
+<p>Cons: The <code>ActiveEatery</code> is not modified until the <code>show</code> command is used on another eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2</strong>:
+Operate directly on the list of reviews after using <code>show</code> command and set the changed list to the eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: <code>EditReview</code> is only accessible after using <code>show</code> command.</p>
+</li>
+<li>
+<p>Cons: Difficult to implement and understand.</p>
 </li>
 </ul>
 </div>
@@ -728,11 +869,244 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 </div>
 </div>
 <div class="sect2">
-<h3 id="close-eatery-feature"><a class="link" href="#close-eatery-feature">3.4. Close Eatery feature</a></h3>
+<h3 id="delete-review-feature"><a class="link" href="#delete-review-feature">3.5. Delete Review feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The close mechanism is facilitated by <code>AddressBook</code>. It implements ReadOnlyAddressBook interface with the following operation:</p>
+<p>The delete review mechanism is facilitated by <code>EateryList</code>. It makes use of the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EateryList#getActiveEatery</code></p>
+</li>
+<li>
+<p><code>EateryList#getActiveReviews</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the close mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user decides to check the reviews of an eatery by using <code>show</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user then decides to delete the first review of the eatery and executes <code>deletereview 1 &#8230;&#8203;</code> .</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to close the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The application returns a success message upon successfully deleting the review.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations:</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-delete-review-executes"><a class="link" href="#aspect-how-delete-review-executes">Aspect: How delete review executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice)</strong>:
+When the show command is used, <code>EateryList#setActiveEatery</code> will set the eatery shown as the active eatery.
+When the user attempts to delete a review, the eatery is accessed using <code>EateryList#getActiveEatery</code>. The reviews are modified by using
+<code>EateryList#getActiveReviews</code>, which returns a list of reviews. The changed list is set to the <code>ActiveEatery</code>
+by <code>Eatery#setReviews</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to access and delete reviews.</p>
+</li>
+<li>
+<p>Cons: The <code>ActiveEatery</code> is not modified until the <code>show</code> command is used on another eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2</strong>:
+Operate directly on the list of reviews after using <code>show</code> command and set the changed list to the eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: <code>DeleteReview</code> is only accessible after using <code>show</code> command.</p>
+</li>
+<li>
+<p>Cons: Difficult to implement and understand.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-tag-feature"><a class="link" href="#add-tag-feature">3.6. Add Tag feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-7"><a class="link" href="#implementation-7">3.6.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The addtag mechanism is facilitated by the EateryList and implement the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EateryList#getFilteredEateryList</code></p>
+</li>
+<li>
+<p><code>EateryList#setEatery</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The effects of add tag are cumulative, ie it does not replace existing tags but adds the given tags.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the addtag mechanism behaves.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application and wants to add tags to the first eatery displayed.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>addtag 1 &#8230;&#8203;</code> to add the required tags to the eatery.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index specified is invalid (negative or out of bounds) or the format of the command is wrong,
+an error will be shown to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. If the tags to be added are not associated with eatery previously, they will be added to the eatery.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. AddTag success message is shown to the user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations:</a></h4>
+<div class="sect4">
+<h5 id="how-addtag-executes"><a class="link" href="#how-addtag-executes">How AddTag executes:</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Current choice: </strong>
+Returns a new Eatery object with the existing and new tags. The tags to be added are checked
+if they are already associated with the eatery before adding.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:
+Preserves the OOP model of the project and there is no need for setter methods.</p>
+</li>
+<li>
+<p>Cons: Very inefficient to return new Eatery object every time tags are changed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-tag-feature"><a class="link" href="#delete-tag-feature">3.7. Delete Tag feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-8"><a class="link" href="#implementation-8">3.7.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The deleteTag mechanism is facilitated by the EateryList and implement the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EateryList#getFilteredEateryList</code></p>
+</li>
+<li>
+<p><code>EateryList#setEatery</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the addtag mechanism behaves.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application and wants to delete tags from the first eatery displayed.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>deletetag 1 &#8230;&#8203;</code> to delete the required tags from the eatery.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index specified is invalid (negative or out of bounds) or the format of the command is wrong,
+an error will be shown to the user.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. If the tags to be deleted are not associated with eatery previously, no changes will be made.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. DeleteTag success message is shown to the user.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations:</a></h4>
+<div class="sect4">
+<h5 id="how-addtag-executes-2"><a class="link" href="#how-addtag-executes-2">How AddTag executes:</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Current choice: </strong>
+Returns a new Eatery object with the existing and new tags. The tags to be deleted are checked
+if they are already associated with the eatery before deleting.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:
+Preserves the OOP model of the project and there is no need for setter methods.</p>
+</li>
+<li>
+<p>Cons: Very inefficient to return new Eatery object every time tags are changed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="close-eatery-feature"><a class="link" href="#close-eatery-feature">3.8. Close Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-9"><a class="link" href="#implementation-9">3.8.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The close mechanism is facilitated by <code>AddressBook</code>. It implements the <code>ReadOnlyAddressBook</code> interface with the following operation:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -790,7 +1164,7 @@ image::CloseCommitActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-close-executes"><a class="link" href="#aspect-how-close-executes">Aspect: How Close executes</a></h5>
 <div class="ulist">
@@ -880,9 +1254,9 @@ image::CloseCommitActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.5. Changing Mode of EatMe feature</a></h3>
+<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.9. Changing Mode of EatMe feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
+<h4 id="implementation-10"><a class="link" href="#implementation-10">3.9.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Allows the user to toggle between Main mode and Todo mode. It extends <code>Command</code>, and once mode is switched, all other command functions would be affected.
 The mode is determined through the value of a boolean variable named <code>isMainMode</code>.</p>
@@ -909,7 +1283,7 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
 <div class="ulist">
@@ -953,14 +1327,14 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.6. News Feed Feature</a></h3>
+<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.10. News Feed Feature</a></h3>
 <div class="paragraph">
 <p>As people who really love food, we are interested in keeping up-to-date with the latest food trends and newest eateries to try.
 The news feed allows the user to save their favorite food blogs to EatMe and have access to the latest food-related articles right from within the app.
 Should a food blog become irrelevant, the user also has the option to remove it and no longer display its articles.</p>
 </div>
 <div class="sect3">
-<h4 id="terminology"><a class="link" href="#terminology">3.6.1. Terminology</a></h4>
+<h4 id="terminology"><a class="link" href="#terminology">3.10.1. Terminology</a></h4>
 <div class="paragraph">
 <p>Some terms are used in this feature:</p>
 </div>
@@ -979,7 +1353,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-7"><a class="link" href="#implementation-7">3.6.2. Implementation</a></h4>
+<h4 id="implementation-11"><a class="link" href="#implementation-11">3.10.2. Implementation</a></h4>
 <div class="paragraph">
 <p>The current news feed supports two commands:</p>
 </div>
@@ -1051,7 +1425,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.3. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">3.10.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-storage-of-feed-list"><a class="link" href="#aspect-storage-of-feed-list">Aspect: Storage of feed list</a></h5>
 <div class="ulist">
@@ -1087,7 +1461,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.6.4. Aspect: Offline behavior of news feed</a></h4>
+<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.10.4. Aspect: Offline behavior of news feed</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1131,9 +1505,9 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.7. Saving Todo Eatery feature</a></h3>
+<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.11. Saving Todo Eatery feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-8"><a class="link" href="#implementation-8">3.7.1. Implementation</a></h4>
+<h4 id="implementation-12"><a class="link" href="#implementation-12">3.11.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends <code>Command</code>.</p>
 </div>
@@ -1162,7 +1536,7 @@ image::SaveTodoCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">3.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-savetodo-execute"><a class="link" href="#aspect-how-savetodo-execute">Aspect: How SaveTodo execute</a></h5>
 <div class="ulist">
@@ -1210,14 +1584,14 @@ This situation will result in the user requiring to type the whole <code>add</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.12. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.13, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1248,7 +1622,7 @@ This situation will result in the user requiring to type the whole <code>add</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.13. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1813,4 +2187,4 @@ Expected: Application starts with a blank <code>Eatery</code> list panel. Error 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 16:21:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 16:42:33 UTC</div></div></div></body></html>
