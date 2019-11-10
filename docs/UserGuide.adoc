@@ -64,6 +64,7 @@ These are just a few of the commands you can execute on EatMe. Refer to <<Featur
 * Items in curly brackets are optional parameters. For example, in `add \n [name of eatery] \a [address] \c [category] {\t [tags]...}`, `{\t [tags]...}` is an optional parameter that the user can choose to supply if he/she wishes to add certain tags to the eatery.
 * Items with `…` after them can be used multiple times including zero times e.g. `{nbsp}` can be used as (i.e. 0 times), `\t non-aircon`, `\t good-for-groups \t non-aircon`, etc.
 * Parameters can be in any order. For example, if the command specifies `\n [name of eatery] \a [address] \c [category]`, `\a [address] \n [name of eatery] \c [category]` is also acceptable.
+* For parameters requiring `index`, `index` refers to the index number shown in the displayed eatery list. The index *must be a positive integer* 1, 2, 3, ... .
 ====
 
 === General
@@ -162,7 +163,6 @@ Edits an existing eatery in the application. +
 Format: `edit [index] {\n [name of eatery]} {\a [address]} {\c [category]} {\t [tags]...}`
 
 ****
-* Edits the eatery at the specified index. The index refers to the index number shown in the displayed eatery list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the eatery will be removed i.e adding of tags is not cumulative. To have a cumulative effect, use `addtag` and `removetag`.
@@ -252,7 +252,7 @@ Format: `random`
 
 ===== Viewing an eatery: `show`
 
-Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location. +
+Shows an eatery with all its details i.e. address, category, tags, reviews, and a map of its location. +
 Format: `show [index]`
 
 ****
@@ -278,7 +278,7 @@ Example: `delete 1`
 // tag::stats[]
 ===== Showing overall statistics: `stats`
 
-Presents a visual overview of the user’s eateries and reviews. Eatery and review data used to generate the statistics are collated from the start of the application. The command will generate six types of statistics:  most visited eateries, least visited eateries, eateries you spent the most at, eateries you spent the least at, price breakdown per category, number of visits breakdown per category. +
+Presents a visual overview of the user’s eateries and reviews. Eatery and review data used to generate the statistics are collated from the start of the application. The command will generate six types of statistics:  most visited eateries, least visited eateries, eateries you spent the most at, eateries you spent the least at, price per category, number of visits per category. +
 Format: `stats`
 
 ****
