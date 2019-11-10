@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.eatery.Review;
 
 /**
@@ -18,7 +19,7 @@ public class TypicalReviews {
         try {
             date = dateFormat.parse("22/11/2019");
         } catch (ParseException e) {
-            e.printStackTrace();
+            LogsCenter.getLogger(TypicalReviews.class).warning("The date is not in the specified format (dd/MM/yyyy");
         }
     }
     public static final Review REVIEW_1 = new Review("good", 3, 4, date);
