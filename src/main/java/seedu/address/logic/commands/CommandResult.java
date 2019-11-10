@@ -23,6 +23,9 @@ public class CommandResult {
      */
     private final boolean showHelp;
 
+    /** Statistics information should be shown to the user. */
+    private final boolean showStats;
+
     /**
      * The application should exit.
      */
@@ -37,13 +40,14 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, Eatery eateryToShow, Review reviewToShow,
-                         boolean showHelp, boolean exit, boolean wantToSave) {
+                         boolean showHelp, boolean exit, boolean wantToSave, boolean showStats) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.eateryToShow = eateryToShow;
         this.reviewToShow = reviewToShow;
         this.showHelp = showHelp;
         this.exit = exit;
         this.wantToSave = wantToSave;
+        this.showStats = showStats;
     }
 
     /**
@@ -51,7 +55,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, null, false, false, false);
+        this(feedbackToUser, null, null, false, false, false, false);
     }
 
     /**
@@ -59,7 +63,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Eatery eateryToShow) {
-        this(feedbackToUser, eateryToShow, null, false, false, false);
+        this(feedbackToUser, eateryToShow, null, false, false, false, false);
     }
 
     /**
@@ -67,14 +71,14 @@ public class CommandResult {
      * and other fields are set to their default value.
      */
     public CommandResult(String feedbackToUser, Review reviewToShow) {
-        this(feedbackToUser, null, reviewToShow, false, false, false);
+        this(feedbackToUser, null, reviewToShow, false, false, false, false);
     }
     /**
      * Constructs a {@code CommandResult} with the specified fields,
      * and {@code eateryToShow} set to its default value
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean wantToSave) {
-        this(feedbackToUser, null, null, showHelp, exit, wantToSave);
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean wantToSave, boolean showStats) {
+        this(feedbackToUser, null, null, showHelp, exit, wantToSave, showStats);
     }
 
     public String getFeedbackToUser() {
@@ -95,6 +99,10 @@ public class CommandResult {
 
     public boolean wantToSave() {
         return wantToSave;
+    }
+
+    public boolean isShowStats() {
+        return showStats;
     }
 
     @Override
