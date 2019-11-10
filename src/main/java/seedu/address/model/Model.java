@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.eatery.Eatery;
 import seedu.address.model.eatery.Review;
 import seedu.address.model.feed.Feed;
+import seedu.address.model.statistics.Statistics;
 
 /**
  * The API of the Model component.
@@ -83,6 +84,16 @@ public interface Model {
      * The eatery identity of {@code editedEatery} must not be the same as another existing eatery in the address book.
      */
     void setEatery(Eatery target, Eatery editedEatery);
+
+    /**
+     * Sets {@code eatery} as the active eatery.
+     */
+    void setActiveEatery(Eatery eatery);
+
+    /**
+     * Returns the active eatery.
+     */
+    Eatery getActiveEatery();
 
     /**
      * Returns an unmodifiable view of the filtered eatery list
@@ -164,4 +175,14 @@ public interface Model {
      * The feed identity of {@code editedFeed} must not be the same as another existing feed in the feed list.
      */
     void setFeed(Feed target, Feed editedFeed);
+
+    /**
+     * Sets the statistics of the eateries and reviews to {@code stats}.
+     */
+    void setStatistics(Statistics stats);
+
+    /**
+     * Gets the statistics of the eateries and reviews.
+     */
+    Statistics getStatistics();
 }

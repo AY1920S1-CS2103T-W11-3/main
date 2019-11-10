@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private EateryListPanel todoListPanel;
 
     private ResultDisplay resultDisplay;
+    private StatsWindow statsWindow;
     private FeedPostListPanel feedPostListPanel;
     private HelpWindow helpWindow;
 
@@ -67,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
+        statsWindow = new StatsWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -78,7 +80,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
+        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList(), true);
         eateryListPanelPlaceholder.getChildren().add(eateryListPanel.getRoot());
 
         feedPostListPanel = new FeedPostListPanel(logic.getFeedList(), logic);
@@ -100,8 +102,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillDataParts() {
-        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList());
-        todoListPanel = new EateryListPanel(logic.getFilteredTodoList());
+        eateryListPanel = new EateryListPanel(logic.getFilteredEateryList(), true);
+        todoListPanel = new EateryListPanel(logic.getFilteredTodoList(), false);
 
         if (logic.isMainMode()) {
             eateryListPanelPlaceholder.getChildren().addAll(eateryListPanel.getRoot());
@@ -132,6 +134,19 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Displays the statistics window.
+     */
+    private void showStats() {
+        if (!statsWindow.isShowing()) {
+            statsWindow.initStats(logic.getStatistics());
+            statsWindow.show();
+        } else {
+            statsWindow.initStats(logic.getStatistics());
+            statsWindow.focus();
         }
     }
 
@@ -186,6 +201,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.wantToSave()) {
                 handleSaveTodo(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isShowStats()) {
+                showStats();
             }
 
             fillDataParts();

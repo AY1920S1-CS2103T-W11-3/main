@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.model.eatery.Eatery;
+import seedu.address.model.eatery.Review;
 
 /**
  * Represents the result of a command execution.
@@ -15,10 +16,15 @@ public class CommandResult {
 
     private final Eatery eateryToShow;
 
+    private final Review reviewToShow;
+
     /**
      * Help information should be shown to the user.
      */
     private final boolean showHelp;
+
+    /** Statistics information should be shown to the user. */
+    private final boolean showStats;
 
     /**
      * The application should exit.
@@ -33,13 +39,15 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, Eatery eateryToShow,
-                         boolean showHelp, boolean exit, boolean wantToSave) {
+    public CommandResult(String feedbackToUser, Eatery eateryToShow, Review reviewToShow,
+                         boolean showHelp, boolean exit, boolean wantToSave, boolean showStats) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.eateryToShow = eateryToShow;
+        this.reviewToShow = reviewToShow;
         this.showHelp = showHelp;
         this.exit = exit;
         this.wantToSave = wantToSave;
+        this.showStats = showStats;
     }
 
     /**
@@ -47,7 +55,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false);
+        this(feedbackToUser, null, null, false, false, false, false);
     }
 
     /**
@@ -55,15 +63,22 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Eatery eateryToShow) {
-        this(feedbackToUser, eateryToShow, false, false, false);
+        this(feedbackToUser, eateryToShow, null, false, false, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code reviewToShow},
+     * and other fields are set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Review reviewToShow) {
+        this(feedbackToUser, null, reviewToShow, false, false, false, false);
+    }
     /**
      * Constructs a {@code CommandResult} with the specified fields,
      * and {@code eateryToShow} set to its default value
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean wantToSave) {
-        this(feedbackToUser, null, showHelp, exit, wantToSave);
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean wantToSave, boolean showStats) {
+        this(feedbackToUser, null, null, showHelp, exit, wantToSave, showStats);
     }
 
     public String getFeedbackToUser() {
@@ -86,6 +101,10 @@ public class CommandResult {
         return wantToSave;
     }
 
+    public boolean isShowStats() {
+        return showStats;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -100,13 +119,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && (Objects.equals(eateryToShow, otherCommandResult.eateryToShow))
+                && (Objects.equals(reviewToShow, otherCommandResult.reviewToShow))
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, eateryToShow, showHelp, exit);
+        return Objects.hash(feedbackToUser, eateryToShow, reviewToShow, showHelp, exit);
     }
 
 }
