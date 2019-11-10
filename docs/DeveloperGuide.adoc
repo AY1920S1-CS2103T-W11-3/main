@@ -247,7 +247,7 @@ No further nesting of Review field in Eatery.
 
 // tag::editreview[]
 
-=== Edit Review Feature
+=== Edit Review feature
 ==== Implementation
 
 The edit review mechanism is facilitated by `EateryList`. It makes use of the following operations:
@@ -257,9 +257,9 @@ The edit review mechanism is facilitated by `EateryList`. It makes use of the fo
 
 Given below is an example usage scenario and how the close mechanism behaves at each step.
 
-Step 1: The user decides to check the reviews of an eatery by using `show` command.
+Step 1. The user decides to check the reviews of an eatery by using `show` command.
 
-Step 2: The user then decides to edit the first review of the eatery and executes `editreview 1 ...` with the necessary fields.
+Step 2. The user then decides to edit the first review of the eatery and executes `editreview 1 ...` with the necessary fields.
 
 [NOTE]
 If none of the fields entered are different from the existing fields, the user will be shown an error saying that at least one field should be different.
@@ -267,7 +267,7 @@ If none of the fields entered are different from the existing fields, the user w
 [NOTE]
 If the user input is not according to the given format, an error will be shown to the user instead of attempting to edit the review.
 
-Step 3: The application returns a success message upon successfully editing the review.
+Step 3. The application returns a success message upon successfully editing the review.
 
 ==== Design Considerations:
 
@@ -299,14 +299,14 @@ The delete review mechanism is facilitated by `EateryList`. It makes use of the 
 
 Given below is an example usage scenario and how the close mechanism behaves at each step.
 
-Step 1: The user decides to check the reviews of an eatery by using `show` command.
+Step 1. The user decides to check the reviews of an eatery by using `show` command.
 
-Step 2: The user then decides to delete the first review of the eatery and executes `deletereview 1 ...` .
+Step 2. The user then decides to delete the first review of the eatery and executes `deletereview 1 ...` .
 
 [NOTE]
 If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to close the Eatery.
 
-Step 3: The application returns a success message upon successfully deleting the review.
+Step 3. The application returns a success message upon successfully deleting the review.
 
 ==== Design Considerations:
 
@@ -329,7 +329,7 @@ Operate directly on the list of reviews after using `show` command and set the c
 //end::deletereview[]
 
 //tag::addtag[]
-=== Add Tag Feature
+=== Add Tag feature
 ==== Implementation
 The addtag mechanism is facilitated by the EateryList and implement the following operations:
 
@@ -366,7 +366,7 @@ Preserves the OOP model of the project and there is no need for setter methods.
 //end::addtag[]
 
 //tag:: deletetag[]
-=== Delete Tag Feature
+=== Delete Tag feature
 
 ==== Implementation
 The deleteTag mechanism is facilitated by the EateryList and implement the following operations:
