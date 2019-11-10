@@ -221,6 +221,20 @@ Step 7. After successfully editing the eatery, `EditCommand` will return the `Co
 
 The following sequence diagram shows how the add eatery feature is executed.
 image:EditSequenceDiagram.png[]
+
+==== Design Considerations
+===== Aspect: Replace or add on to eatery's list of tags
+* **Alternative 1 (current choice):** Replace the entire list of tags
+** Pros:
+*** Easy to implement.
+*** More user-friendly -- command makes more sense to the user.
+** Cons: Need to create additional command to handle adding of tags to the current list of tags.
+
+* **Alternative 2:** Adding to the list of tags
+** Pros:
+*** Easy to implement.
+*** Don't need to create an additional command to add tags.
+** Cons: Not as user-friendly.
 // end::edit[]
 
 // tag:stats[]
