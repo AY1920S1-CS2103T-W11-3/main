@@ -140,7 +140,7 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save `EateryList` data in json format and read it back.
-* can save `FeedList` data in the json format and read it back.
+* can save `FeedList` data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
