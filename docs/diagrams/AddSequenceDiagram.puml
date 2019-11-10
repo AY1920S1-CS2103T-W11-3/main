@@ -49,7 +49,7 @@ activate ":EateryList"
 deactivate ":Model"
 deactivate ":EateryList"
 
-opt Eatery does not exist
+opt Eatery e does not exist
 	"ac:AddCommand" -> ":Model" : addEatery(e)
 	activate ":Model"
 	":Model" -> ":EateryList" : addEatery(e)

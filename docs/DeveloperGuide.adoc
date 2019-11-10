@@ -157,27 +157,27 @@ This section describes some noteworthy details on how certain features are imple
 
 The add feature allows the user to add an eatery with the compulsory fields: `Name`, `Address`, and `Category`. The `Tag` field(s), however, is an optional field. The user can add tag(s) to the eatery later on using the `addtag` feature, if needed. The add mechanism is facilitated by `EateryList`. It implements the following operations:
 
-* `EateryList#hasEatery(Eatery eatery)` -- Checks if an Eatery with the same identity as Eatery eatery exists in the address book.
-* `EateryList#addEatery(Eatery eatery)` -- Adds an Eatery eatery to the address book. The eatery must not already exist in the address book.
+* `EateryList#hasEatery()` -- Checks if an Eatery with the same identity as Eatery eatery exists in the address book.
+* `EateryList#addEatery()` -- Adds an Eatery eatery to the address book. The eatery must not already exist in the address book.
 
 These operations are exposed in the `Model` interface as `Model#hasEatery()` and `Model#addEatery()` respectively.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-. The user launches the application for the first time. The `EateryList` will be initialized with the initial json data stored.
+Step 1. The user launches the application for the first time. The `EateryList` will be initialized with the initial json data stored.
 
-. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. Before executing the command, the command would need to be parsed first. Hence, the `EatMeParser` would create `AddCommandParser`.
+Step 2. The user executes `add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese` to add a new eatery. Before executing the command, the command would need to be parsed first. Hence, the `EatMeParser` would create `AddCommandParser`.
 
 [NOTE]
 If the command is missing the name, address, or category (i.e. `\n`, `\a`, and `\c`), `AddCommandParser` will throw an `ParserException` to the user with an error message specifying that the command parameters are incorrect, and an example usage of the command.
 
-. `AddCommandParser` creates new objects for the different compulsory fields i.e. `Name`, `Address`, and `Category` (and also the `Tag`, if present), and passes these objects into the constructor for `Eatery` to create a new `Eatery`.
+Step 3. `AddCommandParser` creates new objects for the different compulsory fields i.e. `Name`, `Address`, and `Category` (and also the `Tag`, if present), and passes these objects into the constructor for `Eatery` to create a new `Eatery`.
 
-. `AddCommandParser` returns a new `AddCommand` with the newly created `Eatery` as a parameter.
+Step 4. `AddCommandParser` returns a new `AddCommand` with the newly created `Eatery` as a parameter.
 
-. `AddCommand` calls `Model#hasEatery` to check if the eatery already exists. If it does exist, `AddCommand` will throw a CommandException specifying that there's already a duplicate eatery in `EateryList`. Else, `AddCommand` will call `Model#addEatery` to add the eatery into `EateryList`.
+Step 5. `AddCommand` calls `Model#hasEatery` to check if the eatery already exists. If it does exist, `AddCommand` will throw a CommandException specifying that there's already a duplicate eatery in `EateryList`. Else, `AddCommand` will call `Model#addEatery` to add the eatery into `EateryList`.
 
-. After successfully adding the eatery into `EateryList`, `AddCommand` will return the `CommandResult` to the `Ui`.
+Step 6. After successfully adding the eatery into `EateryList`, `AddCommand` will return the `CommandResult` to the `Ui`.
 
 The following sequence diagram shows how the add eatery feature is executed.
 image:AddSequenceDiagram.png[]
@@ -196,6 +196,33 @@ image:AddCreateSequenceDiagram.png[]
 ** Cons: Not as user-friendly.
 // end ::add[]
 
+// tag::edit[]
+The edit feature allows the user to edit any fields from the selected eatery i.e. `Name`, `Address`, `Category`, and `Tag` field(s). This feature would replace existing `Name`, `Address`, `Category`, and `Tag` associated with the eatery, with the new ones inputted by the user. Hence, this feature is not advised for users who wants to add more tags to the current list of tags. The edit mechanism is facilitated by `EateryList`. It implements the following operations:
+
+* `EateryList#setEatery()` -- Replaces an eatery with another eatery in the `EateryList`.
+
+These operations are exposed in the `Model` interface as `Model#setEatery()`.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `EateryList` will be initialized with the initial json data stored.
+
+Step 2. The user executes `edit 1 \a 116 Commonwealth Cres, #01-140` to edit the address of an existing eatery. Before executing the command, the command would need to be parsed first. Hence, the `EatMeParser` would create `EditCommandParser`.
+
+Step 3. `EditCommandParser` creates `EditEateryDescriptor` using the parameters specified (i.e. address, in this scenario).
+
+Step 4. `EditCommandParser` returns a new `EditCommand` with the newly created `EditEateryDescriptor` as a parameter.
+
+Step 5. `EditCommand` creates a new `Eatery` using the existing `Eatery` to be edited and `EditEateryDescriptor`.
+
+Step 6. If the newly created `Eatery` is not a duplicate of the existing `Eatery`, `EditCommand` calls `Model#hasEatery` to check if the eatery exists in the list. If the eatery is a duplicate or it exists in the list, `EditCommand` will throw a CommandException specifying that there's already a duplicate eatery in `EateryList`. Else, `EditCommand` will call `Model#setEatery` to modify the eatery.
+
+Step 7. After successfully editing the eatery, `EditCommand` will return the `CommandResult` to the `Ui`.
+
+The following sequence diagram shows how the add eatery feature is executed.
+image:EditSequenceDiagram.png[]
+// end::edit[]
+
 // tag:stats[]
 === Statistics feature : `stats`
 ==== Implementation
@@ -204,29 +231,29 @@ The stats feature allows the user to generate statistics about the eateries they
 
 Given below is an example usage scenario and how the stats mechanism behaves at each step.
 
-. The user launches the application for the first time. The `EateryList` will be initialised with the initial or previous json data stored.
+Step 1. The user launches the application for the first time. The `EateryList` will be initialised with the initial or previous json data stored.
 
-. The user executes `stats` to generate statistics for the current application state. The `EatMeParser` would return a `StatsCommand` to execute the command.
+Step 2. The user executes `stats` to generate statistics for the current application state. The `EatMeParser` would return a `StatsCommand` to execute the command.
 
-. `StatsCommand` then creates `Statistics` to generate the different types of statistics needed. To create the different types of statistics, `Statistics` would, first, sort the eateries in `EateryList` based on different conditions i.e. categories, total expense, total number of visits. After sorting the eateries, `Statistics` would then use these sorted lists to generate the appropriate statistics.
+Step 3. `StatsCommand` then creates `Statistics` to generate the different types of statistics needed. To create the different types of statistics, `Statistics` would, first, sort the eateries in `EateryList` based on different conditions i.e. categories, total expense, total number of visits. After sorting the eateries, `Statistics` would then use these sorted lists to generate the appropriate statistics.
 
 [NOTE]
 If the user executes the `stats` command in the Todo mode, `StatsCommand` would throw a `CommandException` to the user specifying that the user is in the wrong mode. In addition, if there is no eateries with any reviews in the application at the time of `stats` execution, the `StatsCommand` would throw a `CommandException` error saying that there is no data to generate statistics. Lastly, if there is any error during the generating of statistics, the `StatsCommand` will throw another `CommandException` saying that there is an unknown error and the application is unable to generate statistics.
 
-. `StatsCommand` would then call `Model#setStatistics()` with `Statistics` as a a parameter.
+Step 4. `StatsCommand` would then call `Model#setStatistics()` with `Statistics` as a a parameter.
 
-. After successfully generating the statistics, `StatsCommand` will return the `CommandResult` to the `Ui`.
+Step 5. After successfully generating the statistics, `StatsCommand` will return the `CommandResult` to the `Ui`.
 
 The following sequence diagram shows how the statistics feature is executed.
 image:StatsSequenceDiagram.png[]
 
 Since the statistic feature has a different user interface compared to the other commands i.e. `AddCommand`, `AddTagCommand`, etc., it would be useful to explain how the different user interface components work.
 
-. When the `Ui` receives the `CommandResult` from `StatsCommand`, the `Ui` will call `MainWindow#showStats()`.
+Step 1. When the `Ui` receives the `CommandResult` from `StatsCommand`, the `Ui` will call `MainWindow#showStats()`.
 
-. `MainWindow#showStats()` will then if `StatsWindow` is already open, if yes then it will call `StatsWindow#initStats()` and focuses the window. Else, it will call `StatsWindow#initStats()` and shows the window.
+Step 2. `MainWindow#showStats()` will then if `StatsWindow` is already open, if yes then it will call `StatsWindow#initStats()` and focuses the window. Else, it will call `StatsWindow#initStats()` and shows the window.
 
-. In `StatsWindow#initStats()`, `StatsWindow` will create a `CustomLayeredGraph` and `CustomPiechart` to create the graph and pie chart needed for the statistics report.
+Step 3. In `StatsWindow#initStats()`, `StatsWindow` will create a `CustomLayeredGraph` and `CustomPiechart` to create the graph and pie chart needed for the statistics report.
 
 The following sequence diagram shows how the statistics feature shows the statistics to the user.
 image:StatsUiSequenceDiagram.png[]
@@ -241,8 +268,7 @@ image:StatsUiSequenceDiagram.png[]
 *** Pros: User would not need to call `stats` command after every addition or change made to the eatery or reviews of an eatery.
 *** Cons: Need to refactor a lot of existing code.
 
-Reason for choosing alternative 1: Although it may be annoying for the user to keep calling `stats` command after every change made, we realise that since `stats` acts as a statistics report for the users, users may not call the `stats` command as often to justify refactoring the entire code.
-
+Reason for choosing alternative 1: Although it may be annoying for the user to keep calling `stats` command after every change made, we realise that since `stats` acts as a statistics report for the users, users may not call the `stats` command as often to justify refactoring the entire code. Furthermore, to make a change to the eatery or reviews, the user would still need to minimize `StatsWindow` and unminimize it to view the auto-updated changes. Hence, the number of steps the user would need to execute to see the change in statistics is the same even for both auto-update and without auto-update.
 
 // tag::revieweatery[]
 === [Proposed] Review Eatery feature
