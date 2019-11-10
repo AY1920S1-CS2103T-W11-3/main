@@ -390,7 +390,10 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the add eatery feature is executed.
-<span class="image"><img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram"></span>
+<span class="image"><img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the reference sequence diagram for creating <code>Eatery e</code>.
 <span class="image"><img src="images/AddCreateSequenceDiagram.png" alt="AddCreateSequenceDiagram"></span></p>
 </div>
 </div>
@@ -476,8 +479,15 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 <p>Step 7. After successfully editing the eatery, <code>EditCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the add eatery feature is executed.
+<p>The following sequence diagram shows how the edit eatery feature is executed.
 <span class="image"><img src="images/EditSequenceDiagram.png" alt="EditSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the reference sequence diagram for creating an <code>EditEateryDescriptor e</code>.
+<span class="image"><img src="images/EditEateryDescriptorSequenceDiagram.png" alt="EditEateryDescriptorSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The reference sequence diagram for creating <code>Eatery edited</code> has been omitted as the steps are the same as the reference sequence diagram for <code>add</code> command above.</p>
 </div>
 </div>
 </div>
@@ -2187,4 +2197,4 @@ Expected: Application starts with a blank <code>Eatery</code> list panel. Error 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 16:42:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:18:55 UTC</div></div></div></body></html>
