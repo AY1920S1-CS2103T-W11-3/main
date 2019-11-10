@@ -193,42 +193,90 @@ image::add-ad.PNG[]
 // end ::add[]
 
 // tag::revieweatery[]
-=== [Proposed] Review Eatery feature
+=== Review Eatery feature
 ==== Implementation
 
-The review mechanism is facilitated by the existing `AddressBook`.
-It extends `AddressBook` with a review field, stored internally as an array list of reviews along with other
+The review mechanism is facilitated by `EateryList`.
+It is stored internally as a set of reviews along with the other
 attributes of an eatery.
 Additionally, it implements the following operations:
 
-* `AddressBook#review()` -- Adds a review to the eatery identified by the user input.
-* `AddressBook#editReview()` -- Edits a previously written review.
+* `Eatery#addReview` -- Adds a review to the eatery identified by the user input.
 
 Given below is an example usage scenario and how the review mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial json data stored.
+Step 1. The user launches the application for the first time. The `EateryList` will be initialized with the initial json data stored.
 
 Step 2. The user executes `review 1 ...` command to add a review to the first Eatery in the address book. The `review` command will call `Eatery#addReview()`.
 [NOTE]
 If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to review the Eatery.
 
-Step 3. The user executes `open 1` to get the complete details of the first Eatery.
+[NOTE]
+If the review is missing a `Description`, `Rating`, `Cost` or a `Date` field, an error will be shown to the user instead of adding the review.
 
-Step 4. The user then decides to execute `edit review 1 ...` to edit the first review of the Eatery opened in the previous step. This calls the `EatMe#editcommand()`.
+Step 3. The address book now returns a success message upon successfully adding a review to the eatery.
 
-===== Aspect: How review and edit review executes
+[NOTE]
+If an eatery is `closed`, the user will be shown an error message saying that the eatery is closed.
 
-* **Alternative 1 (current choice):** No further nesting of Review field in Eatery.
-** Pros: Easily implemented.
-** Cons: May be worse OOP model as compared to other commands.
+
+===== Aspect: How review executes
+
+* ** Alternative 1 (current choice) **
+Adds a review to an eatery's list of reviews.
+Pros: Easy to understand and implement.
+Cons: The set of reviews of an `Eatery` is not final, unlike tags.
+
+* ** Alternative 2**
+Return a new set of reviews every time a review is added.
+Pros: Makes the set of reviews final, adhering to the existing model.
+Cons: Highly inefficient
+
+===== Aspect: Data Structure used to store Reviews
+
+* **Alternative 1 (current choice):**
+No further nesting of Review field in Eatery.
+** Pros: Easily implemented and will not compromise speed.
+** Cons: The OOP model might be different from other Commands.
 * **Alternative 2:** Further nesting of Review field in Eatery.
 ** Pros: A better OOP model.
 ** Cons: May decrease performance and difficult to implement.
 
-* **Current choice:** Store and edit the reviews of an eatery in a list.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: List is not immutable.
+
 // end::revieweatery[]
+
+// tag::editreview[]
+
+=== Edit Review Feature
+==== Implementation
+
+The edit review mechanism is facilitated by `EateryList`. It makes use of the following operations:
+
+* `EateryList#getActiveEatery`
+
+Given below is an example usage scenario and how the close mechanism behaves at each step.
+
+Step 1: The user decides to check the reviews of an eatery by using `show` command.
+
+Step 2: The user then decides to edit the first review of the eatery and executes `editreview 1 ...` with the necessary fields.
+
+[NOTE]
+If none of the fields entered are different from the existing fields, the user will be shown an error saying that at least one field should be different.
+
+[NOTE]
+If the user input is not according to the given format, an error will be shown to the user instead of attempting to edit the review.
+
+Step 3: The application returns a success message upon successfully editing the review.
+
+==== Design Considerations:
+
+===== Aspect: How edit review executes
+* ** Alternative 1 (current choice)**:
+When the show command is used, `EateryList#setActiveEatery` will set the eatery shown as the active eatery.
+When the user attempts to edit review, the eatery is accessed using
+
+
+// end::editreview[]
 
 // tag::close[]
 === Close Eatery feature
