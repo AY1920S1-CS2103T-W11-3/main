@@ -216,21 +216,23 @@ If the review is missing a `Description`, `Rating`, `Cost` or a `Date` field, an
 
 Step 3. The address book now returns a success message upon successfully adding a review to the eatery.
 
-[NOTE]
-If an eatery is `closed`, the user will be shown an error message saying that the eatery is closed.
+The following diagram shows the activities involved.
+image:ReviewActivityDiagram.png[]
 
+The following diagram shows how the method is executed.
+image:ReviewSequenceDiagram.png[]
 
 ===== Aspect: How review executes
 
 * ** Alternative 1 (current choice) **
 Adds a review to an eatery's list of reviews.
-Pros: Easy to understand and implement.
-Cons: The set of reviews of an `Eatery` is not final, unlike tags.
+** Pros: Easy to understand and implement.
+** Cons: The set of reviews of an `Eatery` is not final, unlike tags.
 
 * ** Alternative 2**
 Return a new set of reviews every time a review is added.
-Pros: Makes the set of reviews final, adhering to the existing model.
-Cons: Highly inefficient
+** Pros: Makes the set of reviews final, adhering to the existing model.
+** Cons: Highly inefficient
 
 ===== Aspect: Data Structure used to store Reviews
 
@@ -268,6 +270,9 @@ If none of the fields entered are different from the existing fields, the user w
 If the user input is not according to the given format, an error will be shown to the user instead of attempting to edit the review.
 
 Step 3. The application returns a success message upon successfully editing the review.
+
+The following diagram shows the activities involved.
+image:EditReviewActivityDiagram.png[]
 
 ==== Design Considerations:
 
