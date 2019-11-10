@@ -26,9 +26,10 @@
 <li><a href="#proposed-review-eatery-feature">3.2. [Proposed] Review Eatery feature</a></li>
 <li><a href="#close-eatery-feature">3.3. Close Eatery feature</a></li>
 <li><a href="#changing-mode-of-eatme-feature">3.4. Changing Mode of EatMe feature</a></li>
-<li><a href="#saving-todo-eatery-feature">3.5. Saving Todo Eatery feature</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#news-feed-feature">3.5. News Feed Feature</a></li>
+<li><a href="#saving-todo-eatery-feature">3.6. Saving Todo Eatery feature</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -752,9 +753,187 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.5. Saving Todo Eatery feature</a></h3>
+<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.5. News Feed Feature</a></h3>
+<div class="paragraph">
+<p>As people who really love food, we are interested in keeping up-to-date with the latest food trends and newest eateries to try.
+The news feed allows the user to save their favorite food blogs to EatMe and have access to the latest food-related articles right from within the app.
+Should a food blog become irrelevant, the user also has the option to remove it and no longer display its articles.</p>
+</div>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
+<h4 id="terminology"><a class="link" href="#terminology">3.5.1. Terminology</a></h4>
+<div class="paragraph">
+<p>Some terms are used in this feature:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Feed</code> - A food blog</p>
+</li>
+<li>
+<p><code>Feed Post</code> - An article from a feed</p>
+</li>
+<li>
+<p><code>News Feed Panel</code> - The right column of the app showing news articles</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.2. Implementation</a></h4>
+<div class="paragraph">
+<p>The current news feed supports two commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddFeed</code> - Add a new feed</p>
+</li>
+<li>
+<p><code>DeleteFeed</code> - Delete a feed and its associated feed posts</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="code-addfeed-code-add-a-new-feed"><a class="link" href="#code-addfeed-code-add-a-new-feed"><code>AddFeed</code> - Add a new feed</a></h5>
+<div class="paragraph">
+<p>The following activity diagram shows the flow when the user wants to add a new feed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddFeedActivityDiagram.png" alt="AddFeedActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. EatMe fetches the latest feed posts from the user&#8217;s existing feeds and displays them to the user in the news feed panel.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user finds a new favorite food blog called <em>Eatbook</em> and wants to add it into the app. The user executes <code>addfeed \n Eatbook \a <a href="https://eatbook.sg/feed" class="bare">https://eatbook.sg/feed</a></code> to add the new feed. <code>AddFeedCommand</code> calls <code>Model#addFeed</code> with the new feed object, which will in turn add the new feed to the Model&#8217;s internal feed list.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>AddFeed</code> command executes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddFeedSequenceDiagram.png" alt="AddFeedSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="code-deletefeed-code-delete-a-feed-and-its-associated-feed-posts"><a class="link" href="#code-deletefeed-code-delete-a-feed-and-its-associated-feed-posts"><code>DeleteFeed</code> - Delete a feed and its associated feed posts</a></h5>
+<div class="paragraph">
+<p>The following activity diagram shows the flow when the user wants to delete a feed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteFeedActivityDiagram.png" alt="DeleteFeedActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. EatMe fetches the latest feed posts from the user&#8217;s existing feeds and displays them to the user in the news feed panel.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user is no longer interested in the food blog <em>Eatbook</em> and wants to delete it from the app. The user executes <code>deletefeed \n Eatbook</code> to delete the feed. <code>DeleteFeedCommand</code> calls <code>Model#deleteFeed</code> with the feed to delete, which will in turn remove the feed to the Model&#8217;s internal feed list.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>DeleteFeed</code> command executes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteFeedSequenceDiagram.png" alt="DeleteFeedSequenceDiagram">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-storage-of-feed-list"><a class="link" href="#aspect-storage-of-feed-list">Aspect: Storage of feed list</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Store the feed list in the existing Eatery list JSON file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Single JSON file for all of the user&#8217;s data (eateries, todos, feeds).</p>
+</li>
+<li>
+<p>Cons: When sharing your JSON file with another user, the feeds would be transferred as well - Poor user experience because favorite food blogs are a personal choice and should not be transferred when sharing eateries.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2 (current choice): Store the feed list as a separate JSON file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Separation of eatery-related and feed-related information into two separate JSON files - Allows sharing of eateries without affecting feeds.</p>
+</li>
+<li>
+<p>Cons: Two separate files - Minor inconvenience if the user wants to backup their data to another location.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.5.4. Aspect: Offline behavior of news feed</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current implementation): Store the feed posts from the last successful update in the feed list JSON file</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Allows for offline access to feed posts.</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Feed posts may be outdated if the user has not opened the app with Internet connectivity for a long time.</p>
+</li>
+<li>
+<p>Larger feed list JSON file size.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Show an error message when offline.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Small and simple feed list JSON file.</p>
+</li>
+<li>
+<p>Cons: Unable to view feed posts when offline.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.6. Saving Todo Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-7"><a class="link" href="#implementation-7">3.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends <code>Command</code>.</p>
 </div>
@@ -783,7 +962,7 @@ image::SaveTodoCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-savetodo-execute"><a class="link" href="#aspect-how-savetodo-execute">Aspect: How SaveTodo execute</a></h5>
 <div class="ulist">
@@ -831,14 +1010,14 @@ This situation will result in the user requiring to type the whole <code>add</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -869,7 +1048,7 @@ This situation will result in the user requiring to type the whole <code>add</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1434,4 +1613,4 @@ Expected: Application starts with a blank <code>Eatery</code> list panel. Error 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:18:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 12:37:11 UTC</div></div></div></body></html>
