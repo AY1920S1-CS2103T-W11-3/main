@@ -64,7 +64,7 @@ These are just a few of the commands you can execute on EatMe. Refer to <<Featur
 * Items in curly brackets are optional parameters. For example, in `add \n [name of eatery] \a [address] \c [category] {\t [tags]...}`, `{\t [tags]...}` is an optional parameter that the user can choose to supply if he/she wishes to add certain tags to the eatery.
 * Items with `…` after them can be used multiple times including zero times e.g. `{nbsp}` can be used as (i.e. 0 times), `\t non-aircon`, `\t good-for-groups \t non-aircon`, etc.
 * Parameters can be in any order. For example, if the command specifies `\n [name of eatery] \a [address] \c [category]`, `\a [address] \n [name of eatery] \c [category]` is also acceptable.
-* For parameters requiring `index`, `index` refers to the index number shown in the displayed eatery list. The index *must be a positive integer* 1, 2, 3, ... .
+* For parameters requiring `index`, `index` refers to the index number shown in the displayed eatery or review list. The index *must be a positive integer* 1, 2, 3, ... .
 ====
 
 === General
