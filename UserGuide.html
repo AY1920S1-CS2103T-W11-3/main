@@ -550,8 +550,10 @@ Format: <code>random</code></p>
 <div class="sect4">
 <h5 id="viewing-an-eatery-code-show-code"><a class="link" href="#viewing-an-eatery-code-show-code">Viewing an eatery: <code>show</code></a></h5>
 <div class="paragraph">
-<p>Shows an eatery with all its details i.e. address, category, tags, reviews, and a map of its location.<br>
-Format: <code>show [index]</code></p>
+<p>Shows an eatery with all its details - address, category, tags, reviews, and a map of its location.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>show [index]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -559,6 +561,12 @@ Format: <code>show [index]</code></p>
 <ul>
 <li>
 <p>Shows the eatery at the specified index.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed eatery list.</p>
+</li>
+<li>
+<p>In order <strong>to view the eatery&#8217;s map, you must be connected to the Internet</strong>.</p>
 </li>
 </ul>
 </div>
@@ -775,8 +783,27 @@ Format: <code>removetag [index] \t [tags]&#8230;&#8203;</code></p>
 <div class="sect3">
 <h4 id="viewing-an-eatery-code-show-code-2"><a class="link" href="#viewing-an-eatery-code-show-code-2">4.3.7. Viewing an eatery: <code>show</code></a></h4>
 <div class="paragraph">
-<p>Shows an eatery with all its details i.e. address, category, tags, reviews, external reviews (from Google), and a map of its location.
-Format: <code>show [index]</code></p>
+<p>Shows an eatery with all its details - address, tags, reviews, and a map of its location.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>show [index]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Shows the eatery at the specified index.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed eatery list.</p>
+</li>
+<li>
+<p>In order <strong>to view the eatery&#8217;s map, you must be connected to the Internet</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -803,19 +830,60 @@ Format: <code>delete [index]</code></p>
 </div>
 <div class="sect2">
 <h3 id="news-feed"><a class="link" href="#news-feed">4.4. News Feed</a></h3>
-<div class="sect3">
-<h4 id="adding-a-feed-code-addfeed-code"><a class="link" href="#adding-a-feed-code-addfeed-code">4.4.1. Adding a feed : <code>addfeed</code></a></h4>
 <div class="paragraph">
-<p>Adds a feed to the news feed.<br>
-Format: <code>addfeed \n [name of feed] \a [address of the RSS feed]</code></p>
+<p>EatMe allows you to stay up-to-date with the latest food trends from right within the app!
+Add your favorite food blogs into the app and EatMe will show you a list of the latest articles from those blogs on the right panel.
+To view any of the articles, simply click on the title of the post.</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Terminology:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addfeed \n [Eatbook] \a <a href="https://eatbook.com/feed" class="bare">https://eatbook.com/feed</a></code></p>
+<p><code>feed</code> - A food blog</p>
+</li>
+<li>
+<p><code>feed post</code> - A single post from a food blog</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="adding-a-feed-code-addfeed-code"><a class="link" href="#adding-a-feed-code-addfeed-code">4.4.1. Adding a feed : <code>addfeed</code></a></h4>
+<div class="paragraph">
+<p>Adds a new feed to the app.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addfeed \n [name of feed] \a [Web address of the feed]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a new feed with the given name and Web address.</p>
+</li>
+<li>
+<p>Fetches the 5 latest posts from the feed and displays them in the right panel.</p>
+</li>
+<li>
+<p>The Web address <strong>must point to a valid RSS XML feed</strong>.</p>
+</li>
+<li>
+<p>In order <strong>to fetch the latest posts, you must be connected to the Internet</strong>.
+If you are not connected to the Internet, you can still add the feed but feed posts will only be fetched when the app is restarted with Internet connectivity.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addfeed \n Eatbook \a <a href="https://eatbook.com/feed" class="bare">https://eatbook.com/feed</a></code></p>
 </li>
 </ul>
 </div>
@@ -823,8 +891,24 @@ Format: <code>addfeed \n [name of feed] \a [address of the RSS feed]</code></p>
 <div class="sect3">
 <h4 id="deleting-a-feed-code-deletefeed-code"><a class="link" href="#deleting-a-feed-code-deletefeed-code">4.4.2. Deleting a feed : <code>deletefeed</code></a></h4>
 <div class="paragraph">
-<p>Deletes a feed from the news feed.<br>
-Format: <code>deletefeed \n [name of feed]</code></p>
+<p>Deletes a feed from the app.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deletefeed \n [name of feed]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the feed with the specified name and all its associated feed posts.</p>
+</li>
+<li>
+<p>The name <strong>must match the feed&#8217;s name exactly</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -959,4 +1043,4 @@ Format: <code>deletefeed \n [name of feed]</code></p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EatMe folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 12:37:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 12:37:54 UTC</div></div></div></body></html>
