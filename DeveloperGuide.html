@@ -25,9 +25,10 @@
 <li><a href="#add-eatery-feature">3.1. Add Eatery feature</a></li>
 <li><a href="#proposed-review-eatery-feature">3.2. [Proposed] Review Eatery feature</a></li>
 <li><a href="#close-eatery-feature">3.3. Close Eatery feature</a></li>
-<li><a href="#proposed-mode-command-feature">3.4. [Proposed] Mode Command feature</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#changing-mode-of-eatme-feature">3.4. Changing Mode of EatMe feature</a></li>
+<li><a href="#saving-todo-eatery-feature">3.5. Saving Todo Eatery feature</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -42,8 +43,10 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-an-eatery">G.2. Deleting an Eatery</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#saving-an-eatery">G.2. Saving an eatery</a></li>
+<li><a href="#deleting-an-eatery">G.3. Deleting an eatery</a></li>
+<li><a href="#deleting-an-eatery-2">G.4. Deleting an Eatery</a></li>
+<li><a href="#saving-data">G.5. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -676,49 +679,49 @@ image::CloseCommitActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-mode-command-feature"><a class="link" href="#proposed-mode-command-feature">3.4. [Proposed] Mode Command feature</a></h3>
+<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.4. Changing Mode of EatMe feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
 <div class="paragraph">
-<p>Allows the user to toggle between Main mode and Todo mode. It extends <code>Command</code>, and once the mode has been switched, it will affect all other command functions.
-The mode is determined through the <code>isMainMode</code> boolean variable.</p>
+<p>Allows the user to toggle between Main mode and Todo mode. It extends <code>Command</code>, and once mode is switched, all other command functions would be affected.
+The mode is determined through the value of a boolean variable named <code>isMainMode</code>.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the mode mechanism behaves at each step.</p>
+<p>Given below is an example usage of how the mode command behaves.</p>
 </div>
 <div class="paragraph">
-<p>Step 1: The user launches the application. The <code>AddressBook</code> will be will be initialised as the <strong>Main Mode</strong> with the initial json data stored.</p>
+<p>Step 1: The user launches the application. Data from <code>eaterylist</code> will be fetched and will be initialised in Main Mode by default.</p>
 </div>
 <div class="paragraph">
-<p>Step 2: The user executes <code>mode</code> command to switch EatMe to the <strong>Todo Mode</strong> which displays <code>Eateries</code> in the <strong>Todo</strong> list.</p>
+<p>Step 2: The user execute <code>mode</code> command and the mode of the application will be switched to <code>todo</code> mode, displaying items in the <code>todo</code> list instead.</p>
 </div>
 <div class="paragraph">
-<p>Step 3: The user can execute <code>mode</code> command again to switch EatMe back to the <strong>Main Mode</strong> which displays the <code>Eateries</code> in the <strong>Main</strong> list.</p>
+<p>Step 3: The user can execute <code>mode</code> command again, returning the application to <code>main</code> mode, showing the items stored in the <code>main</code> list.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the <code>mode</code> command works:
-image::ModeCommandSequenceDiagram.png[]</p>
+image::ModeCommandSequence.png[]</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new <code>mode</code> command:
+<p>The following activity diagram summarizes what happens when a user executes a new command:
 image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-mode-executes"><a class="link" href="#aspect-how-mode-executes">Aspect: How Mode executes</a></h5>
+<h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Current choice:</strong> Toggles between mode through a boolean value.</p>
+<p><strong>Alternative 1 (current choice):</strong> Toggle between mode through a boolean value.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easily implemented.</p>
+<p>Pros: Easy for implementation.</p>
 </li>
 <li>
-<p>Cons: An additional variable to check when executing other commands. Possibility of incorrect manipulation of an Eatery object.</p>
+<p>Cons: An additional factor to check when executing any other commands; Possibility of mis-manipulation of data.</p>
 </li>
 </ul>
 </div>
@@ -731,14 +734,14 @@ image::ModeCommandActivity.png[]</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Current choice:</strong> Maintains two separate lists of Eateries for Main mode and Todo Mode.</p>
+<p><strong>Alternative 1 (current choice):</strong> Maintain two separate lists for Main mode and Todo Mode.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Todo Eateries stored apart from Main Eateries. Commands executed will only affect Eateries stored in a particular list.</p>
+<p>Pros: Data between the two modes will be separated. Commands executed will only affect data stored in the list for the particular mode.</p>
 </li>
 <li>
-<p>Cons: Requires proper handling of individual data structures to ensure each list is maintained and updated correctly.</p>
+<p>Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa</p>
 </li>
 </ul>
 </div>
@@ -749,14 +752,93 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.5. Saving Todo Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
+<div class="paragraph">
+<p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends <code>Command</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage of how the SaveTodo Command behaves.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application. Data from <code>EateryList</code> will be fetched and initialised in main mode by default.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The user executes mode command and the mode of the application will be switched to Todo mode, displaying items in the todo list instead.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The user can execute <code>save 1</code>, indicating to the system the index of eatery to be saved.</p>
+</div>
+<div class="paragraph">
+<p>Step 4: The eatery in the todo list will be removed and an add command will be constructed in the CommandBox for the user to input any necessary fields before adding.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>SaveTodo</code> command works:
+image::SaveTodoCommandSequence.png[]</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:
+image::SaveTodoCommandActivity.png[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-savetodo-execute"><a class="link" href="#aspect-how-savetodo-execute">Aspect: How SaveTodo execute</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Construct the commands as a string before displaying to the user.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User-friendly. User will be able to add the eatery to the main list with minimum effort.</p>
+</li>
+<li>
+<p>Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not add the new eatery after executing <code>saveTodo</code> command.
+This situation will result in the user requiring to type the whole <code>add</code> command on his own as information will not be saved.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> Allow eatery to have the same attributes fields as eatery in main list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: As eatery in todo list and main list have the same attributes, it will be possible to <code>save</code> the eatery directly to the main list without further input from the user.</p>
+</li>
+<li>
+<p>Cons: User will be required to include additional field when adding an eatery in the todo list. Field entered may be irrelevant as user had yet to visit the eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-savetodo-command"><a class="link" href="#aspect-data-structure-to-support-savetodo-command">Aspect: Data structure to support SaveTodo Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> No additional data structure is required for <code>SaveTodo</code> command</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -787,7 +869,7 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1233,7 +1315,70 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-eatery"><a class="link" href="#deleting-an-eatery">G.2. Deleting an Eatery</a></h3>
+<h3 id="saving-an-eatery"><a class="link" href="#saving-an-eatery">G.2. Saving an eatery</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Saving an eatery while eateries are present in todo list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Application is on todo mode.</p>
+</li>
+<li>
+<p>Todo list is not empty</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: Save 1<br>
+Expected: The application will toggle to main mode and a add command will be display in the commandbox.</p>
+</li>
+<li>
+<p>Test Case: Save 0<br>
+Expected: An error message will be shown in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-eatery"><a class="link" href="#deleting-an-eatery">G.3. Deleting an eatery</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting an eatery while all eateries are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all eateries using the list command. Multiple eateries in the list.</p>
+</li>
+<li>
+<p>Test case: delete 1<br>
+Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: delete 0<br>
+Expected: No eatery is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: delete, delete x (where x is larger than the list size) <em>{give more}</em><br></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-eatery-2"><a class="link" href="#deleting-an-eatery-2">G.4. Deleting an Eatery</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1265,7 +1410,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1289,4 +1434,4 @@ Expected: Application starts with a blank <code>Eatery</code> list panel. Error 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 10:42:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 10:52:28 UTC</div></div></div></body></html>
