@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Nadia Atiqah Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">EatMe</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-W11-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Nadia Atiqah Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This portfolio documents all contributions I have made as part of the team project in the CS2103T Software Engineering module. For the software engineering team project, my group of 4 other software engineering students and I were tasked with enhancing an existing application called Address Book 3. We chose to morph the current application into a food diary application called EatMe. The user interacts with it using a Command Line Interface (CLI) and it has a Graphical User Interface (GUI) created with JavaFX. It is written in Java and has about 10 kLoC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My main task was to implement the <code>stats</code>, <code>add</code> and <code>edit</code> features. The following sections illustrate the work I had carried out to implement the feature, as well as the relevant documentation I have added to the user and developer guides.</p>
+</div>
+<div class="sect2">
+<h3 id="features-implemented"><a class="link" href="#features-implemented">Features implemented</a></h3>
+<div class="sect3">
+<h4 id="strong-add-command-strong"><a class="link" href="#strong-add-command-strong"><strong>Add command</strong></a></h4>
+<div class="paragraph">
+<p>The <code>add</code> command allows the user to add an eatery to our food diary application. The user can specify the name, address, category, and tags for the eatery when adding the eatery. Being a food diary application, the <code>add</code> command is one of the most important commands in the application as without it, the user would not be able to manage and keep track of any food places. The <code>add</code> command already came with the original Address Book code. Hence, all I needed to do was to add a Category field into the <code>add</code> command argument parameters and making the Tag field in the original <code>add</code> command argument parameters optional.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="strong-edit-command-strong"><a class="link" href="#strong-edit-command-strong"><strong>Edit command</strong></a></h4>
+<div class="paragraph">
+<p>The <code>edit</code> command allows the user to edit an existing eatery. To edit an existing eatery, the user would need to specify the index of the eatery and other parameters that they would like to modify. Similarly, the <code>edit</code> command is one more important command in the application as there is a possibility that the user might have entered the eatery information wrongly. The <code>edit</code> command also came with the original Address Book code. Hence, all I needed to do was to enable the user to edit the Category field in the existing eatery.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="strong-stats-command-strong"><a class="link" href="#strong-stats-command-strong"><strong>Stats command</strong></a></h4>
+<div class="paragraph">
+<p>The <code>stats</code> command allows the user to generate statistics about the eateries they have visited and the reviews they have made at those visited eateries. The <code>stats</code> command is not one of the most crucial commands in the application, however, it is still useful for users as it gives them a breakdown of their eateries and reviews. Unlike the <code>add</code> and <code>edit</code> commands, <code>stats</code> command did not come with the original Address Book 3 code. Hence, it required an in-depth analysis of possible design solutions and alternatives.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-contributed"><a class="link" href="#code-contributed">Code contributed</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>[<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=walnads&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false">All code</a>]</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Documentation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Made improvements to the EatMe user guide so that it reflects the actual functionality of our application. Do refer to pull request [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/9">#9</a>] and [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/182">#182</a>], specifically commits [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/182/commits/d8da7b45455801d64b24c2d9ba53b32b58d88eb2">d8da7b</a>] and [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/182/commits/b3242a22024bd83ac7bd5504c088c569f4917598">b3242a</a>] for more details.</p>
+</li>
+<li>
+<p>Made changes to the general class diagrams shown in the "Architecture" section of the EatMe developer guide so that it reflects the actual architecture of our application. Do refer to pull request [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/170">#170</a>] for more details.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reviewed my team mates’ pull requests (with non-trivial comments). Do refer to pull requests [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/76">#76</a>] and [<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/90">#90</a>] for more details.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Design</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Designed and created the high-fidelity mock-up of how our food diary application should look like originally and the icon for the application.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Shown below are some of the sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</p>
+</div>
+<div class="sect4">
+<h5 id="adding-an-eatery-code-add-code"><a class="link" href="#adding-an-eatery-code-add-code">Adding an eatery: <code>add</code></a></h5>
+<div class="paragraph">
+<p>Adds an eatery to the app.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>add \n [name of eatery] \a [address] \c [category] {\t [tags]&#8230;&#8203;}</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The name, address, and category fields are compulsory and must be provided.</p>
+</li>
+<li>
+<p>The tag field is optional, and you can specify 0 to as many tags as you want.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese</code></p>
+</li>
+<li>
+<p><code>add \n Two Chefs Eating Place \a 116 Commonwealth Cres, #01-129 \c Chinese \t good-for-groups \t non-aircon</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="showing-overall-statistics-code-stats-code"><a class="link" href="#showing-overall-statistics-code-stats-code">Showing overall statistics: <code>stats</code></a></h5>
+<div class="paragraph">
+<p>Presents a visual overview of the user’s eateries and reviews. Eatery and review data used to generate the statistics are collated from the start of the application. The command will generate six types of statistics:  most visited eateries, least visited eateries, eateries you spent the most at (on average), eateries you spent the least at (on average), price per category, number of visits per category.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>stats</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>There must be at least <strong>one</strong> review and eatery to generate the statistics.</p>
+</li>
+<li>
+<p>After updating a review or eatery, the user must run the <code>stats</code> command again to update the statistics as it does <strong>not</strong> auto-update.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Shown below are some of the sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</p>
+</div>
+<div class="sect2">
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">UI component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram">
+</div>
+<div class="title">Figure 1. Structure of the UI Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/eatme/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>EateryListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="{repoURL}/src/main/java/seedu/eatme/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="{repoURL}/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Executes user commands using the <code>Logic</code> component.</p>
+</li>
+<li>
+<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">Logic component</a></h3>
+<div id="fig-LogicClassDiagram" class="imageblock">
+<div class="content">
+<img src="../images/LogicClassDiagram.png" alt="LogicClassDiagram">
+</div>
+<div class="title">Figure 2. Structure of the Logic Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> :
+<a href="{repoURL}/src/main/java/seedu/eatme/logic/Logic.java"><code>Logic.java</code></a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Logic</code> uses the <code>EatMeParser</code> class to parse the user command.</p>
+</li>
+<li>
+<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+</li>
+<li>
+<p>The command execution can affect the <code>Model</code> (e.g. adding an <code>Eatery</code>).</p>
+</li>
+<li>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+</li>
+<li>
+<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Model"><a class="link" href="#Design-Model">Model component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram">
+</div>
+<div class="title">Figure 3. Structure of the Model Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/eatme/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores a <code>EateryList</code> object that represents the data from the list of eateries in the app.</p>
+</li>
+<li>
+<p>stores the <code>FeedList</code> object that represents the data from the list of feeds in the app.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Eatery&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;FeedPost&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">Storage component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StorageClassDiagram.png" alt="StorageClassDiagram" width="400">
+</div>
+<div class="title">Figure 4. Structure of the Storage</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/eatme/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>EateryList</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save <code>FeedList</code> objects in json format and read it back.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-eatery-feature"><a class="link" href="#edit-eatery-feature">Edit Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The edit feature allows the user to edit any fields from the selected eatery i.e. <code>Name</code>, <code>Address</code>, <code>Category</code>, and <code>Tag</code> field(s). This feature would replace existing <code>Name</code>, <code>Address</code>, <code>Category</code>, and <code>Tag</code> associated with the eatery, with the new ones inputted by the user. Hence, this feature is not advised for users who wants to add more tags to the current list of tags. The edit mechanism is facilitated by <code>EateryList</code>. It implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EateryList#setEatery()</code>&#8201;&#8212;&#8201;Replaces an eatery with another eatery in the <code>EateryList</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#setEatery()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the add mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialized with the initial json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>edit 1 \a 116 Commonwealth Cres, #01-140</code> to edit the address of an existing eatery. Before executing the command, the command would need to be parsed first. Hence, the <code>EatMeParser</code> would create <code>EditCommandParser</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>EditCommandParser</code> creates <code>EditEateryDescriptor</code> using the parameters specified (i.e. address, in this scenario).</p>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>EditCommandParser</code> returns a new <code>EditCommand</code> with the newly created <code>EditEateryDescriptor</code> as a parameter.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. <code>EditCommand</code> creates a new <code>Eatery</code> using the existing <code>Eatery</code> to be edited and <code>EditEateryDescriptor</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 6. If the newly created <code>Eatery</code> is not a duplicate of the existing <code>Eatery</code>, <code>EditCommand</code> calls <code>Model#hasEatery</code> to check if the eatery exists in the list. If the eatery is a duplicate or it exists in the list, <code>EditCommand</code> will throw a CommandException specifying that there&#8217;s already a duplicate eatery in <code>EateryList</code>. Else, <code>EditCommand</code> will call <code>Model#setEatery</code> to modify the eatery.</p>
+</div>
+<div class="paragraph">
+<p>Step 7. After successfully editing the eatery, <code>EditCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the edit eatery feature is executed.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/EditSequenceDiagram.png" alt="EditSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the reference sequence diagram for creating an <code>EditEateryDescriptor e</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/EditEateryDescriptorSequenceDiagram.png" alt="EditEateryDescriptorSequenceDiagram" width="400"></span></p>
+</div>
+<div class="paragraph">
+<p>The reference sequence diagram for creating <code>Eatery edited</code> has been omitted as the steps are the same as the reference sequence diagram for <code>add</code> command above.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-replace-or-directly-manipulating-the-eatery-s-list-of-tags"><a class="link" href="#aspect-replace-or-directly-manipulating-the-eatery-s-list-of-tags">Aspect: Replace or directly manipulating the eatery&#8217;s list of tags</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Replace the entire list of tags</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+<li>
+<p>More user-friendly&#8201;&#8212;&#8201;command makes more sense to the user.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons: Need to create additional commands to handle explicit manipulation of tags (i.e. <code>addtag</code> and <code>removetag</code> commands to the current list of tags.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Manipulating to the list of tags</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+<li>
+<p>Don&#8217;t need to create an additional commands to manipulate tags.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons: Not as user-friendly&#8201;&#8212;&#8201;might need to specify more argument parameters to handle manipulation of tags (e.g. <code>\at [tags]</code> to add tags and <code>\rt [tags]</code> to remove existing tags).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">Statistics feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>The stats feature allows the user to generate statistics about the eateries they have visited and reviews they have made at those visited eateries.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the stats mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialised with the initial or previous json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>stats</code> to generate statistics for the current application state. The <code>EatMeParser</code> would return a <code>StatsCommand</code> to execute the command.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>StatsCommand</code> then creates <code>Statistics</code> to generate the different types of statistics needed. To create the different types of statistics, <code>Statistics</code> would, first, sort the eateries in <code>EateryList</code> based on different conditions i.e. categories, total expense, total number of visits. After sorting the eateries, <code>Statistics</code> would then use these sorted lists to generate the appropriate statistics.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user executes the <code>stats</code> command in the Todo mode, <code>StatsCommand</code> would throw a <code>CommandException</code> to the user specifying that the user is in the wrong mode. In addition, if there is no eateries with any reviews in the application at the time of <code>stats</code> execution, the <code>StatsCommand</code> would throw a <code>CommandException</code> error saying that there is no data to generate statistics. Lastly, if there is any error during the generating of statistics, the <code>StatsCommand</code> will throw another <code>CommandException</code> saying that there is an unknown error and the application is unable to generate statistics.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>StatsCommand</code> would then call <code>Model#setStatistics()</code> with <code>Statistics</code> as a a parameter.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. After successfully generating the statistics, <code>StatsCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the statistics feature is executed.
+<span class="image"><img src="../images/StatsSequenceDiagram.png" alt="StatsSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>Since the statistic feature has a different user interface compared to the other commands i.e. <code>AddCommand</code>, <code>AddTagCommand</code>, etc., it would be useful to explain how the different user interface components work.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. When the <code>Ui</code> receives the <code>CommandResult</code> from <code>StatsCommand</code>, the <code>Ui</code> will call <code>MainWindow#showStats()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>MainWindow#showStats() will check if `StatsWindow</code> is already open. If it is opened, it will call <code>StatsWindow#initStats()</code> and focuses the window. Else, it will call <code>StatsWindow#initStats()</code> and displays the window.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. In <code>StatsWindow#initStats()</code>, <code>StatsWindow</code> will create a <code>CustomLayeredGraph</code> and <code>CustomPiechart</code> to create the graph and pie chart needed for the statistics report.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the statistics feature shows the statistics to the user.
+<span class="image"><img src="../images/StatsUiSequenceDiagram.png" alt="StatsUiSequenceDiagram"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-whether-the-statistics-should-auto-update-when-an-eatery-is-added-or-a-review-is-added-to-an-eatery"><a class="link" href="#aspect-whether-the-statistics-should-auto-update-when-an-eatery-is-added-or-a-review-is-added-to-an-eatery">Aspect: Whether the statistics should auto-update when an eatery is added or a review is added to an eatery.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Not making the statistics auto-update</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement; don&#8217;t need to refactor existing code to make use of ObservableList and add ListChange listeners.</p>
+</li>
+<li>
+<p>Cons: User would need to call <code>stats</code> command after every addition or change made to the eatery or reviews of an eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2: </strong> Making the statistics auto-update</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User would not need to call <code>stats</code> command after every addition or change made to the eatery or reviews of an eatery.</p>
+</li>
+<li>
+<p>Cons: Need to refactor a lot of existing code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>More detailed explanation for choosing <strong>alternative 1</strong>: Although it may be annoying for the user to keep calling <code>stats</code> command after every change made, we realise that since <code>stats</code> acts as a statistics report for the users, users may not call the <code>stats</code> command as often to justify refactoring the entire code. Furthermore, to make a change to the eatery or reviews, the user would still need to minimize <code>StatsWindow</code> and unminimize it to view the auto-updated changes. Hence, the number of steps the user would need to execute to see the change in statistics is the same even for both auto-update and without auto-update.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:55:23 UTC</div></div></div></body></html>

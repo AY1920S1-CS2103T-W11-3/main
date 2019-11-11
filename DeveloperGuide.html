@@ -22,8 +22,8 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#add-eatery-feature-code-add-code">3.1. Add Eatery feature : <code>add</code></a></li>
-<li><a href="#statistics-feature-code-stats-code">3.2. Statistics feature : <code>stats</code></a></li>
+<li><a href="#add-eatery-feature">3.1. Add Eatery feature</a></li>
+<li><a href="#edit-eatery-feature">3.2. Edit Eatery feature</a></li>
 <li><a href="#review-eatery-feature">3.3. Review Eatery feature</a></li>
 <li><a href="#edit-review-feature">3.4. Edit Review feature</a></li>
 <li><a href="#delete-review-feature">3.5. Delete Review feature</a></li>
@@ -31,12 +31,13 @@
 <li><a href="#delete-tag-feature">3.7. Delete Tag feature</a></li>
 <li><a href="#close-eatery-feature">3.8. Close Eatery feature</a></li>
 <li><a href="#reopen-eatery-feature">3.9. Reopen Eatery feature</a></li>
-<li><a href="#changing-mode-of-eatme-feature">3.10. Changing Mode of EatMe feature</a></li>
-<li><a href="#news-feed-feature">3.11. News Feed Feature</a></li>
+<li><a href="#statistics-feature">3.10. Statistics feature</a></li>
+<li><a href="#changing-mode-of-eatme-feature">3.11. Changing Mode of EatMe feature</a></li>
 <li><a href="#saving-todo-eatery-feature">3.12. Saving Todo Eatery feature</a></li>
-<li><a href="#load-friend-s-eaterylist-feature">3.13. Load friend&#8217;s EateryList feature</a></li>
-<li><a href="#logging">3.14. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.15. Configuration</a></li>
+<li><a href="#news-feed-feature">3.13. News Feed Feature</a></li>
+<li><a href="#load-friend-s-eaterylist-feature">3.14. Load friend&#8217;s EateryList feature</a></li>
+<li><a href="#logging">3.15. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.16. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -51,10 +52,10 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#saving-an-eatery">G.2. Saving an eatery</a></li>
-<li><a href="#deleting-an-eatery">G.3. Deleting an eatery</a></li>
-<li><a href="#deleting-an-eatery-2">G.4. Deleting an Eatery</a></li>
-<li><a href="#saving-data">G.5. Saving data</a></li>
+<li><a href="#general">G.2. General</a></li>
+<li><a href="#working-in-main-mode">G.3. Working in Main mode</a></li>
+<li><a href="#working-in-todo-mode">G.4. Working in Todo mode</a></li>
+<li><a href="#news-feed">G.5. News Feed</a></li>
 </ul>
 </li>
 </ul>
@@ -80,7 +81,7 @@
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the EatMe app. Given below is a quick overview of each component.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -96,7 +97,7 @@ Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how 
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/MainApp.java"><code>MainApp</code></a>. It is responsible for</p>
 </div>
 <div class="ulist">
 <ul>
@@ -115,7 +116,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><code>LogsCenter</code> : Used by many classes to write log messages to the app&#8217;s log file.</p>
 </li>
 </ul>
 </div>
@@ -125,13 +126,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI of the App.</p>
+<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI of the app.</p>
 </li>
 <li>
 <p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
+<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the app in-memory.</p>
 </li>
 <li>
 <p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
@@ -183,13 +184,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>EateryListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -215,7 +216,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -267,7 +268,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -278,10 +279,10 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the EateryList data.</p>
+<p>stores a <code>EateryList</code> object that represents the data from the list of eateries in the app.</p>
 </li>
 <li>
-<p>stores the FeedList data.</p>
+<p>stores the <code>FeedList</code> object that represents the data from the list of feeds in the app.</p>
 </li>
 <li>
 <p>exposes an unmodifiable <code>ObservableList&lt;Eatery&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
@@ -299,12 +300,12 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
+<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="400">
 </div>
-<div class="title">Figure 8. Structure of the Storage Component</div>
+<div class="title">Figure 8. Structure of the Storage</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/src/main/java/seedu/eatme/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -315,10 +316,10 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save <code>EateryList</code> data in json format and read it back.</p>
+<p>can save <code>EateryList</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save <code>FeedList</code> data in json format and read it back.</p>
+<p>can save <code>FeedList</code> objects in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -338,7 +339,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="add-eatery-feature-code-add-code"><a class="link" href="#add-eatery-feature-code-add-code">3.1. Add Eatery feature : <code>add</code></a></h3>
+<h3 id="add-eatery-feature"><a class="link" href="#add-eatery-feature">3.1. Add Eatery feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
 <div class="paragraph">
@@ -391,12 +392,16 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 <p>Step 6. After successfully adding the eatery into <code>EateryList</code>, <code>AddCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the add eatery feature is executed.
-<span class="image"><img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram"></span></p>
+<p>The following sequence diagram shows how the add eatery feature is executed.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows the reference sequence diagram for creating <code>Eatery e</code>.
-<span class="image"><img src="images/AddCreateSequenceDiagram.png" alt="AddCreateSequenceDiagram"></span></p>
+<p><span class="image"><img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the reference sequence diagram for creating <code>Eatery e</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/AddCreateSequenceDiagram.png" alt="AddCreateSequenceDiagram" width="400"></span></p>
 </div>
 </div>
 <div class="sect3">
@@ -423,7 +428,7 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 </div>
 </li>
 <li>
-<p>Cons: Does not follow the logic of the original Address Book 3 application. More code needs to be refactored.</p>
+<p>Cons: Does not follow the logic of the original Address Book 3 application. Hence, more code needs to be refactored.</p>
 </li>
 </ul>
 </div>
@@ -443,6 +448,13 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-eatery-feature"><a class="link" href="#edit-eatery-feature">3.2. Edit Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The edit feature allows the user to edit any fields from the selected eatery i.e. <code>Name</code>, <code>Address</code>, <code>Category</code>, and <code>Tag</code> field(s). This feature would replace existing <code>Name</code>, <code>Address</code>, <code>Category</code>, and <code>Tag</code> associated with the eatery, with the new ones inputted by the user. Hence, this feature is not advised for users who wants to add more tags to the current list of tags. The edit mechanism is facilitated by <code>EateryList</code>. It implements the following operations:</p>
 </div>
@@ -481,22 +493,25 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 <p>Step 7. After successfully editing the eatery, <code>EditCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the edit eatery feature is executed.
-<span class="image"><img src="images/EditSequenceDiagram.png" alt="EditSequenceDiagram"></span></p>
+<p>The following sequence diagram shows how the edit eatery feature is executed.</p>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows the reference sequence diagram for creating an <code>EditEateryDescriptor e</code>.
-<span class="image"><img src="images/EditEateryDescriptorSequenceDiagram.png" alt="EditEateryDescriptorSequenceDiagram"></span></p>
+<p><span class="image"><img src="images/EditSequenceDiagram.png" alt="EditSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the reference sequence diagram for creating an <code>EditEateryDescriptor e</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/EditEateryDescriptorSequenceDiagram.png" alt="EditEateryDescriptorSequenceDiagram" width="400"></span></p>
 </div>
 <div class="paragraph">
 <p>The reference sequence diagram for creating <code>Eatery edited</code> has been omitted as the steps are the same as the reference sequence diagram for <code>add</code> command above.</p>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.1.3. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-replace-or-add-on-to-eatery-s-list-of-tags"><a class="link" href="#aspect-replace-or-add-on-to-eatery-s-list-of-tags">Aspect: Replace or add on to eatery&#8217;s list of tags</a></h5>
+<h5 id="aspect-replace-or-directly-manipulating-the-eatery-s-list-of-tags"><a class="link" href="#aspect-replace-or-directly-manipulating-the-eatery-s-list-of-tags">Aspect: Replace or directly manipulating the eatery&#8217;s list of tags</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -517,13 +532,13 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 </div>
 </li>
 <li>
-<p>Cons: Need to create additional command to handle adding of tags to the current list of tags.</p>
+<p>Cons: Need to create additional commands to handle explicit manipulation of tags (i.e. <code>addtag</code> and <code>removetag</code> commands to the current list of tags.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Adding to the list of tags</p>
+<p><strong>Alternative 2:</strong> Manipulating to the list of tags</p>
 <div class="ulist">
 <ul>
 <li>
@@ -534,116 +549,18 @@ If the command is missing the name, address, or category (i.e. <code>\n</code>, 
 <p>Easy to implement.</p>
 </li>
 <li>
-<p>Don&#8217;t need to create an additional command to add tags.</p>
+<p>Don&#8217;t need to create an additional commands to manipulate tags.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Cons: Not as user-friendly.</p>
+<p>Cons: Not as user-friendly&#8201;&#8212;&#8201;might need to specify more argument parameters to handle manipulation of tags (e.g. <code>\at [tags]</code> to add tags and <code>\rt [tags]</code> to remove existing tags).</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="statistics-feature-code-stats-code"><a class="link" href="#statistics-feature-code-stats-code">3.2. Statistics feature : <code>stats</code></a></h3>
-<div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
-<div class="paragraph">
-<p>The stats feature allows the user to generate statistics about the eateries they have visited and reviews they have made at those visited eateries.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the stats mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialised with the initial or previous json data stored.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>stats</code> to generate statistics for the current application state. The <code>EatMeParser</code> would return a <code>StatsCommand</code> to execute the command.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. <code>StatsCommand</code> then creates <code>Statistics</code> to generate the different types of statistics needed. To create the different types of statistics, <code>Statistics</code> would, first, sort the eateries in <code>EateryList</code> based on different conditions i.e. categories, total expense, total number of visits. After sorting the eateries, <code>Statistics</code> would then use these sorted lists to generate the appropriate statistics.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the user executes the <code>stats</code> command in the Todo mode, <code>StatsCommand</code> would throw a <code>CommandException</code> to the user specifying that the user is in the wrong mode. In addition, if there is no eateries with any reviews in the application at the time of <code>stats</code> execution, the <code>StatsCommand</code> would throw a <code>CommandException</code> error saying that there is no data to generate statistics. Lastly, if there is any error during the generating of statistics, the <code>StatsCommand</code> will throw another <code>CommandException</code> saying that there is an unknown error and the application is unable to generate statistics.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. <code>StatsCommand</code> would then call <code>Model#setStatistics()</code> with <code>Statistics</code> as a a parameter.</p>
-</div>
-<div class="paragraph">
-<p>Step 5. After successfully generating the statistics, <code>StatsCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the statistics feature is executed.
-<span class="image"><img src="images/StatsSequenceDiagram.png" alt="StatsSequenceDiagram"></span></p>
-</div>
-<div class="paragraph">
-<p>Since the statistic feature has a different user interface compared to the other commands i.e. <code>AddCommand</code>, <code>AddTagCommand</code>, etc., it would be useful to explain how the different user interface components work.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. When the <code>Ui</code> receives the <code>CommandResult</code> from <code>StatsCommand</code>, the <code>Ui</code> will call <code>MainWindow#showStats()</code>.</p>
-</div>
-<div class="paragraph">
-<p>Step 2. <code>MainWindow#showStats() will check if `StatsWindow</code> is already open. If it is opened, it will call <code>StatsWindow#initStats()</code> and focuses the window. Else, it will call <code>StatsWindow#initStats()</code> and displays the window.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. In <code>StatsWindow#initStats()</code>, <code>StatsWindow</code> will create a <code>CustomLayeredGraph</code> and <code>CustomPiechart</code> to create the graph and pie chart needed for the statistics report.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the statistics feature shows the statistics to the user.
-<span class="image"><img src="images/StatsUiSequenceDiagram.png" alt="StatsUiSequenceDiagram"></span></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.2.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-whether-the-statistics-should-auto-update-when-an-eatery-is-added-or-a-review-is-added-to-an-eatery"><a class="link" href="#aspect-whether-the-statistics-should-auto-update-when-an-eatery-is-added-or-a-review-is-added-to-an-eatery">Aspect: Whether the statistics should auto-update when an eatery is added or a review is added to an eatery.</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong> Alternative 1 (current choice):</strong> Not making the statistics auto-update</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement; don&#8217;t need to refactor existing code to make use of ObservableList and add ListChange listeners.</p>
-</li>
-<li>
-<p>Cons: User would need to call <code>stats</code> command after every addition or change made to the eatery or reviews of an eatery.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong> Alternative 2: </strong> Making the statistics auto-update</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: User would not need to call <code>stats</code> command after every addition or change made to the eatery or reviews of an eatery.</p>
-</li>
-<li>
-<p>Cons: Need to refactor a lot of existing code.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Reason for choosing alternative 1: Although it may be annoying for the user to keep calling <code>stats</code> command after every change made, we realise that since <code>stats</code> acts as a statistics report for the users, users may not call the <code>stats</code> command as often to justify refactoring the entire code. Furthermore, to make a change to the eatery or reviews, the user would still need to minimize <code>StatsWindow</code> and unminimize it to view the auto-updated changes. Hence, the number of steps the user would need to execute to see the change in statistics is the same even for both auto-update and without auto-update.</p>
 </div>
 </div>
 </div>
@@ -839,7 +756,7 @@ If the user input is not according to the given format, an error will be shown t
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations:</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations:</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-edit-review-executes"><a class="link" href="#aspect-how-edit-review-executes">Aspect: How edit review executes</a></h5>
 <div class="ulist">
@@ -923,7 +840,7 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.5.2. Design Considerations:</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations:</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-delete-review-executes"><a class="link" href="#aspect-how-delete-review-executes">Aspect: How delete review executes</a></h5>
 <div class="ulist">
@@ -1020,7 +937,7 @@ an error will be shown to the user.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.6.2. Design Considerations:</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.2. Design Considerations:</a></h4>
 <div class="sect4">
 <h5 id="how-addtag-executes"><a class="link" href="#how-addtag-executes">How AddTag executes:</a></h5>
 <div class="ulist">
@@ -1093,7 +1010,7 @@ an error will be shown to the user.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.7.2. Design Considerations:</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.2. Design Considerations:</a></h4>
 <div class="sect4">
 <h5 id="how-addtag-executes-2"><a class="link" href="#how-addtag-executes-2">How AddTag executes:</a></h5>
 <div class="ulist">
@@ -1186,7 +1103,7 @@ If the index given points to an Eatery already closed (ie, 1 in this situation),
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-close-executes"><a class="link" href="#aspect-how-close-executes">Aspect: How Close executes</a></h5>
 <div class="ulist">
@@ -1342,7 +1259,7 @@ If the index given points to an Eatery already reopened (ie, 1 in this situation
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">3.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-reopen-executes"><a class="link" href="#aspect-how-reopen-executes">Aspect: How Reopen executes</a></h5>
 <div class="ulist">
@@ -1356,7 +1273,7 @@ If the index given points to an Eatery already reopened (ie, 1 in this situation
 <div class="ulist">
 <ul>
 <li>
-<p>Follows pre-exisiting EditCommand implementation.</p>
+<p>Follows pre-existing EditCommand implementation.</p>
 </li>
 <li>
 <p>No need for setter methods.</p>
@@ -1432,9 +1349,107 @@ If the index given points to an Eatery already reopened (ie, 1 in this situation
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.10. Changing Mode of EatMe feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.10. Statistics feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-11"><a class="link" href="#implementation-11">3.10.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The stats feature allows the user to generate statistics about the eateries they have visited and reviews they have made at those visited eateries.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the stats mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialised with the initial or previous json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>stats</code> to generate statistics for the current application state. The <code>EatMeParser</code> would return a <code>StatsCommand</code> to execute the command.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>StatsCommand</code> then creates <code>Statistics</code> to generate the different types of statistics needed. To create the different types of statistics, <code>Statistics</code> would, first, sort the eateries in <code>EateryList</code> based on different conditions i.e. categories, total expense, total number of visits. After sorting the eateries, <code>Statistics</code> would then use these sorted lists to generate the appropriate statistics.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user executes the <code>stats</code> command in the Todo mode, <code>StatsCommand</code> would throw a <code>CommandException</code> to the user specifying that the user is in the wrong mode. In addition, if there is no eateries with any reviews in the application at the time of <code>stats</code> execution, the <code>StatsCommand</code> would throw a <code>CommandException</code> error saying that there is no data to generate statistics. Lastly, if there is any error during the generating of statistics, the <code>StatsCommand</code> will throw another <code>CommandException</code> saying that there is an unknown error and the application is unable to generate statistics.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>StatsCommand</code> would then call <code>Model#setStatistics()</code> with <code>Statistics</code> as a a parameter.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. After successfully generating the statistics, <code>StatsCommand</code> will return the <code>CommandResult</code> to the <code>Ui</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the statistics feature is executed.
+<span class="image"><img src="images/StatsSequenceDiagram.png" alt="StatsSequenceDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>Since the statistic feature has a different user interface compared to the other commands i.e. <code>AddCommand</code>, <code>AddTagCommand</code>, etc., it would be useful to explain how the different user interface components work.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. When the <code>Ui</code> receives the <code>CommandResult</code> from <code>StatsCommand</code>, the <code>Ui</code> will call <code>MainWindow#showStats()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>MainWindow#showStats() will check if `StatsWindow</code> is already open. If it is opened, it will call <code>StatsWindow#initStats()</code> and focuses the window. Else, it will call <code>StatsWindow#initStats()</code> and displays the window.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. In <code>StatsWindow#initStats()</code>, <code>StatsWindow</code> will create a <code>CustomLayeredGraph</code> and <code>CustomPiechart</code> to create the graph and pie chart needed for the statistics report.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the statistics feature shows the statistics to the user.
+<span class="image"><img src="images/StatsUiSequenceDiagram.png" alt="StatsUiSequenceDiagram"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">3.10.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-whether-the-statistics-should-auto-update-when-an-eatery-is-added-or-a-review-is-added-to-an-eatery"><a class="link" href="#aspect-whether-the-statistics-should-auto-update-when-an-eatery-is-added-or-a-review-is-added-to-an-eatery">Aspect: Whether the statistics should auto-update when an eatery is added or a review is added to an eatery.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Not making the statistics auto-update</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement; don&#8217;t need to refactor existing code to make use of ObservableList and add ListChange listeners.</p>
+</li>
+<li>
+<p>Cons: User would need to call <code>stats</code> command after every addition or change made to the eatery or reviews of an eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2: </strong> Making the statistics auto-update</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User would not need to call <code>stats</code> command after every addition or change made to the eatery or reviews of an eatery.</p>
+</li>
+<li>
+<p>Cons: Need to refactor a lot of existing code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>More detailed explanation for choosing <strong>alternative 1</strong>: Although it may be annoying for the user to keep calling <code>stats</code> command after every change made, we realise that since <code>stats</code> acts as a statistics report for the users, users may not call the <code>stats</code> command as often to justify refactoring the entire code. Furthermore, to make a change to the eatery or reviews, the user would still need to minimize <code>StatsWindow</code> and unminimize it to view the auto-updated changes. Hence, the number of steps the user would need to execute to see the change in statistics is the same even for both auto-update and without auto-update.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.11. Changing Mode of EatMe feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-12"><a class="link" href="#implementation-12">3.11.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Allows the user to toggle between Main mode and Todo mode. It extends <code>Command</code>, and once mode is switched, all other command functions would be affected.
 The mode is determined through the value of a boolean variable named <code>isMainMode</code>.</p>
@@ -1469,7 +1484,7 @@ The mode is determined through the value of a boolean variable named <code>isMai
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">3.10.2. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">3.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
 <div class="ulist">
@@ -1513,14 +1528,101 @@ The mode is determined through the value of a boolean variable named <code>isMai
 </div>
 </div>
 <div class="sect2">
-<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.11. News Feed Feature</a></h3>
+<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.12. Saving Todo Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-13"><a class="link" href="#implementation-13">3.12.1. Implementation</a></h4>
+<div class="paragraph">
+<p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends <code>Command</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage of how the SaveTodo Command behaves.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application. Data from <code>EateryList</code> will be fetched and initialised in main mode by default.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The user executes mode command and the mode of the application will be switched to Todo mode, displaying items in the todo list instead.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The user can execute <code>save 1</code>, indicating to the system the index of eatery to be saved.</p>
+</div>
+<div class="paragraph">
+<p>Step 4: The eatery in the todo list will be removed and an add command will be constructed in the CommandBox for the user to input any necessary fields before adding.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>SaveTodo</code> command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveTodoCommandSequence.png" alt="SaveTodoCommandSequence">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveTodoCommandActivity.png" alt="SaveTodoCommandActivity">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">3.12.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-savetodo-execute"><a class="link" href="#aspect-how-savetodo-execute">Aspect: How SaveTodo execute</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Construct the commands as a string before displaying to the user.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User-friendly. User will be able to add the eatery to the main list with minimum effort.</p>
+</li>
+<li>
+<p>Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not add the new eatery after executing <code>saveTodo</code> command.
+This situation will result in the user requiring to type the whole <code>add</code> command on his own as information will not be saved.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> Allow eatery to have the same attributes fields as eatery in main list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: As eatery in todo list and main list have the same attributes, it will be possible to <code>save</code> the eatery directly to the main list without further input from the user.</p>
+</li>
+<li>
+<p>Cons: User will be required to include additional field when adding an eatery in the todo list. Field entered may be irrelevant as user had yet to visit the eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-savetodo-command"><a class="link" href="#aspect-data-structure-to-support-savetodo-command">Aspect: Data structure to support SaveTodo Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> No additional data structure is required for <code>SaveTodo</code> command</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.13. News Feed Feature</a></h3>
 <div class="paragraph">
 <p>As people who really love food, we are interested in keeping up-to-date with the latest food trends and newest eateries to try.
 The news feed allows the user to save their favorite food blogs to EatMe and have access to the latest food-related articles right from within the app.
 Should a food blog become irrelevant, the user also has the option to remove it and no longer display its articles.</p>
 </div>
 <div class="sect3">
-<h4 id="terminology"><a class="link" href="#terminology">3.11.1. Terminology</a></h4>
+<h4 id="terminology"><a class="link" href="#terminology">3.13.1. Terminology</a></h4>
 <div class="paragraph">
 <p>Some terms are used in this feature:</p>
 </div>
@@ -1539,7 +1641,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-12"><a class="link" href="#implementation-12">3.11.2. Implementation</a></h4>
+<h4 id="implementation-14"><a class="link" href="#implementation-14">3.13.2. Implementation</a></h4>
 <div class="paragraph">
 <p>The current news feed supports two commands:</p>
 </div>
@@ -1611,7 +1713,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">3.11.3. Design Considerations</a></h4>
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">3.13.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-storage-of-feed-list"><a class="link" href="#aspect-storage-of-feed-list">Aspect: Storage of feed list</a></h5>
 <div class="ulist">
@@ -1647,7 +1749,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.11.4. Aspect: Offline behavior of news feed</a></h4>
+<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.13.4. Aspect: Offline behavior of news feed</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1691,96 +1793,9 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.12. Saving Todo Eatery feature</a></h3>
+<h3 id="load-friend-s-eaterylist-feature"><a class="link" href="#load-friend-s-eaterylist-feature">3.14. Load friend&#8217;s EateryList feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-13"><a class="link" href="#implementation-13">3.12.1. Implementation</a></h4>
-<div class="paragraph">
-<p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends <code>Command</code>.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage of how the SaveTodo Command behaves.</p>
-</div>
-<div class="paragraph">
-<p>Step 1: The user launches the application. Data from <code>EateryList</code> will be fetched and initialised in main mode by default.</p>
-</div>
-<div class="paragraph">
-<p>Step 2: The user executes mode command and the mode of the application will be switched to Todo mode, displaying items in the todo list instead.</p>
-</div>
-<div class="paragraph">
-<p>Step 3: The user can execute <code>save 1</code>, indicating to the system the index of eatery to be saved.</p>
-</div>
-<div class="paragraph">
-<p>Step 4: The eatery in the todo list will be removed and an add command will be constructed in the CommandBox for the user to input any necessary fields before adding.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the <code>SaveTodo</code> command works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SaveTodoCommandSequence.png" alt="SaveTodoCommandSequence">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SaveTodoCommandActivity.png" alt="SaveTodoCommandActivity">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">3.12.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-savetodo-execute"><a class="link" href="#aspect-how-savetodo-execute">Aspect: How SaveTodo execute</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Construct the commands as a string before displaying to the user.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: User-friendly. User will be able to add the eatery to the main list with minimum effort.</p>
-</li>
-<li>
-<p>Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not add the new eatery after executing <code>saveTodo</code> command.
-This situation will result in the user requiring to type the whole <code>add</code> command on his own as information will not be saved.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2</strong> Allow eatery to have the same attributes fields as eatery in main list</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: As eatery in todo list and main list have the same attributes, it will be possible to <code>save</code> the eatery directly to the main list without further input from the user.</p>
-</li>
-<li>
-<p>Cons: User will be required to include additional field when adding an eatery in the todo list. Field entered may be irrelevant as user had yet to visit the eatery.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-savetodo-command"><a class="link" href="#aspect-data-structure-to-support-savetodo-command">Aspect: Data structure to support SaveTodo Command</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> No additional data structure is required for <code>SaveTodo</code> command</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="load-friend-s-eaterylist-feature"><a class="link" href="#load-friend-s-eaterylist-feature">3.13. Load friend&#8217;s EateryList feature</a></h3>
-<div class="sect3">
-<h4 id="implementation-14"><a class="link" href="#implementation-14">3.13.1. Implementation</a></h4>
+<h4 id="implementation-15"><a class="link" href="#implementation-15">3.14.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The load mechanism is facilitated by <code>ModelManager</code>. It implements the <code>Model</code> interface with the following operation:</p>
 </div>
@@ -1871,7 +1886,7 @@ If the user attempts to load a file that does not exist in the default filepath,
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-13"><a class="link" href="#design-considerations-13">3.13.2. Design Considerations</a></h4>
+<h4 id="design-considerations-13"><a class="link" href="#design-considerations-13">3.14.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-load-executes"><a class="link" href="#aspect-how-load-executes">Aspect: How Load executes</a></h5>
 <div class="ulist">
@@ -1961,14 +1976,14 @@ If the user attempts to load a file that does not exist in the default filepath,
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.14. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.15. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.15, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.16, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1999,7 +2014,7 @@ If the user attempts to load a file that does not exist in the default filepath,
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.15. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.16. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2133,9 +2148,6 @@ If the user attempts to load a file that does not exist in the default filepath,
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2255,20 +2267,23 @@ If the user attempts to load a file that does not exist in the default filepath,
 </li>
 </ul>
 </div>
-<h3 id="use-case-viewing-a-menu-beforehand" class="discrete">Use case: Viewing a menu beforehand</h3>
+<h3 id="use-case-viewing-a-different-eatery-list-file" class="discrete">Use case: Viewing a different Eatery List file</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User searches for an eatery</p>
+<p>User requests to view another Eatery List file</p>
 </li>
 <li>
-<p>EatMe displays the eatery accordingly</p>
+<p>EatMe updates the preferences.json file</p>
 </li>
 <li>
-<p>User reads the entry for the menu</p>
+<p>EatMe requests the user to relaunch the application</p>
+</li>
+<li>
+<p>User relaunches the application and see the new file displayed</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2281,17 +2296,11 @@ If the user attempts to load a file that does not exist in the default filepath,
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. The list is empty.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
+<p>1a. The file does not exist.</p>
+<div class="ulist">
+<ul>
 <li>
-<p>1b. The user gives invalid information.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1b1. EatMe shows an error message.</p>
+<p>1a1. EatMe shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2299,10 +2308,33 @@ If the user attempts to load a file that does not exist in the default filepath,
 </ul>
 </div>
 </li>
+<li>
+<p>1b. The user gives a file that is already loaded in to the preferences.json</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. EatMe shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1</p>
+</div>
+</li>
 </ul>
 </div>
+</li>
+<li>
+<p>1c. The user gives no arguments, just load.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. EatMe updates the preferences.json file with the owner&#8217;s file.</p>
 <div class="paragraph">
-<p><em>{More to be added}</em></p>
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2312,21 +2344,18 @@ If the user attempts to load a file that does not exist in the default filepath,
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>11</code> or above installed.</p>
+<p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java 11 or above installed.</p>
 </li>
 <li>
 <p>Should be able to hold up to 1000 eateries without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+<p>A user with above average typing speed for regular English text (i.e. not code, system admin commands, etc.) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
-<p>Main functionalities (CRUD) should work without WiFi.</p>
+<p>Main functionalities of the app (i.e. CRUD) should work without WiFi.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -2341,11 +2370,15 @@ If the user attempts to load a file that does not exist in the default filepath,
 </dd>
 <dt class="hdlist1"><a id="eatery"></a> Eatery</dt>
 <dd>
-<p>Any place that serves food open to the public (ie, restaurants, cafes, roadside, pushcart)</p>
+<p>Any place that serves food open to the public (e.g. restaurants, cafes, roadside, pushcart, etc.)</p>
 </dd>
 <dt class="hdlist1"><a id="category"></a> Category</dt>
 <dd>
-<p>Broadly contains cuisines (ie, Chinese, International)</p>
+<p>Any type of cuisines (e.g. Chinese, International)</p>
+</dd>
+<dt class="hdlist1"><a id="feed"></a> Feed</dt>
+<dd>
+<p>Any food blog</p>
 </dd>
 </dl>
 </div>
@@ -2355,10 +2388,10 @@ If the user attempts to load a file that does not exist in the default filepath,
 <h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Soon</strong></p>
+<p><strong>WhatsMyFood</strong></p>
 </div>
 <div class="paragraph">
-<p>Author: Beginner AB</p>
+<p>Author: Casa de Sante Inc</p>
 </div>
 <div class="paragraph">
 <p>Pros:</p>
@@ -2366,10 +2399,10 @@ If the user attempts to load a file that does not exist in the default filepath,
 <div class="ulist">
 <ul>
 <li>
-<p>Shows trending restaurants nearby</p>
+<p>Nice User Interface</p>
 </li>
 <li>
-<p>Hide option</p>
+<p>Has camera function to upload pictures of the food</p>
 </li>
 </ul>
 </div>
@@ -2379,10 +2412,10 @@ If the user attempts to load a file that does not exist in the default filepath,
 <div class="ulist">
 <ul>
 <li>
-<p>Unable to delete lists</p>
+<p>Does not have a todo feature for users to create a wishlist</p>
 </li>
 <li>
-<p>Unable to search</p>
+<p>Does not have a feed list feature for users to follow their favourite food bloggers</p>
 </li>
 </ul>
 </div>
@@ -2419,7 +2452,7 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+Expected: Shows the GUI with a set of sample eateries. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2440,66 +2473,52 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="saving-an-eatery"><a class="link" href="#saving-an-eatery">G.2. Saving an eatery</a></h3>
+<h3 id="general"><a class="link" href="#general">G.2. General</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Saving an eatery while eateries are present in todo list.</p>
+<p>Changing the mode of application</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites:</p>
+<p>Test case: <code>mode</code><br>
+Expected: Success Message displayed, indicating the current mode of application</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Load eateries from other user profiles</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: The the file to which will be loaded must already exist</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Application is on todo mode.</p>
+<p>Test Case: <code>load \u Alice</code><br>
+Expected: Updates the preferences.json file to the specified file.</p>
 </li>
 <li>
-<p>Todo list is not empty</p>
+<p>Test Case: <code>load \u Alice.json</code><br>
+Expected: Updates the preferences.json file to the specified file. (the .json file type will be handled by the ParserUtil)</p>
+</li>
+<li>
+<p>Test Case: <code>load</code><br>
+Expected: Updates the preferences.json file to the owner&#8217;s file.</p>
+</li>
+<li>
+<p>Test Case: <code>load</code> followed by <code>load</code> again<br>
+Expected: Shows error as the file has already been updated.</p>
+</li>
+<li>
+<p>Test Case: <code>load \u</code><br>
+Expected: Shows error as the field is missing.</p>
 </li>
 </ol>
 </div>
-</li>
-<li>
-<p>Test case: Save 1<br>
-Expected: The application will toggle to main mode and a add command will be display in the commandbox.</p>
-</li>
-<li>
-<p>Test Case: Save 0<br>
-Expected: An error message will be shown in the status message.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-an-eatery"><a class="link" href="#deleting-an-eatery">G.3. Deleting an eatery</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Deleting an eatery while all eateries are listed</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Prerequisites: List all eateries using the list command. Multiple eateries in the list.</p>
-</li>
-<li>
-<p>Test case: delete 1<br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
-</li>
-<li>
-<p>Test case: delete 0<br>
-Expected: No eatery is deleted. Error details shown in the status message. Status bar remains the same.</p>
-</li>
-<li>
-<p>Other incorrect delete commands to try: delete, delete x (where x is larger than the list size) <em>{give more}</em><br></p>
 </li>
 </ol>
 </div>
@@ -2508,60 +2527,295 @@ Expected: No eatery is deleted. Error details shown in the status message. Statu
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-eatery-2"><a class="link" href="#deleting-an-eatery-2">G.4. Deleting an Eatery</a></h3>
+<h3 id="working-in-main-mode"><a class="link" href="#working-in-main-mode">G.3. Working in Main mode</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting an <code>Eatery</code> while all <code>Eateries</code> are listed</p>
+<p>Adding an eatery</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all <code>Eateries</code> using the list command. Multiple <code>Eateries</code> in the list.</p>
+<p>Test case: <code>add \n WaaCow \a Utown \c Japanese \t expensive</code><br>
+Expected: Adds a new eatery named WaaCow to the list.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-Expected: First <code>Eatery</code> is deleted from the list. Details of the deleted <code>Eatery</code> shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case: <code>add \n Mos Burger</code><br>
+Expected: Shows error message stating compulsory fields are missing.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No <code>Eatery</code> is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>add \n MosBurger \a Clementi \c Fastfood \t 23</code><br>
+Expected: Shows error message stating invalid tag format.</p>
+</li>
+</ol>
+</div>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size, or x is a non-integer)<br>
-Expected: Similar to previous.</p>
+<p>Editing an eatery</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: At least one eatery in the list.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>edit 1 \n HelpMe</code><br>
+Expected: Eatery at index 1 will have its name changed to "HelpMe".</p>
+</li>
+<li>
+<p>Test case: <code>edit 1</code><br>
+Expected: Shows an error message specifying that at least one field should be given.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1000</code><br>
+Expected: Shows an error message specifying that an invalid eatery index was given.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases to be added }</em></p>
+</li>
+<li>
+<p>Add a review</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: The eatery to which the review is being added must exist.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test Case: <code>review 1 \d good \p 3 \r 3 \w 11/11/2019</code><br>
+Expected: Adds the new review to the eatery.</p>
+</li>
+<li>
+<p>Test Case: <code>review</code><br>
+Expected: Shows error as the fields are missing.</p>
+</li>
+<li>
+<p>Test Case: <code>review \d good \p 2 \r 3</code><br>
+Expected: Shows error even if one of the fields is missing.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Edit a review</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: The review to edit must exist and at least one of the fields being changed must have data different from the existing one.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test Case: <code>editreview 1 \r 3.2</code><br>
+Expected: The rating of the review is changed to 3.2.</p>
+</li>
+<li>
+<p>Test Case: <code>editreview</code><br>
+Expected: Shows error as no index.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Delete a review</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: The review to delete must exist.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test Case: <code>deletereview 1</code><br>
+Expected: Review is deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Generating statistics</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: At least one review in the app.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>stats</code><br>
+Expected: Statistics window will pop-up, showing the statistics.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Prerequisite: No reviews in the app.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>stats</code><br>
+Expected: Shows an error message specifying that there is not enough reviews to generate statistics.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Close an eatery</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: The eatery to close must exist</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test Case: <code>close 1</code><br>
+Expected: The eatery at index 1 will be closed. A red highlight will be seen over the eatery card.</p>
+</li>
+<li>
+<p>Test Case: <code>close</code><br>
+Expected: Shows error as no index.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test Case: <code>close 1</code> followed by <code>close 1</code> again<br>
+Expected: Shows error as eatery has already been closed.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Reopen an eatery</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: The eatery to reopen must exist</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test Case: <code>reopen 1</code><br>
+Expected: The eatery at index 1 will be reopened. The eatery card will no longer be highlighted in red.</p>
+</li>
+<li>
+<p>Test Case: <code>reopen</code><br>
+Expected: Shows error as no index.</p>
+</li>
+<li>
+<p>Test Case: <code>reopen 1</code> followed by <code>reopen 1</code> again<br>
+Expected: Shows error as eatery has already been reopened.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.5. Saving data</a></h3>
+<h3 id="working-in-todo-mode"><a class="link" href="#working-in-todo-mode">G.4. Working in Todo mode</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>[Proposed] Dealing with missing/corrupted data files</p>
+<p>Saving a todo eatery</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: json file type present in a data file where the EatMe app is.</p>
+<p>Prerequisite: At least one eatery in todo list</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>save 1</code><br>
+Expected: Application toggled to main mode and constructed <code>add</code> command shown in command box.</p>
 </li>
 <li>
-<p>Test case: Running the application with json file type with incorrect format<br>
-Expected: Application starts with a blank <code>Eatery</code> list panel. Error details shown in the status message.</p>
+<p>Test case: <code>save abc</code><br>
+Expected: Shows error message.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases to be added }</em></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="news-feed"><a class="link" href="#news-feed">G.5. News Feed</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a new feed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: The feed list already already contains one feed, "Ladyironchef" with the Web address "https://www.ladyironchef.com/feed".</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addfeed \n Eatbook \a <a href="https://eatbook.sg/feed" class="bare">https://eatbook.sg/feed</a></code><br>
+Expected: Adds the new feed "Eatbook" and fetches its 5 most recent feed posts.</p>
+</li>
+<li>
+<p>Test case: <code>addfeed</code><br>
+Expected: Shows error message that the command is invalid (missing name and address).</p>
+</li>
+<li>
+<p>Test case: <code>addfeed \n Eatbook</code><br>
+Expected: Shows error message that the command is invalid (missing address).</p>
+</li>
+<li>
+<p>Test case: <code>addfeed \a <a href="https://eatbook.sg/feed" class="bare">https://eatbook.sg/feed</a></code><br>
+Expected: Shows error message that the command is invalid (missing name).</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a feed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: The feed list already already contains two feeds, "Ladyironchef" and "Eatbook".</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deletefeed \n Eatbook</code><br>
+Expected: Deletes the feed "Eatbook" and all of its associated feed posts.</p>
+</li>
+<li>
+<p>Test case: <code>deletefeed</code><br>
+Expected: Shows error message that the command is invalid (missing name).</p>
+</li>
+<li>
+<p>Test case: <code>deletefeed \n NonExistentFeed</code><br>
+Expected: Shows error message that the feed does not exist.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:48:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:55:23 UTC</div></div></div></body></html>
