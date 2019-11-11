@@ -250,7 +250,7 @@ a review to the second eatery in the displayed list.
 //tag::editreview[]
 ===== Editing a review: `editreview`
 
-Edits an eatery's review. The `show` command helps to view an eatery's reviews.
+Edits an eatery's review. Use the `show` command first to view an eatery's reviews.
 
 Format: `editreview [index] {\d [description]} {\p [price per person]} {\r [rating]} {\w [date in DD/MM/YYYY format]}`
 
@@ -272,7 +272,7 @@ image::EditReviewCommand.png[width="790"]
 //tag::deletereview[]
 ===== Deleting a review: `deletereview`
 
-Edits an eatery's review. Use the `show` command first to view an eatery's reviews.
+Deletes an eatery's review. Use the `show` command first to view an eatery's reviews.
 
 Format: `deletereview [index]`
 
