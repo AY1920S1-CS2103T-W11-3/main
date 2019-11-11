@@ -33,7 +33,13 @@ to store and edit reviews. On the brighter side, the user can now decide where a
 by taking a glance at the reviews' costs and ratings. In the event that the users input a review wrongly,
 they can edit or delete them at their will.
 
+** Relevant PRs: https://github.com/AY1920S1-CS2103T-W11-3/main/pull/77[#77], https://github.com/AY1920S1-CS2103T-W11-3/main/pull/90[#90],
+https://github.com/AY1920S1-CS2103T-W11-3/main/pull/172[#172]
+
 image:Review.png[]
+
+
+
 
 * *Other enhancements*: Added the *AddTag* and *RemoveTag* features
 
@@ -47,27 +53,33 @@ It is very frustrating if the eatery is associated with multiple tags and the us
 Now, `removetag [id] \t expensive` is used to remove the `#expensive` tag. Likewise, `addtag [id] \t ...`
 will be used to add the required tags. The effects are cumulative, allowing the user to operate efficiently.
 
+** Relevant PRs: https://github.com/AY1920S1-CS2103T-W11-3/main/pull/155[#155]
+
 * *Other Contributions:*
 
 ** Initial Phase:
 
 *** Came up with the idea to morph Address Book into a food diary.
 *** Refactored Address Book (removed Phone number, Email fields) to make it more suitable for handling eateries.
+*** Relevant PRs: https://github.com/AY1920S1-CS2103T-W11-3/main/pull/57[#57],
+https://github.com/AY1920S1-CS2103T-W11-3/main/pull/59[#59]
 
-* *Project Management:*
+** Project Management:
 
-** Drafting a rough project plan with reasonable deadlines.
-** Keeping track of issues on Github.
+*** Drafting a rough project plan with reasonable deadlines.
+*** Keeping track of issues on Github.
 
-* *Documentation:*
+** Documentation:
 
-** Updated the User Guide with new information.
-** Updated the Developer Guide with new information and diagrams.
-** Other documentation updates.
+*** Updated the User Guide with new information (PRs https://github.com/AY1920S1-CS2103T-W11-3/main/pull/173[#173]).
+*** Updated the Developer Guide with new information and diagrams (PRs https://github.com/AY1920S1-CS2103T-W11-3/main/pull/81[#81],
+https://github.com/AY1920S1-CS2103T-W11-3/main/pull/179[#179], https://github.com/AY1920S1-CS2103T-W11-3/main/pull/191[#191]).
+*** Suggested changes to documentation updates (PRs https://github.com/AY1920S1-CS2103T-W11-3/main/pull/10[#10]).
 
-* *Community*
+** Community
 
-** Reviewed Pull Requests (with non-trivial comments)
+*** Reviewed Pull Requests (with non-trivial comments): PRs https://github.com/AY1920S1-CS2103T-W11-3/main/pull/95[#95],
+https://github.com/AY1920S1-CS2103T-W11-3/main/pull/73[#73]
 
 == Contributions to the User Guide
 
