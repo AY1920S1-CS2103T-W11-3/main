@@ -693,6 +693,7 @@ This situation will result in the user requiring to type the whole `add` command
 
 ===== Aspect: Data structure to support SaveTodo Command
 * **Alternative 1 (current choice):** No additional data structure is required for `SaveTodo` command
+
 //end::saveTodoCommand[]
 
 // tag::newsFeedFeature
