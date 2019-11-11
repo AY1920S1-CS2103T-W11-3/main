@@ -158,8 +158,8 @@ Format: `edit [index] {\n [name of eatery]} {\a [address]} {\c [category]} {\t [
 
 Examples:
 
-* `edit 1 \t good-for-groups` removes all the existing tags and adds `good-for-groups` tag.
-* `edit 1 \a NUS Biz School` changes the address of the specified eatery to `NUS Biz School`.
+* `edit 1 \t good-for-groups`
+* `edit 1 \a NUS Biz School`
 // end::edit[]
 
 //tag::addtag[]
