@@ -1,0 +1,660 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Balam Sai Rohit Reddy - Project Portfolio Page</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">EatMe</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-W11-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Balam Sai Rohit Reddy - Project Portfolio Page</h1></div><div id="content"><div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This documents gives an insight to the contributions I made to EatMe, a personalized food diary application.
+I worked along with a team of 4 other Computer Science Students to morph the existing Address Book 3
+application into EatMe.</p>
+</div>
+<div class="paragraph">
+<p>EatMe helps users to keep track of the places they have been to, mouthwatering
+dishes that they consumed, and also stay up to date with the latest trends in the world of food.
+Users interact with it using a Command Line Interface (CLI) and it also has a Graphical User Interface (GUI)
+created using JavaFX. The application is written in Java and has about 10 kLoC.</p>
+</div>
+<div class="paragraph">
+<p>This is how the application looks like:
+<span class="image"><img src="../images/Eatme.PNG" alt="Eatme"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Code contributed</strong> : <a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=ROHITREDDYBALAM">Code contributed</a></p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Added the <strong>Review (Add, Edit, Delete)</strong> feature</p>
+<div class="ulist">
+<ul>
+<li>
+<p>EatMe being a food 'diary' app, the central feature is the ability to write down your experiences, view them
+in the future, and make changes if necessary. The review feature allows users to add reviews to an eatery, edit the reviews added and even delete them.</p>
+</li>
+<li>
+<p>In the process of morphing the Address Book into EatMe, all the attributes of an Eatery only had
+a single piece of information associated with them, like the Address attribute. However, a review
+consists of description, price, rating and time of the meal. This arrangement made it quite challenging
+to store and edit reviews. On the brighter side, the user can now decide where and what to eat quickly
+by taking a glance at the reviews' costs and ratings. In the event that the users input a review wrongly,
+they can edit or delete them at their will.</p>
+</li>
+<li>
+<p>Relevant PRs: <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/77">#77</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/90">#90</a>,
+<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/172">#172</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/Review.PNG" alt="Review"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Other enhancements</strong>: Added the <strong>AddTag</strong> and <strong>RemoveTag</strong> features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Originally, the only way to add or remove tags was by using the <code>edit</code> command, which replaced
+all the existing tags with the new input. If an eatery was tagged as <code>#good</code>, <code>#expensive</code>, <code>#Chinese</code>, <code>#elder-friendly</code>,
+and the user wanted to delete the <code>#expensive</code> tag, he would have had to input
+<code>edit [id] \t good \t Chinese \t elder-friendly</code> as the existing tags were replaced by the new ones.
+It is very frustrating if the eatery is associated with multiple tags and the user just wants to edit one.</p>
+</li>
+<li>
+<p>So, I came up with the <strong>AddTag</strong> and <strong>RemoveTag</strong> features that operate only on the tags specified by the user.
+Now, <code>removetag [id] \t expensive</code> is used to remove the <code>#expensive</code> tag. Likewise, <code>addtag [id] \t &#8230;&#8203;</code>
+will be used to add the required tags. The effects are cumulative, allowing the user to operate efficiently.</p>
+</li>
+<li>
+<p>Relevant PRs: <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/155">#155</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other Contributions:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial Phase:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Came up with the idea to morph Address Book into a food diary.</p>
+</li>
+<li>
+<p>Refactored Address Book (removed Phone number, Email fields) to make it more suitable for handling eateries.</p>
+</li>
+<li>
+<p>Relevant PRs: <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/57">#57</a>,
+<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/59">#59</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Project Management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Drafting a rough project plan with reasonable deadlines.</p>
+</li>
+<li>
+<p>Keeping track of issues on Github.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the User Guide with new information (PRs <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/173">#173</a>).</p>
+</li>
+<li>
+<p>Updated the Developer Guide with new information and diagrams (PRs <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/81">#81</a>,
+<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/179">#179</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/191">#191</a>).</p>
+</li>
+<li>
+<p>Suggested changes to documentation updates (PRs <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/10">#10</a>).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reviewed Pull Requests (with non-trivial comments): PRs <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/95">#95</a>,
+<a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/73">#73</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Given below are the sections that I contributed to the User Guide.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="editing-an-eatery-code-edit-code"><a class="link" href="#editing-an-eatery-code-edit-code">Editing an eatery: <code>edit</code></a></h5>
+<div class="paragraph">
+<p>Edits an existing eatery in the application.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit [index] {\n [name of eatery]} {\a [address]} {\c [category]} {\t [tags]&#8230;&#8203;}</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the eatery will be removed i.e adding of tags is not cumulative. To have a cumulative effect, use <code>addtag</code> and <code>removetag</code>.</p>
+</li>
+<li>
+<p>You can remove all the eatery&#8217;s tags by typing <code>\t</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 \t good-for-groups</code></p>
+</li>
+<li>
+<p><code>edit 1 \a NUS Biz School</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="reviewing-an-eatery-code-review-code"><a class="link" href="#reviewing-an-eatery-code-review-code">Reviewing an eatery: <code>review</code></a></h5>
+<div class="paragraph">
+<p>Leaves a review for the specified eatery.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>review [index] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Leaves a review for the eatery at the specified index.</p>
+</li>
+<li>
+<p>Date <strong>must</strong> be in DD/MM/YYYY format.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>review 2 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="editing-a-review-code-editreview-code"><a class="link" href="#editing-a-review-code-editreview-code">Editing a review: <code>editreview</code></a></h5>
+<div class="paragraph">
+<p>Edits an eatery&#8217;s review. Use the <code>show</code> command first to view an eatery&#8217;s reviews.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>editreview [index] {\d [description]} {\p [price per person]} {\r [rating]} {\w [date in DD/MM/YYYY format]}</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the review at the specified index.</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>Date <strong>must</strong> be in DD/MM/YYYY format.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editreview 1 \p 3.6 \r 1</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditReviewCommand.png" alt="EditReviewCommand" width="790">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deleting-a-review-code-deletereview-code"><a class="link" href="#deleting-a-review-code-deletereview-code">Deleting a review: <code>deletereview</code></a></h5>
+<div class="paragraph">
+<p>Deletes an eatery&#8217;s review. Use the <code>show</code> command first to view an eatery&#8217;s reviews.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deletereview [index]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deletereview 2</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteReviewCommand.png" alt="DeleteReviewCommand" width="790"">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apart from these, I wrote the documentation for <strong>addtag</strong> and <strong>removetag</strong> as well.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Given below are the sections that I contributed to the User Guide.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="review-eatery-feature"><a class="link" href="#review-eatery-feature">Review Eatery feature</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The review mechanism is facilitated by <code>EateryList</code>.
+It is stored internally as a set of reviews along with the other
+attributes of an eatery.
+Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Eatery#addReview</code>&#8201;&#8212;&#8201;Adds a review to the eatery identified by the user input.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the review mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialized with the initial json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>review 1 &#8230;&#8203;</code> command to add a review to the first Eatery in the address book. The <code>review</code> command will call <code>Eatery#addReview()</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to review the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the review is missing a <code>Description</code>, <code>Rating</code>, <code>Cost</code> or a <code>Date</code> field, an error will be shown to the user instead of adding the review.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The eatery list now returns a success message upon successfully adding a review to the eatery.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the activities involved.
+<span class="image"><img src="../images/ReviewActivityDiagram.png" alt="ReviewActivityDiagram"></span></p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows how the method is executed.
+<span class="image"><img src="../images/ReviewSequenceDiagram.png" alt="ReviewSequenceDiagram"></span></p>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-review-executes"><a class="link" href="#aspect-how-review-executes">Aspect: How review executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice) </strong>
+Adds a review to an eatery&#8217;s list of reviews.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to understand and implement.</p>
+</li>
+<li>
+<p>Cons: The set of reviews of an <code>Eatery</code> is not final, unlike tags.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2</strong>
+Return a new set of reviews every time a review is added.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes the set of reviews final, adhering to the existing model.</p>
+</li>
+<li>
+<p>Cons: Highly inefficient</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-used-to-store-reviews"><a class="link" href="#aspect-data-structure-used-to-store-reviews">Aspect: Data Structure used to store Reviews</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong>
+No further nesting of Review field in Eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easily implemented and will not compromise speed.</p>
+</li>
+<li>
+<p>Cons: The OOP model might be different from other Commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Further nesting of Review field in Eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A better OOP model.</p>
+</li>
+<li>
+<p>Cons: May decrease performance and difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-review-feature"><a class="link" href="#edit-review-feature">Edit Review feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>The edit review mechanism is facilitated by <code>EateryList</code>. It makes use of the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EateryList#getActiveEatery</code></p>
+</li>
+<li>
+<p><code>EateryList#getActiveReviews</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the close mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user decides to check the reviews of an eatery by using <code>show</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user then decides to edit the first review of the eatery and executes <code>editreview 1 &#8230;&#8203;</code> with the necessary fields.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If none of the fields entered are different from the existing fields, the user will be shown an error saying that at least one field should be different.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user input is not according to the given format, an error will be shown to the user instead of attempting to edit the review.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The application returns a success message upon successfully editing the review.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the activities involved.
+<span class="image"><img src="../images/EditReviewActivityDiagram.png" alt="EditReviewActivityDiagram"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations:</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-edit-review-executes"><a class="link" href="#aspect-how-edit-review-executes">Aspect: How edit review executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice)</strong>:
+When the show command is used, <code>EateryList#setActiveEatery</code> will set the eatery shown as the active eatery.
+When the user attempts to edit review, the eatery is accessed using <code>EateryList#getActiveEatery</code>. The reviews are modified by using
+<code>EateryList#getActiveReviews</code>, which returns a list of reviews. The changed list is set to the <code>ActiveEatery</code>
+by <code>Eatery#setReviews</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to access and edit reviews.</p>
+</li>
+<li>
+<p>Cons: The <code>ActiveEatery</code> is not modified until the <code>show</code> command is used on another eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2</strong>:
+Operate directly on the list of reviews after using <code>show</code> command and set the changed list to the eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: <code>EditReview</code> is only accessible after using <code>show</code> command.</p>
+</li>
+<li>
+<p>Cons: Difficult to implement and understand.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-review-feature"><a class="link" href="#delete-review-feature">Delete Review feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<div class="paragraph">
+<p>The delete review mechanism is facilitated by <code>EateryList</code>. It makes use of the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EateryList#getActiveEatery</code></p>
+</li>
+<li>
+<p><code>EateryList#getActiveReviews</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the close mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user decides to check the reviews of an eatery by using <code>show</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user then decides to delete the first review of the eatery and executes <code>deletereview 1 &#8230;&#8203;</code> .</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to close the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The application returns a success message upon successfully deleting the review.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations:</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-delete-review-executes"><a class="link" href="#aspect-how-delete-review-executes">Aspect: How delete review executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice)</strong>:
+When the show command is used, <code>EateryList#setActiveEatery</code> will set the eatery shown as the active eatery.
+When the user attempts to delete a review, the eatery is accessed using <code>EateryList#getActiveEatery</code>. The reviews are modified by using
+<code>EateryList#getActiveReviews</code>, which returns a list of reviews. The changed list is set to the <code>ActiveEatery</code>
+by <code>Eatery#setReviews</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to access and delete reviews.</p>
+</li>
+<li>
+<p>Cons: The <code>ActiveEatery</code> is not modified until the <code>show</code> command is used on another eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2</strong>:
+Operate directly on the list of reviews after using <code>show</code> command and set the changed list to the eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: <code>DeleteReview</code> is only accessible after using <code>show</code> command.</p>
+</li>
+<li>
+<p>Cons: Difficult to implement and understand.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following diagram shows the use case of review field as a whole.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/ReviewUseCaseDiagram.png" alt="ReviewUseCaseDiagram"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apart from these, I wrote the documentation for <strong>addtag</strong> and <strong>removetag</strong> as well.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:45:33 UTC</div></div></div></body></html>
