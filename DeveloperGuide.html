@@ -30,11 +30,13 @@
 <li><a href="#add-tag-feature">3.6. Add Tag feature</a></li>
 <li><a href="#delete-tag-feature">3.7. Delete Tag feature</a></li>
 <li><a href="#close-eatery-feature">3.8. Close Eatery feature</a></li>
-<li><a href="#changing-mode-of-eatme-feature">3.9. Changing Mode of EatMe feature</a></li>
-<li><a href="#news-feed-feature">3.10. News Feed Feature</a></li>
-<li><a href="#saving-todo-eatery-feature">3.11. Saving Todo Eatery feature</a></li>
-<li><a href="#logging">3.12. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.13. Configuration</a></li>
+<li><a href="#reopen-eatery-feature">3.9. Reopen Eatery feature</a></li>
+<li><a href="#changing-mode-of-eatme-feature">3.10. Changing Mode of EatMe feature</a></li>
+<li><a href="#news-feed-feature">3.11. News Feed Feature</a></li>
+<li><a href="#saving-todo-eatery-feature">3.12. Saving Todo Eatery feature</a></li>
+<li><a href="#load-friend-s-eaterylist-feature">3.13. Load friend&#8217;s EateryList feature</a></li>
+<li><a href="#logging">3.14. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.15. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -1141,13 +1143,13 @@ Preserves the OOP model of the project and there is no need for setter methods.<
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather than attempting to close the Eatery.
+If the index given is not a valid index (ie, out of bounds or negative), CloseCommand will throw a CommandException to the user rather than attempting to close the Eatery.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. The address book now returns a success message upon successfully closing the Eatery, and the Eatery will be greyed out [proposed].</p>
+<p>Step 3. The address book now returns a success message upon successfully closing the Eatery, and the Eatery will be highlighted in red.</p>
 </div>
 <div class="paragraph">
 <p>Step 4. The user then decides that he wants to close another Eatery.</p>
@@ -1159,7 +1161,7 @@ If the index given is not a valid index (ie, out of bounds or negative), it will
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the index given points to an Eatery already closed (ie, 1 in this situation), it will return an error to the user rather than attempting to close the Eatery.
+If the index given points to an Eatery already closed (ie, 1 in this situation), CloseCommand will throw a CommandException to the user rather than attempting to close the Eatery.
 </td>
 </tr>
 </table>
@@ -1264,9 +1266,161 @@ image::CloseCommitActivityDiagram.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.9. Changing Mode of EatMe feature</a></h3>
+<h3 id="reopen-eatery-feature"><a class="link" href="#reopen-eatery-feature">3.9. Reopen Eatery feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-10"><a class="link" href="#implementation-10">3.9.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The reopen mechanism is facilitated by <code>AddressBook</code>. It implements the <code>ReadOnlyAddressBook</code> interface with the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddressBook#setEatery()</code>&#8201;&#8212;&#8201;Replaces an Eatery with a modified Eatery specified by the user input.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the reopen mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>AddressBook</code> will be initialized with the initial json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>reopen 1</code> command to close the 1st Eatery in the address book.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index given is not a valid index (ie, out of bounds or negative), ReopenCommand will throw a CommandException to the user rather than attempting to reopen the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The address book now returns a success message upon successfully reopening the Eatery, and the Eatery will not longer be highlighted in red.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then decides that he wants to reopen another Eatery.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the index given points to an Eatery already reopened (ie, 1 in this situation), ReopenCommand will throw a CommandException to the user rather than attempting to reopen the Eatery.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>reopen</code> command works:
+image::ReopenSequenceDiagram.png[]</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new <code>reopen</code> command:
+image::ReopenCommitActivityDiagram.png[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">3.9.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-reopen-executes"><a class="link" href="#aspect-how-reopen-executes">Aspect: How Reopen executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Returns a new Eatery with identical fields except for the isOpen field.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Follows pre-exisiting EditCommand implementation.</p>
+</li>
+<li>
+<p>No need for setter methods.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons: Have to return a new object each time a change is made.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Setter method for isOpen field of Eatery.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No need for extra methods in the flow to change the object.</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Breaks pre-existing EditCommand implementation.</p>
+</li>
+<li>
+<p>Need for setter methods.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-reopen-command"><a class="link" href="#aspect-data-structure-to-support-the-reopen-command">Aspect: Data structure to support the Reopen command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Uses a boolean value to keep track if the Eatery is reopened or closed.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easily implemented.</p>
+</li>
+<li>
+<p>Cons: An additional variable to check when executing other commands. Possibility of incorrect manipulation of an Eatery object</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain two separate lists of Eateries for Reopened and Closed.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reopened Eateries stored apart from Closed Eateries. Commands executed will only affect Eateries stored in a particular list.</p>
+</li>
+<li>
+<p>Cons: Requires proper handling of individual data structures to ensure each list is maintained and updated correctly.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-mode-of-eatme-feature"><a class="link" href="#changing-mode-of-eatme-feature">3.10. Changing Mode of EatMe feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-11"><a class="link" href="#implementation-11">3.10.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Allows the user to toggle between Main mode and Todo mode. It extends <code>Command</code>, and once mode is switched, all other command functions would be affected.
 The mode is determined through the value of a boolean variable named <code>isMainMode</code>.</p>
@@ -1293,7 +1447,7 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">3.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">3.10.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
 <div class="ulist">
@@ -1337,14 +1491,14 @@ image::ModeCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.10. News Feed Feature</a></h3>
+<h3 id="news-feed-feature"><a class="link" href="#news-feed-feature">3.11. News Feed Feature</a></h3>
 <div class="paragraph">
 <p>As people who really love food, we are interested in keeping up-to-date with the latest food trends and newest eateries to try.
 The news feed allows the user to save their favorite food blogs to EatMe and have access to the latest food-related articles right from within the app.
 Should a food blog become irrelevant, the user also has the option to remove it and no longer display its articles.</p>
 </div>
 <div class="sect3">
-<h4 id="terminology"><a class="link" href="#terminology">3.10.1. Terminology</a></h4>
+<h4 id="terminology"><a class="link" href="#terminology">3.11.1. Terminology</a></h4>
 <div class="paragraph">
 <p>Some terms are used in this feature:</p>
 </div>
@@ -1363,7 +1517,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-11"><a class="link" href="#implementation-11">3.10.2. Implementation</a></h4>
+<h4 id="implementation-12"><a class="link" href="#implementation-12">3.11.2. Implementation</a></h4>
 <div class="paragraph">
 <p>The current news feed supports two commands:</p>
 </div>
@@ -1435,7 +1589,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">3.10.3. Design Considerations</a></h4>
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">3.11.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-storage-of-feed-list"><a class="link" href="#aspect-storage-of-feed-list">Aspect: Storage of feed list</a></h5>
 <div class="ulist">
@@ -1471,7 +1625,7 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.10.4. Aspect: Offline behavior of news feed</a></h4>
+<h4 id="aspect-offline-behavior-of-news-feed"><a class="link" href="#aspect-offline-behavior-of-news-feed">3.11.4. Aspect: Offline behavior of news feed</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1515,9 +1669,9 @@ Should a food blog become irrelevant, the user also has the option to remove it 
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.11. Saving Todo Eatery feature</a></h3>
+<h3 id="saving-todo-eatery-feature"><a class="link" href="#saving-todo-eatery-feature">3.12. Saving Todo Eatery feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-12"><a class="link" href="#implementation-12">3.11.1. Implementation</a></h4>
+<h4 id="implementation-13"><a class="link" href="#implementation-13">3.12.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends <code>Command</code>.</p>
 </div>
@@ -1546,7 +1700,7 @@ image::SaveTodoCommandActivity.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">3.11.2. Design Considerations</a></h4>
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">3.12.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-savetodo-execute"><a class="link" href="#aspect-how-savetodo-execute">Aspect: How SaveTodo execute</a></h5>
 <div class="ulist">
@@ -1594,14 +1748,193 @@ This situation will result in the user requiring to type the whole <code>add</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.12. Logging</a></h3>
+<h3 id="load-friend-s-eaterylist-feature"><a class="link" href="#load-friend-s-eaterylist-feature">3.13. Load friend&#8217;s EateryList feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-14"><a class="link" href="#implementation-14">3.13.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The load mechanism is facilitated by <code>ModelManager</code>. It implements the <code>Model</code> interface with the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#setUserPrefs()</code>&#8201;&#8212;&#8201;Replaces the existing UserPrefs with a modified UserPrefs specified by the user input.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the load mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>EateryList</code> will be initialized with the initial json data stored.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>load \u Alice</code> command to change the <code>UserPrefs</code> of the <code>ModelManger</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the command is missing the username (i.e. <code>load \u</code>), LoadCommandParser will throw an ParserException to the user with an error message specifying that the command parameters are incorrect, and an example usage of the command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the command is missing the username and the prefix (i.e. <code>load</code>), this will be interpreted as loading the owner&#8217;s own Eatery List.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The Eatery List now returns a success message upon successfully changing the <code>UserPrefs</code>, and prompts the user to relaunch the application.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then decides that he wants to change his <code>UserPrefs</code> to another friend&#8217;s one. Before exiting the application, the user can still enter <code>load \u Bob</code> command to change the <code>UserPrefs</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user attempts to load a file that has already been set in the <code>UserPrefs</code>, the LoadCommand will throw a CommandException to the user with an error message specifying that the <code>UserPrefs</code> has already been changed.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user attempts to load a file that does not exist in the default filepath, the LoadCommand will throw a CommandException to the user with an error message to prompt him to check that the file exists.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. The user then decides that he wants to change his <code>UserPrefs</code> back to his own instead. Before exiting the application, the user can still enter <code>load</code> command to reset the <code>UserPrefs</code> of the <code>ModelManage</code> back to his own Eatery List.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>load</code> command works:
+image::LoadSequenceDiagram.png[]</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new <code>load</code> command:
+image::LoadCommitActivityDiagram.png[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-13"><a class="link" href="#design-considerations-13">3.13.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-load-executes"><a class="link" href="#aspect-how-load-executes">Aspect: How Load executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Modifies the existing model in the Eatery List.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easily implemented without needing to relaunch the GUI.</p>
+</li>
+<li>
+<p>Cons: Require the application to be terminated for the storage to save UserPrefs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Creates a new model to replace the current one.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement the loading of file without relaunching the application.</p>
+</li>
+<li>
+<p>Cons: Need to relaunch the GUI so that the new file can be seen.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-user-experience-to-execute-load"><a class="link" href="#aspect-user-experience-to-execute-load">Aspect: User Experience to execute Load</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> The user has to relaunch the application.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easily implemented.</p>
+</li>
+<li>
+<p>Clear to the user that the UserPaths has been changed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons: Additional work from the user</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Relaunch the GUI</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user does not need to reload the application.</p>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Harder to implement.</p>
+</li>
+<li>
+<p>Might confuse the user if the UserPaths has been changed. Especially if the friend&#8217;s EateryList is similar to the user (i.e. same school).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.14. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.13, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.15, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1632,7 +1965,7 @@ This situation will result in the user requiring to type the whole <code>add</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.13. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.15. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2197,4 +2530,4 @@ Expected: Application starts with a blank <code>Eatery</code> list panel. Error 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:05:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:13:09 UTC</div></div></div></body></html>
