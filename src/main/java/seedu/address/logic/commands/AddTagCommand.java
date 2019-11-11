@@ -25,14 +25,14 @@ public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "addtag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the TAGS of the eatery identified "
-            + "by the index number used in the displayed eatery list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tags to the eatery identified "
+            + "by the index number used in the displayed eatery list."
             + "The new tags will be added to the existing tags.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + " TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + " good elder-friendly";
+            + "Parameters: [index] (must be a positive integer) "
+            + PREFIX_TAG + " [tag]...\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + " good " + PREFIX_TAG + " elder-friendly";
 
-    public static final String ADD_TAG_SUCCESS = "Added tags to Eatery: %1$s";
+    public static final String ADD_TAG_SUCCESS = "Tags successfully added";
 
     private final Index index;
     private final EditEateryDescriptor editEateryDescriptor;
@@ -54,7 +54,7 @@ public class AddTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Eatery> lastShownList = model.getFilteredEateryList();
+        List<Eatery> lastShownList = model.isMainMode() ? model.getFilteredEateryList() : model.getFilteredTodoList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
@@ -62,10 +62,10 @@ public class AddTagCommand extends Command {
 
         Eatery eateryToEdit = lastShownList.get(index.getZeroBased());
         Eatery editedEatery = createEditedEatery(eateryToEdit, editEateryDescriptor);
-
+        editedEatery.setReviews(eateryToEdit.getReviews());
         model.setEatery(eateryToEdit, editedEatery);
         model.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(ADD_TAG_SUCCESS, editedEatery));
+        return new CommandResult(ADD_TAG_SUCCESS);
     }
     /**
      * Creates and returns a {@code Eatery} with the details of {@code eateryToEdit}

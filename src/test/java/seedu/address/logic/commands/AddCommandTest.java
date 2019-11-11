@@ -42,7 +42,8 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validEatery).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEatery), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEatery.getName().fullName),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEatery), modelStub.eateriesAdded);
     }
 
@@ -140,6 +141,16 @@ public class AddCommandTest {
 
         @Override
         public void setEatery(Eatery target, Eatery editedEatery) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setActiveEatery(Eatery eatery) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Eatery getActiveEatery() {
             throw new AssertionError("This method should not be called.");
         }
 
