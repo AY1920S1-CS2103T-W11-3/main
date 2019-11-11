@@ -10,7 +10,7 @@ I worked along with a team of 4 other Computer Science Students to morph the exi
 application into EatMe.
 
 EatMe helps users to keep track of the places they have been to, mouthwatering
-dishes that they relinquished, and also stay up to date with the latest trends in the world of food.
+dishes that they consumed, and also stay up to date with the latest trends in the world of food.
 Users interact with it using a Command Line Interface (CLI) and it also has a Graphical User Interface (GUI)
 created with JavaFX. The application is written in Java and has about 10 kLoC.
 
