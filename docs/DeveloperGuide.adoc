@@ -145,7 +145,7 @@ The `Storage` component,
 [[Design-Commons]]
 === Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.eatme.commons` package.
 
 == Implementation
 
@@ -515,13 +515,13 @@ Preserves the OOP model of the project and there is no need for setter methods.
 === Close Eatery feature
 ==== Implementation
 
-The close mechanism is facilitated by `AddressBook`. It implements the `ReadOnlyAddressBook` interface with the following operation:
+The close mechanism is facilitated by `EateryList`. It implements ReadOnlyEateryList interface with the following operation:
 
-* `AddressBook#setEatery()` -- Replaces an Eatery with a modified Eatery specified by the user input.
+* `EateryList#setEatery()` -- Replaces an Eatery with a modified Eatery specified by the user input.
 
 Given below is an example usage scenario and how the close mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial json data stored.
+Step 1. The user launches the application for the first time. The `EateryList` will be initialized with the initial json data stored.
 
 Step 2. The user executes `close 1` command to close the 1st Eatery in the address book.
 [NOTE]
@@ -624,9 +624,11 @@ Step 2: The user execute `mode` command and the mode of the application will be 
 Step 3: The user can execute `mode` command again, returning the application to `main` mode, showing the items stored in the `main` list.
 
 The following sequence diagram shows how the `mode` command works:
+
 image::ModeCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
 image::ModeCommandActivity.png[]
 
 ==== Design Considerations
@@ -726,9 +728,11 @@ Step 3: The user can execute `save 1`, indicating to the system the index of eat
 Step 4: The eatery in the todo list will be removed and an add command will be constructed in the CommandBox for the user to input any necessary fields before adding.
 
 The following sequence diagram shows how the `SaveTodo` command works:
+
 image::SaveTodoCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
 image::SaveTodoCommandActivity.png[]
 
 ==== Design Considerations
@@ -746,7 +750,6 @@ This situation will result in the user requiring to type the whole `add` command
 * **Alternative 1 (current choice):** No additional data structure is required for `SaveTodo` command
 
 //end::saveTodoCommand[]
-
 === Load friend's EateryList feature
 ==== Implementation
 
