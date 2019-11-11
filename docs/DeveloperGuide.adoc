@@ -191,7 +191,7 @@ image:AddSequenceDiagram.png[]
 
 The following sequence diagram shows the reference sequence diagram for creating `Eatery e`.
 
-image:AddCreateSequenceDiagram.png
+image:AddCreateSequenceDiagram.png[]
 
 ==== Design Considerations
 ===== Aspect: How Add executes
