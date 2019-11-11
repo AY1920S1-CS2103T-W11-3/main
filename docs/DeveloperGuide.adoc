@@ -26,7 +26,7 @@ Refer to the guide <<SettingUp#, here>>.
 === Architecture
 
 .Architecture Diagram
-image::ArchitectureDiagram.png[Architecture, 250, 250]
+image::ArchitectureDiagram.png[]
 
 The *_Architecture Diagram_* given above explains the high-level design of the EatMe app. Given below is a quick overview of each component.
 
@@ -67,7 +67,7 @@ image::LogicClassDiagram.png[]
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 .Component interactions for `delete 1` command
-image::ArchitectureSequenceDiagram.png[Delete, 600, 600]
+image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
 
@@ -110,7 +110,7 @@ link:{repoURL}/src/main/java/seedu/eatme/logic/Logic.java[`Logic.java`]
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
-image::ArchitectureSequenceDiagram.png[Delete, 600, 600]
+image::ArchitectureSequenceDiagram.png[]
 
 NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -136,7 +136,7 @@ The `Model`,
 === Storage component
 
 .Structure of the Storage Component
-image::StorageClassDiagram.png[Storage, 400, 400]
+image::StorageClassDiagram.png
 
 *API* : link:{repoURL}/src/main/java/seedu/eatme/storage/Storage.java[`Storage.java`]
 
@@ -190,7 +190,7 @@ image:AddSequenceDiagram.png[]
 
 The following sequence diagram shows the reference sequence diagram for creating `Eatery e`.
 
-image:AddCreateSequenceDiagram.png[AddCreate, 600, 600]
+image:AddCreateSequenceDiagram.png
 
 ==== Design Considerations
 ===== Aspect: How Add executes
@@ -236,7 +236,7 @@ image:EditSequenceDiagram.png[]
 
 The following sequence diagram shows the reference sequence diagram for creating an `EditEateryDescriptor e`.
 
-image:EditEateryDescriptorSequenceDiagram.png[EditEateryDescriptor, 400, 400]
+image:EditEateryDescriptorSequenceDiagram.png[]
 
 The reference sequence diagram for creating `Eatery edited` has been omitted as the steps are the same as the reference sequence diagram for `add` command above.
 
