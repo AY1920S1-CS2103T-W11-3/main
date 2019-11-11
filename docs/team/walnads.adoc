@@ -4,12 +4,12 @@
 :stylesDir: ../stylesheets
 
 == Overview
-This portfolio documents all contributions I have made as part of the team project in the CS2103T Software Engineering module. For the software engineering team project, my group of 4 other software engineering students and I morphed an existing application into a food diary application called EatMe.
+This portfolio documents all contributions I have made as part of the team project in the CS2103T Software Engineering module. For the software engineering team project, my group of 4 other software engineering students and I were tasked with enhancing an existing application called Address Book 3. We chose to morph the current application into a food diary application called EatMe. The user interacts with it using a Command Line Interface (CLI) and it has a Graphical User Interface (GUI) created with JavaFX. It is written in Java and has about 10 kLoC.
 
 == Summary of Contributions
 My main task was to implement the `stats`, `add` and `edit` features. The following sections illustrate the work I had carried out to implement the feature, as well as the relevant documentation I have added to the user and developer guides.
 
-=== Enhancements added
+=== Features implemented
 ==== *Add command*
 The `add` command allows the user to add an eatery to our food diary application. The user can specify the name, address, category, and tags for the eatery when adding the eatery. Being a food diary application, the `add` command is one of the most important commands in the application as without it, the user would not be able to manage and keep track of any food places. The `add` command already came with the original Address Book code. Hence, all I needed to do was to add a Category field into the `add` command argument parameters and making the Tag field in the original `add` command argument parameters optional.
 
@@ -20,10 +20,7 @@ The `edit` command allows the user to edit an existing eatery. To edit an existi
 The `stats` command allows the user to generate statistics about the eateries they have visited and the reviews they have made at those visited eateries. The `stats` command is not one of the most crucial commands in the application, however, it is still useful for users as it gives them a breakdown of their eateries and reviews. Unlike the `add` and `edit` commands, `stats` command did not come with the original Address Book 3 code. Hence, it required an in-depth analysis of possible design solutions and alternatives.
 
 === Code contributed
-* `add` command: [https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/main/java/seedu/address/logic/commands/AddCommand.java[Functional code]][https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/test/java/seedu/address/logic/commands/AddCommandTest.java[Test code]]
-* `edit` command: [https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java[Functional code]][https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/test/java/seedu/address/logic/commands/EditCommandTest.java[Test code]]
-* `stats` command: [https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/main/java/seedu/address/model/statistics/Statistics.java[Functional code]][https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/test/java/seedu/address/logic/commands/StatsCommandTest.java[Test code]]
-* Category class: [https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/main/java/seedu/address/model/eatery/Category.java[Functional code]][https://github.com/AY1920S1-CS2103T-W11-3/main/blob/master/src/test/java/seedu/address/model/eatery/CategoryTest.javaf[Test code]]
+* [https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=walnads&sort=groupTitle&sortWithin=title&since=2019-09-06&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[All code]]
 
 
 === Other contributions
