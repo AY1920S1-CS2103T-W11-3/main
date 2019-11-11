@@ -1,4 +1,4 @@
-= Balam Sai Rohit - Project Portfolio Page
+= Balam Sai Rohit Reddy - Project Portfolio Page
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -86,10 +86,7 @@ include::../UserGuide.adoc[tag=editreview]
 
 include::../UserGuide.adoc[tag=deletereview]
 
-
-include::../UserGuide.adoc[tag=addtag]
-
-include::../UserGuide.adoc[tag=removetag]
+** Apart from these, I wrote the documentation for *addtag* and *removetag* as well.
 
 == Contributions to the Developer Guide
 
@@ -105,8 +102,4 @@ include::../DeveloperGuide.adoc[tag=editreview]
 
 include::../DeveloperGuide.adoc[tag=deletereview]
 
-
-include::../DeveloperGuide.adoc[tag=addtag]
-
-
-include::../DeveloperGuide.adoc[tag=removetag]
+** Apart from these, I wrote the documentation for *addtag* and *removetag* as well.
