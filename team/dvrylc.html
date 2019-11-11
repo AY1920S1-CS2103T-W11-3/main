@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Daryl Chan - Project Portfolio for EatMe</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">EatMe</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-W11-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Daryl Chan - Project Portfolio for EatMe</h1></div><div id="content"><div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>EatMe is a desktop food diary application used for keeping track of favorite places to eat.
+It also allows the user to easily stay up-to-date with the latest food trends.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10kLoC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=dvrylc">Code contributed</a></p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Added the <strong>news feed</strong> feature</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/NewsFeedDemo.png" alt="NewsFeedDemo">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to stay up-to-date with the latest food trends using a news feed.
+The user is able to customize the news feed to their liking by adding or removing their favorite food blogs from the list.</p>
+</li>
+<li>
+<p>Justification: As people who really love food, users are constantly on the lookout for the latest and most interesting kinds of food to try.
+Users usually stay up-to-date by reading their favorite food blogs.
+However, if a user has multiple food blogs that they like, going to each blog individually can be time-consuming.
+As such, we wanted to build a feature that would allow the user to simply add their favorite food blogs to the app and have a list of the latest articles shown to them.
+To read any of the articles, the user simply has to click on the article to open it up in their browser.
+This feature would allow our app to be a one-stop solution for all of the user&#8217;s food content.</p>
+</li>
+<li>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This feature was challenging to build because it fetches data from the RSS feeds of the user&#8217;s favorite food blogs.
+It involved research on how XML parsing can be done in Java, and a detailed analysis of how the news feed should behave when the user is offline.</p>
+</li>
+<li>
+<p>The implementation was challenging as it required a solution to cache previously fetched articles, so that the user can still view the feed while offline.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Credits: Besides the JSoup library that was used for XML parsing, all other parts of the feature were self-written.</p>
+</li>
+<li>
+<p>Relevant PRs: <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/73">#73</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/78">#78</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/88">#88</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/95">#95</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/103">#103</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/165">#165</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Added the <code>show</code> command</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ShowCommandDemo.png" alt="ShowCommandDemo">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to view all the information about an eatery (name, address, category, tags and reviews) and shows the user an interactive map of the eatery&#8217;s location for easy navigation.</p>
+</li>
+<li>
+<p>Justification: Since our app allows users to add reviews to an eatery, we needed a way to display the reviews in a simple and visually-pleasing way.
+Once the user finds an eatery to visit, it is also highly likely that they would need directions to the address.
+As such, we wanted to provide the user with an interactive map that they can use to navigate to the restaurant.</p>
+</li>
+<li>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The existing AB3 GUI had to be morphed into a 3-column layout to allow for a larger result display that count accomodate the eatery&#8217;s information, the reviews and the interactive map.</p>
+</li>
+<li>
+<p>In order for the map to be interactive, an analysis of the available map options also had to be conducted.
+I evaluated OpenStreetMaps and Google Maps, and decided to use Google Maps because it had a user interface that was more intuitive and familiar to the average user.</p>
+</li>
+<li>
+<p>The implementation was challenging because we had to use JavaFX&#8217;s WebView and an embedded Google Map.
+This involved working with the Google Maps API and making API calls that are signed with a Google Maps API Key.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Relevant PRs: <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/63">#63</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/100">#100</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/162">#162</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Add <strong>visual indicator for closed eateries</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Highlights closed eateries in red.</p>
+</li>
+<li>
+<p>Justification: When the user marks an eatery as "closed", it means that the eatery has closed down and is no longer operational.
+It is important that there is a visual indicator for the user to tell that the eatery is closed, so that the user doesn&#8217;t try to visit it.</p>
+</li>
+<li>
+<p>Relevant PRs: <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/164">#164</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.1</code> - <code>v1.4</code> (4 releases) on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI layout and color scheme (PR <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/63">#63</a>)</p>
+</li>
+<li>
+<p>Updated the <code>find</code> command to allow for attribute-based finding (PR <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/168">#168</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the User Guide with new information (PRs <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/91">#91</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/115">#115</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/118">#118</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/176">#176</a>)</p>
+</li>
+<li>
+<p>Updated the Developer Guide with new information and diagrams (PR <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/174">#174</a>)</p>
+</li>
+<li>
+<p>Other documentation updates (PRs <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/11">#11</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/12">#12</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/59">#59</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/68">#68</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/97">#97</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/111">#111</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/166">#166</a></p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3/pull/27#pullrequestreview-296000216">1</a>, <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3/pull/8#pullrequestreview-305618334">2 (with teammate @JunHongT)</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Integrated a third party library (JSoup) to the project (PR <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/73/files#diff-c197962302397baf3a4cc36463dce5ea">#73</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="news-feed"><a class="link" href="#news-feed">News Feed</a></h3>
+<div class="paragraph">
+<p>EatMe allows you to stay up-to-date with the latest food trends from right within the app!
+Add your favorite food blogs into the app and EatMe will show you a list of the latest articles from those blogs on the right panel.
+To view any of the articles, simply click on the title of the post.</p>
+</div>
+<div class="paragraph">
+<p>Terminology:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>feed</code> - A food blog</p>
+</li>
+<li>
+<p><code>feed post</code> - A single post from a food blog</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="adding-a-feed-code-addfeed-code"><a class="link" href="#adding-a-feed-code-addfeed-code">Adding a feed : <code>addfeed</code></a></h4>
+<div class="paragraph">
+<p>Adds a new feed to the app.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addfeed \n [name of feed] \a [Web address of the feed]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a new feed with the given name and Web address.</p>
+</li>
+<li>
+<p>Fetches the 5 latest posts from the feed and displays them in the right panel.</p>
+</li>
+<li>
+<p>The Web address <strong>must point to a valid RSS XML feed</strong>.</p>
+</li>
+<li>
+<p>In order <strong>to fetch the latest posts, you must be connected to the Internet</strong>.
+If you are not connected to the Internet, you can still add feeds but feed posts will only be fetched when the app is restarted with Internet connectivity.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addfeed \n Eatbook \a <a href="https://eatbook.com/feed" class="bare">https://eatbook.com/feed</a></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-feed-code-deletefeed-code"><a class="link" href="#deleting-a-feed-code-deletefeed-code">Deleting a feed : <code>deletefeed</code></a></h4>
+<div class="paragraph">
+<p>Deletes a feed from the app.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deletefeed \n [name of feed]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the feed with the specified name and all its associated feed posts.</p>
+</li>
+<li>
+<p>The name <strong>must match the feed&#8217;s name exactly</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deletefeed \n Eatbook</code></p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="viewing-an-eatery-code-show-code"><a class="link" href="#viewing-an-eatery-code-show-code">Viewing an eatery: <code>show</code></a></h5>
+<div class="paragraph">
+<p>Shows an eatery with all its details - address, tags, reviews, and a map of its location.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>show [index]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>In order <strong>to view the eatery&#8217;s map, you must be connected to the Internet</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>show 2</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:58:32 UTC</div></div></div></body></html>
