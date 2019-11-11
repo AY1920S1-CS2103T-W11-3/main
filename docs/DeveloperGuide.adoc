@@ -135,8 +135,9 @@ The `Model`,
 [[Design-Storage]]
 === Storage component
 
-.Structure of the Storage Component
-image::StorageClassDiagram.png
+.Structure of the Storage
+
+image::StorageClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/eatme/storage/Storage.java[`Storage.java`]
 
@@ -493,9 +494,11 @@ Step 4. The user then decides that he wants to close another Eatery.
 If the index given points to an Eatery already closed (ie, 1 in this situation), CloseCommand will throw a CommandException to the user rather than attempting to close the Eatery.
 
 The following sequence diagram shows how the `close` command works:
+
 image::CloseSequenceDiagram.png[]
 
 The following activity diagram summarizes what happens when a user executes a new `close` command:
+
 image::CloseCommitActivityDiagram.png[]
 
 ==== Design Considerations
@@ -543,9 +546,11 @@ Step 4. The user then decides that he wants to reopen another Eatery.
 If the index given points to an Eatery already reopened (ie, 1 in this situation), ReopenCommand will throw a CommandException to the user rather than attempting to reopen the Eatery.
 
 The following sequence diagram shows how the `reopen` command works:
+
 image::ReopenSequenceDiagram.png[]
 
 The following activity diagram summarizes what happens when a user executes a new `reopen` command:
+
 image::ReopenCommitActivityDiagram.png[]
 
 ==== Design Considerations
@@ -633,9 +638,11 @@ Step 2: The user execute `mode` command and the mode of the application will be 
 Step 3: The user can execute `mode` command again, returning the application to `main` mode, showing the items stored in the `main` list.
 
 The following sequence diagram shows how the `mode` command works:
+
 image::ModeCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
 image::ModeCommandActivity.png[]
 
 ==== Design Considerations
@@ -666,9 +673,11 @@ Step 3: The user can execute `save 1`, indicating to the system the index of eat
 Step 4: The eatery in the todo list will be removed and an add command will be constructed in the CommandBox for the user to input any necessary fields before adding.
 
 The following sequence diagram shows how the `SaveTodo` command works:
+
 image::SaveTodoCommandSequence.png[]
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
 image::SaveTodoCommandActivity.png[]
 
 ==== Design Considerations
@@ -784,9 +793,11 @@ If the user attempts to load a file that does not exist in the default filepath,
 Step 5. The user then decides that he wants to change his `UserPrefs` back to his own instead. Before exiting the application, the user can still enter `load` command to reset the `UserPrefs` of the `ModelManage` back to his own Eatery List.
 
 The following sequence diagram shows how the `load` command works:
+
 image::LoadSequenceDiagram.png[]
 
 The following activity diagram summarizes what happens when a user executes a new `load` command:
+
 image::LoadCommitActivityDiagram.png[]
 
 ==== Design Considerations
