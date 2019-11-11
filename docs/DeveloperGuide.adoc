@@ -331,6 +331,9 @@ Operate directly on the list of reviews after using `show` command and set the c
 ** Pros: `DeleteReview` is only accessible after using `show` command.
 ** Cons: Difficult to implement and understand.
 
+The following diagram shows the use case of review field as a whole.
+
+image:ReviewUseCaseDiagram.png[]
 //end::deletereview[]
 
 //tag::addtag[]
