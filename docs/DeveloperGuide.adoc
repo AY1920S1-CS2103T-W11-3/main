@@ -696,7 +696,7 @@ This situation will result in the user requiring to type the whole `add` command
 
 //end::saveTodoCommand[]
 
-// tag::newsFeedFeature
+// tag::newsFeedFeature[]
 === News Feed Feature
 As people who really love food, we are interested in keeping up-to-date with the latest food trends and newest eateries to try.
 The news feed allows the user to save their favorite food blogs to EatMe and have access to the latest food-related articles right from within the app.
@@ -763,7 +763,7 @@ image::DeleteFeedSequenceDiagram.png[]
 * Alternative 2: Show an error message when offline.
 ** Pros: Small and simple feed list JSON file.
 ** Cons: Unable to view feed posts when offline.
-// end::newsFeedFeature
+// end::newsFeedFeature[]
 
 // tag::load[]
 === Load friend's EateryList feature
@@ -959,29 +959,39 @@ Use case ends.
 Use case resumes at step 1.
 
 [discrete]
-=== Use case: Viewing a menu beforehand
-
+=== Use case: Viewing a different Eatery List file
 *MSS*
 
-1.  User searches for an eatery
-2.  EatMe displays the eatery accordingly
-3.  User reads the entry for the menu
+1.  User requests to view another Eatery List file
+2.  EatMe updates the preferences.json file
+3.  EatMe requests the user to relaunch the application
+3.  User relaunches the application and see the new file displayed
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. The list is empty.
+* 1a. The file does not exist.
 +
-Use case ends.
+** 1a1. EatMe shows an error message.
++
+Use case resumes at step 1.
 
-* 1b. The user gives invalid information.
+
+* 1b. The user gives a file that is already loaded in to the preferences.json
 +
 [none]
 ** 1b1. EatMe shows an error message.
 +
-Use case resumes at step 1.
+Use case resumes at step 1
+
+* 1c. The user gives no arguments, just load.
++
+[none]
+** 1c1. EatMe updates the preferences.json file with the owner's file.
++
+Use case resumes at step 2.
 
 [appendix]
 == Non Functional Requirements
@@ -1009,21 +1019,19 @@ Any food blog
 [appendix]
 == Product Survey
 
-*Soon*
+*WhatsMyFood*
 
-Author: Beginner AB
+Author: Casa de Sante Inc
 
 Pros:
 
-* Shows trending restaurants nearby
-* Hide option
+* Nice User Interface
+* Has camera function to upload pictures of the food
 
 Cons:
 
-* Unable to delete lists
-* Unable to search
-
-=======
+* Does not have a todo feature for users to create a wishlist
+* Does not have a feed list feature for users to follow their favourite food bloggers
 //end::appendix[]
 
 [appendix]
@@ -1048,25 +1056,134 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-=== Saving an eatery
+=== General
 
-. Saving an eatery while eateries are present in todo list.
+. Changing the mode of application
 
-.. Prerequisites:
-... Application is on todo mode.
-... Todo list is not empty
-.. Test case: Save 1 +
-    Expected: The application will toggle to main mode and an `add` command will be display in the textbox.
-.. Test Case: Save 0 +
-    Expected: An error message will be shown in the status message.
+.. Test case: `mode` +
+Expected: Success Message displayed, indicating the current mode of application
 
-=== Deleting an eatery
+. Load eateries from other user profiles
 
-. Deleting an eatery while all eateries are listed
+.. Prerequisite: The the file to which will be loaded must already exist
+... Test Case: `load \u Alice` +
+Expected: Updates the preferences.json file to the specified file.
+... Test Case: `load \u Alice.json` +
+Expected: Updates the preferences.json file to the specified file. (the .json file type will be handled by the ParserUtil)
+... Test Case: `load` +
+Expected: Updates the preferences.json file to the owner's file.
+... Test Case: `load` followed by `load` again +
+Expected: Shows error as the file has already been updated.
+... Test Case: `load \u` +
+Expected: Shows error as the field is missing.
 
-.. Prerequisites: List all eateries using the list command. Multiple eateries in the list.
-.. Test case: delete 1 +
-   Expected: First eatery is deleted from the list. Details of the deleted eatery shown in the status message.
-.. Test case: delete 0 +
-   Expected: No eatery is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: delete, delete x (where x is larger than the list size)
+=== Working in Main mode
+
+. Adding an eatery
+
+.. Test case: `add \n WaaCow \a Utown \c Japanese \t expensive` +
+Expected: Adds a new eatery named WaaCow to the list.
+.. Test case: `add \n Mos Burger` +
+Expected: Shows error message stating compulsory fields are missing.
+.. Test case: `add \n MosBurger \a Clementi \c Fastfood \t 23` +
+Expected: Shows error message stating invalid tag format.
+
+. Editing an eatery
+
+.. Prerequisite: At least one eatery in the list.
+... Test case: `edit 1 \n HelpMe` +
+Expected: Eatery at index 1 will have its name changed to "HelpMe".
+... Test case: `edit 1` +
+Expected: Shows an error message specifying that at least one field should be given.
+... Test case: `edit 1000` +
+Expected: Shows an error message specifying that an invalid eatery index was given.
+
+
+. Add a review
+.. Prerequisite: The eatery to which the review is being added must exist.
+... Test Case: `review 1 \d good \p 3 \r 3 \w 11/11/2019` +
+Expected: Adds the new review to the eatery.
+
+... Test Case: `review` +
+Expected: Shows error as the fields are missing.
+
+... Test Case: `review \d good \p 2 \r 3` +
+Expected: Shows error even if one of the fields is missing.
+
+. Edit a review
+.. Prerequisite: The review to edit must exist and at least one of the fields being changed must have data different from the existing one.
+... Test Case: `editreview 1 \r 3.2` +
+Expected: The rating of the review is changed to 3.2.
+... Test Case: `editreview` +
+Expected: Shows error as no index.
+
+. Delete a review
+.. Prerequisite: The review to delete must exist.
+... Test Case: `deletereview 1` +
+Expected: Review is deleted.
+
+. Generating statistics
+
+.. Prerequisite: At least one review in the app.
+... Test case: `stats` +
+Expected: Statistics window will pop-up, showing the statistics.
+
+.. Prerequisite: No reviews in the app.
+... Test case: `stats` +
+Expected: Shows an error message specifying that there is not enough reviews to generate statistics.
+
+. Close an eatery
+.. Prerequisite: The eatery to close must exist
+... Test Case: `close 1` +
+Expected: The eatery at index 1 will be closed. A red highlight will be seen over the eatery card.
+... Test Case: `close` +
+Expected: Shows error as no index.
+.. Test Case: `close 1` followed by `close 1` again +
+Expected: Shows error as eatery has already been closed.
+
+. Reopen an eatery
+
+.. Prerequisite: The eatery to reopen must exist
+
+... Test Case: `reopen 1` +
+Expected: The eatery at index 1 will be reopened. The eatery card will no longer be highlighted in red.
+... Test Case: `reopen` +
+Expected: Shows error as no index.
+... Test Case: `reopen 1` followed by `reopen 1` again +
+Expected: Shows error as eatery has already been reopened.
+
+=== Working in Todo mode
+
+. Saving a todo eatery
+
+.. Prerequisite: At least one eatery in todo list
+... Test case: `save 1` +
+Expected: Application toggled to main mode and constructed `add` command shown in command box.
+... Test case: `save abc` +
+Expected: Shows error message.
+
+
+=== News Feed
+
+. Adding a new feed
+.. Prerequisites: The feed list already already contains one feed, "Ladyironchef" with the Web address "https://www.ladyironchef.com/feed".
+
+... Test case: `addfeed \n Eatbook \a https://eatbook.sg/feed` +
+   Expected: Adds the new feed "Eatbook" and fetches its 5 most recent feed posts.
+... Test case: `addfeed` +
+   Expected: Shows error message that the command is invalid (missing name and address).
+... Test case: `addfeed \n Eatbook` +
+   Expected: Shows error message that the command is invalid (missing address).
+... Test case: `addfeed \a https://eatbook.sg/feed` +
+   Expected: Shows error message that the command is invalid (missing name).
+
+. Deleting a feed
+.. Prerequisites: The feed list already already contains two feeds, "Ladyironchef" and "Eatbook".
+
+... Test case: `deletefeed \n Eatbook` +
+   Expected: Deletes the feed "Eatbook" and all of its associated feed posts.
+... Test case: `deletefeed` +
+   Expected: Shows error message that the command is invalid (missing name).
+... Test case: `deletefeed \n NonExistentFeed` +
+   Expected: Shows error message that the feed does not exist.
+

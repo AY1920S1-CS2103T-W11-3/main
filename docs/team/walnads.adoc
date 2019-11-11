@@ -22,7 +22,6 @@ The `stats` command allows the user to generate statistics about the eateries th
 === Code contributed
 * [https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=walnads&sort=groupTitle&sortWithin=title&since=2019-09-06&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[All code]]
 
-
 === Other contributions
 * Documentation
 ** Made improvements to the EatMe user guide so that it reflects the actual functionality of our application. Do refer to pull request [https://github.com/AY1920S1-CS2103T-W11-3/main/pull/9[#9]] and [https://github.com/AY1920S1-CS2103T-W11-3/main/pull/182[#182]], specifically commits [https://github.com/AY1920S1-CS2103T-W11-3/main/pull/182/commits/d8da7b45455801d64b24c2d9ba53b32b58d88eb2[d8da7b]] and [https://github.com/AY1920S1-CS2103T-W11-3/main/pull/182/commits/b3242a22024bd83ac7bd5504c088c569f4917598[b3242a]] for more details.
@@ -51,5 +50,3 @@ include::../DeveloperGuide.adoc[tag=generalDiagrams2]
 include::../DeveloperGuide.adoc[tag=edit]
 
 include::../DeveloperGuide.adoc[tag=stats]
-
-
