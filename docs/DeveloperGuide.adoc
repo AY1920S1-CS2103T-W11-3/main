@@ -137,7 +137,7 @@ The `Model`,
 
 .Structure of the Storage
 
-image::StorageClassDiagram.png[]
+image::StorageClassDiagram.png[width=400]
 
 *API* : link:{repoURL}/src/main/java/seedu/eatme/storage/Storage.java[`Storage.java`]
 
@@ -191,7 +191,7 @@ image:AddSequenceDiagram.png[]
 
 The following sequence diagram shows the reference sequence diagram for creating `Eatery e`.
 
-image:AddCreateSequenceDiagram.png[]
+image:AddCreateSequenceDiagram.png[width=400]
 
 ==== Design Considerations
 ===== Aspect: How Add executes
@@ -237,7 +237,7 @@ image:EditSequenceDiagram.png[]
 
 The following sequence diagram shows the reference sequence diagram for creating an `EditEateryDescriptor e`.
 
-image:EditEateryDescriptorSequenceDiagram.png[]
+image:EditEateryDescriptorSequenceDiagram.png[width=400]
 
 The reference sequence diagram for creating `Eatery edited` has been omitted as the steps are the same as the reference sequence diagram for `add` command above.
 
