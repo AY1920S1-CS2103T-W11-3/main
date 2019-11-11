@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Teo Jun Hong - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">EatMe</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-W11-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Teo Jun Hong - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-eatme"><a class="link" href="#project-eatme">PROJECT: EatMe</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-the-project"><a class="link" href="#about-the-project">About the project</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My team of 4 computing students and I were tasked with enhancing a basic command line interface (CLI) desktop application, AddressBook 3 (AB3),
+for our software engineering project. We had chose to modify it into a food diary application known as <code>EatMe</code>.</p>
+</div>
+<div class="paragraph">
+<p>EatMe is a <strong>food diary app for people who love good food</strong>, allowing the user to:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>manage places they have been to,</p>
+</li>
+<li>
+<p>keep track of their experience and expenditure</p>
+</li>
+<li>
+<p>be up-to-date with the latest food trends and events</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>EatMe is optimized for those who like the speed of a Command Line Interface (CLI) while still maintaining the user-friendliness of a Graphical User Interface (GUI).</p>
+</div>
+<div class="paragraph">
+<p>The image below shows the mockup of our project:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>My main role is the implementation of the todo mode for EatMe.
+In the following sections, the enhancement will be described in more details, as well as relevant documentation from user and developer guide.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section show summary of my contribution to the team project.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>the ability to toggle between modes and save eatery from todo mode to main mode</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to toggle into <code>todo</code> mode, allowing user to add eateries which they had yet to visit, serving as a bucket list.
+In addition, user will also be able to save an eatery after visiting without needing to type the whole command as the application will provide a quick way for user to fill in the missing fields.</p>
+</li>
+<li>
+<p>Justification: Through the implementation of todo mode, a user can now keep a separate list of eateries which the user wish to go. This will be useful for the user as many might wish to keep a list of eateries which they hope to visit.
+With Todo mode, user will be able to have a broader selection of eateries when deciding on where to go.
+With the implementation of the Save Command, the application had also reduced the hassle of needing to retype the whole command to record the eatery into the main list through <code>save</code> command.</p>
+</li>
+<li>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future. After implementation, the team and I now need to consider 2 different states of the application as we proceed in designing future features.</p>
+</li>
+<li>
+<p>Credits: Both <code>mode</code> command and <code>SaveTodo</code> command are based on the AB3 template provided.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Relevant updates to ui and model related to todo mode.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor change to Help Window, allowing user to view url of EatMe site instead. (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/158">#158</a>)</p>
+</li>
+<li>
+<p>Refactor test data to be relevant to our problem statement (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/112">#112</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Organised User guide to more segments to allow user to have an easier time reading. (Pull request <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/159">#159</a>)</p>
+</li>
+<li>
+<p>Update developer guide with content related to my code contribution (Pull requests <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/84">#84</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with regards to coding): <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/61">#61</a>
+, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/88">#88</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/96">#96</a>
+, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/100">#100</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/103">#103</a>
+, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/155">#155</a>, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/162">#162</a>
+, <a href="https://github.com/AY1920S1-CS2103T-W11-3/main/pull/164">#164</a></p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3/pull/27">1</a>, <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3/pull/8">2</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We had to update the original AB3 User Guide with instructions for the enhancements that we had added. The following is an excerpt from our EatMe User Guide, showing additions that I have made for the <code>mode</code> and <code>SaveTodo</code> features.</p>
+</div>
+<div class="sect2">
+<h3 id="mode-command"><a class="link" href="#mode-command">Mode Command</a></h3>
+<div class="paragraph">
+<p>Allows the user to toggle between Main mode and Todo mode.</p>
+</div>
+<div class="paragraph">
+<p>Format : <code>mode</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example Usage:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User start the application</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/startup.png" alt="startup" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User input <code>mode</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExecuteMode.png" alt="ExecuteMode" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Application had switched to todo mode</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/todo.png" alt="todo" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="savetodo-command"><a class="link" href="#savetodo-command">SaveTodo Command</a></h3>
+<div class="paragraph">
+<p>This command removes a todo eatery from the todo list and provides a quick way to add it to the main list of eateries.<br></p>
+</div>
+<div class="paragraph">
+<p>Format : <code>save</code></p>
+</div>
+<div class="paragraph">
+<p>Example Usage:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User start the application</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/startup.png" alt="startup" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User execute <code>mode</code> command</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExecuteMode.png" alt="ExecuteMode" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User execute <code>save</code> with index of eatery he/she wanted to save.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExecuteSave.png" alt="ExecuteSave" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Application switch back to main mode, displaying incomplete command for user to finish inputting.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SaveResult.png" alt="SaveResult" width="600">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following section shows my contribution to the developer guide in regards to <code>Mode</code> and <code>SaveTodo</code> commands.</p>
+</div>
+<div class="sect2">
+<h3 id="mode-command-2"><a class="link" href="#mode-command-2">Mode Command</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>Allows the user to toggle between Main mode and Todo mode. It extends 'Command', and once mode had been switched, will affect all other command functions.
+The mode is determined through the value of a boolean variable named 'isMainMode'.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage of how the Mode Command behaved.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application. Data from <code>addressbook</code> will be fetched and will be initialised as <code>Main Mode</code> by default.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The user execute <code>mode</code> command and the mode of the application will be switched to <code>todo</code> mode, displaying items in the <code>todo</code> list instead.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The user can execute <code>mode</code> command again, returning the application to <code>main</code> mode, showing the items stored in the <code>main</code> list.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>mode</code> command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModeCommandSequenceDiagram.png" alt="ModeCommandSequenceDiagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModeCommandActivity.png" alt="ModeCommandActivity" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-mode-execute"><a class="link" href="#aspect-how-mode-execute">Aspect: How Mode execute</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Toggle between mode through a boolean value.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy for implementation.</p>
+</li>
+<li>
+<p>Cons: An additional factor to check when executing any other commands; Possibility of mis-manipulation of data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-mode-command"><a class="link" href="#aspect-data-structure-to-support-mode-command">Aspect: Data structure to support Mode Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Maintain 2 separate lists for Main mode and Todo Mode.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Data between the 2 modes will be separated apart. Commands executed will only affect data stored in the list for the particular mode.</p>
+</li>
+<li>
+<p>Cons: More effort required for maintenance purposes. Need to make sure that data from main list should not go into todo list, and vice versa</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="savetodo-command-2"><a class="link" href="#savetodo-command-2">SaveTodo Command</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>This command allows the user to save an eatery from the todo list to the main eatery list. It extends 'Command'.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage of how the SaveTodo Command behaved.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: The user launches the application. Data from <code>addressbook</code> will be fetched and will be initialised as <code>Main Mode</code> by default.</p>
+</div>
+<div class="paragraph">
+<p>Step 2: The user execute <code>mode</code> command and the mode of the application will be switched to <code>todo</code> mode, displaying items in the <code>todo</code> list instead.</p>
+</div>
+<div class="paragraph">
+<p>Step 3: The user can execute <code>save 1</code>, indicating to the system the index of eatery to be saved.</p>
+</div>
+<div class="paragraph">
+<p>Step 4: The eatery in the todo list will be removed and an add command will be constructed in the <code>CommandBox</code> for user to input any necessary fields before adding.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>SaveTodo</code> command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SaveTodoCommandSequence.png" alt="SaveTodoCommandSequence" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SaveTodoCommandActivity.png" alt="SaveTodoCommandActivity" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-mode-execute-2"><a class="link" href="#aspect-how-mode-execute-2">Aspect: How Mode execute</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Construct the commands as a string before displaying to the user.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User-friendly. User will be able to add the eatery to the main list with minimum effort.</p>
+</li>
+<li>
+<p>Cons: Unable to save directly to the main list from todo list. Possible situation can be that the user did not <code>add</code> the new eatery after executing <code>saveTodo</code> command.
+This situation will result in the user requiring to type the whole <code>add</code> command on his own as information will not be saved.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> Allow eatery to have the same attributes fields as eatery in main list</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: As eatery in todo list and main list have the same attributes, it will be possible to <code>save</code> the eatery directly to the main list without further input from the user.</p>
+</li>
+<li>
+<p>Cons: User will be required to include additional field when <code>adding</code> an eatery in the todo list. Field entered may be irrelevant as user had yet to visit the eatery.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-savetodo-command"><a class="link" href="#aspect-data-structure-to-support-savetodo-command">Aspect: Data structure to support SaveTodo Command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>No additional data structure is required for <code>SaveTodo</code> command</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:14:30 UTC</div></div></div></body></html>
