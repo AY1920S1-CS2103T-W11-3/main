@@ -242,8 +242,7 @@ Format: `review [index] \d [description] \p [price per person] \r [rating] \w [d
 
 Examples:
 
-* `review 2 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019` adds
-a review to the second eatery in the displayed list.
+* `review 2 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019`
 
 //end::review[]
 
