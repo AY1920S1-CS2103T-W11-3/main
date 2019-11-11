@@ -156,7 +156,7 @@ Examples:
 * `reopen 2`
 // end::reopen[]
 
-// tag:: edit[]
+// tag::edit[]
 ===== Editing an eatery: `edit`
 
 Edits an existing eatery in the application. +
@@ -171,13 +171,15 @@ Format: `edit [index] {\n [name of eatery]} {\a [address]} {\c [category]} {\t [
 
 Examples:
 
-* `edit 1 \t good-for-groups`
-* `edit 1 \a NUS Biz School`
+* `edit 1 \t good-for-groups` removes all the existing tags and adds `good-for-groups` tag.
+* `edit 1 \a NUS Biz School` changes the address of the specified eatery to `NUS Biz School`.
+
 // end::edit[]
 
+// tag::review[]
 ===== Reviewing an eatery: `review`
 
-Leaves a review for an eatery. +
+Leaves a review for the specified eatery. +
 Format: `review [index] \d [description] \p [price per person] \r [rating] \w [date in DD/MM/YYYY format]`
 
 ****
@@ -187,11 +189,15 @@ Format: `review [index] \d [description] \p [price per person] \r [rating] \w [d
 
 Examples:
 
-* `review 2 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019`
+* `review 2 \d Nice Condensed Milk Pork Ribs \p 15 \r 4 \w 23/10/2019` adds
+a review to the second eatery in the displayed list.
+// end::review[]
 
+// tag::editreview[]
 ===== Editing a review: `editreview`
 
-Edits an eatery's review. The `show` command helps to view an eatery's reviews.
+Edits an eatery's review. Use the `show` command first to view an eatery's reviews.
+
 Format: `editreview [index] {\d [description]} {\p [price per person]} {\r [rating]} {\w [date in DD/MM/YYYY format]}`
 
 ****
@@ -207,6 +213,9 @@ Examples:
 
 image::EditReviewCommand.png[width="790"]
 
+// end::editreview[]
+
+// tag::deletereview[]
 ===== Deleting a review: `deletereview`
 Deletes an eatery's review. The `show` command helps to view an eatery's reviews.
 Format: `deletereview [index]`
@@ -220,7 +229,9 @@ Examples:
 * `deletereview 2`
 
 image::DeleteReviewCommand.png[width=""790"]
+// end::deletereview[]
 
+// tag::addtag[]
 ===== Tagging an eatery: `addtag`
 Adds tags to an eatery. +
 Format: `addtag [index] \t [tags]...`
@@ -232,7 +243,10 @@ Format: `addtag [index] \t [tags]...`
 Examples:
 
 * `addtag 2 \t hawker \t good-for-sharing`
+// end::addtag[]
 
+
+// tag::removetag[]
 ===== Removing tags from an eatery: `removetag`
 Removes tags from an eatery. +
 Format: `removetag [index] \t [tags]...`
@@ -244,6 +258,7 @@ Format: `removetag [index] \t [tags]...`
 Examples:
 
 * `removetag 2 \t hawker`
+// end::removetag[]
 
 ===== Getting a random eatery: `random` [Coming in v2.0]
 
