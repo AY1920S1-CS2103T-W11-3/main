@@ -12,7 +12,7 @@ application into EatMe.
 EatMe helps users to keep track of the places they have been to, mouthwatering
 dishes that they consumed, and also stay up to date with the latest trends in the world of food.
 Users interact with it using a Command Line Interface (CLI) and it also has a Graphical User Interface (GUI)
-created with JavaFX. The application is written in Java and has about 10 kLoC.
+created using JavaFX. The application is written in Java and has about 10 kLoC.
 
 This is how the application looks like:
 image:Eatme.png[]
