@@ -6,13 +6,13 @@ import static seedu.eatme.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.eatme.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.eatme.logic.parser.CliSyntax.PREFIX_RATING;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
-import seedu.eatme.commons.core.Messages;
 import seedu.eatme.commons.core.index.Index;
 import seedu.eatme.commons.util.CollectionUtil;
 import seedu.eatme.logic.commands.exceptions.CommandException;
@@ -34,11 +34,12 @@ public class EditReviewCommand extends Command {
             + "{" + PREFIX_DESCRIPTION + " [description]} "
             + "{" + PREFIX_COST + " [cost]} "
             + "{" + PREFIX_RATING + " [rating]} "
-            + "{" + PREFIX_DATE + " [date] (in dd/mm/yyyy format)}"
+            + "{" + PREFIX_DATE + " [date] (in dd/mm/yyyy format)}\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_COST + " 15";
 
     public static final String MESSAGE_EDITED_REVIEW_SUCCESS = "Review successfully edited";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_INVALID_REVIEW_INDEX = "Please enter a valid review index";
 
     private final Index index;
     private final EditReviewDescriptor editReviewDescriptor;
@@ -62,7 +63,7 @@ public class EditReviewCommand extends Command {
         List<Review> lastShownList = model.getActiveReviews();
         Eatery activeEatery = model.getActiveEatery();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EATERY_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_REVIEW_INDEX);
         }
 
         Review reviewToEdit = lastShownList.get(index.getZeroBased());
@@ -70,7 +71,8 @@ public class EditReviewCommand extends Command {
 
         lastShownList.set(index.getZeroBased(), editedReview);
         activeEatery.setReviews(lastShownList);
-        model.updateActiveReviews(activeEatery.getReviews());
+
+        Collections.sort(lastShownList);
         return new CommandResult(MESSAGE_EDITED_REVIEW_SUCCESS, activeEatery);
     }
 

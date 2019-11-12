@@ -24,7 +24,7 @@ public class ReviewCommand extends Command {
     public static final String COMMAND_WORD = "review";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a review to the eatery identified "
-            + "by the index number used in the last eatery listing. "
+            + "by the index number used in the last eatery listing.\n"
             + "Parameters: [index] (must be a positive integer) "
             + PREFIX_DESCRIPTION + " [description] "
             + PREFIX_COST + " [cost per person] (should be less than 10000$) "
@@ -68,6 +68,8 @@ public class ReviewCommand extends Command {
 
             eateryToAddReview.addReview(review);
             model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
+
+            model.setActiveEatery(eateryToAddReview);
             model.updateActiveReviews(eateryToAddReview.getReviews());
         } else {
             throw new CommandException(MESSAGE_WRONG_MODE);
